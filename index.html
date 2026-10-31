@@ -60,18 +60,35 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
 .login{max-width:380px;margin:12vh auto;background:#fff;border-radius:18px;padding:26px;box-shadow:0 10px 40px rgba(16,26,53,.12)}
 @media(max-width:620px){.lst{flex-wrap:wrap}.lst .bars{max-width:none;flex-basis:100%}.row{flex-wrap:wrap}.row .n{flex-basis:100%}.rt{width:100%}.rt button{flex:1}.bar1 input{max-width:none;margin:0;flex-basis:100%}}
 @media print{.top,.bottom,.noprint{display:none!important}body{background:#fff}section{border:0;box-shadow:none;break-inside:avoid;padding:6px 0}}
+
+.card{padding:0;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(16,26,53,.14)}
+.ch{background:linear-gradient(135deg,#0b1430,#1d2c5c);color:#fff;padding:16px;display:flex;gap:14px;align-items:center;position:relative}
+.ch::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red)}
+.ch .who b{color:#fff;font-size:18px}.ch .who small{color:#b9c3e3;display:block}
+.ch .score strong{color:#fff;font-size:34px}.ch .score small{color:#b9c3e3;max-width:112px;margin-left:auto}
+.cb{padding:14px 16px 12px}
+.av{width:64px;height:64px;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.3);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:600;flex:none}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.av.big{width:92px;height:92px;font-size:34px;background:var(--navy);border-color:var(--line)}
+.ph{display:flex;gap:16px;align-items:center;margin:8px 0 4px}.phb{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.lk{margin-left:auto;color:#cdd5ee;font-size:13px;text-decoration:none}.top a+button{margin-left:0}
 </style>
 </head>
 <body>
-<div class="top"><div><b>NK ELITE ACADEMY</b><small>Player Assessment</small><button id="out" class="noprint" onclick="logout()" hidden>ออกจากระบบ</button></div></div>
+<div class="top"><div><b>NK ELITE ACADEMY</b><small>Player Assessment</small><a class="lk" href="/view" target="_blank" rel="noopener">หน้าดูข้อมูล ↗</a><button id="out" class="noprint" onclick="logout()" hidden>ออกจากระบบ</button></div></div>
 <main id="app"></main>
 <dialog id="dlg">
   <h2 id="dt">เพิ่มนักกีฬา</h2>
+  <div class="ph"><div id="f_prev" class="av big"></div><div class="phb">
+    <button class="s" type="button" onclick="$('f_file').click()">เลือกรูป</button>
+    <input id="f_file" type="file" accept="image/*" hidden onchange="pickPhoto(this)">
+    <button class="s x" type="button" onclick="clearPhoto()">ลบรูป</button></div></div>
   <label>ชื่อ</label><input id="f_name" autocomplete="off">
   <div class="g2"><div><label>อายุ (ปี)</label><input id="f_age" type="number" min="3" max="30" inputmode="numeric"></div>
   <div><label>ส่วนสูง (ซม.)</label><input id="f_h" type="number" min="50" max="230" inputmode="decimal"></div>
   <div><label>น้ำหนัก (กก.)</label><input id="f_w" type="number" min="10" max="200" inputmode="decimal"></div></div>
-  <div class="acts"><button onclick="dlg.close()">ยกเลิก</button><button class="p" onclick="savePlayer()">บันทึก</button></div>
+  <div class="acts"><button onclick="dlg.close()">ยกเลิก</button><button class="p" id="f_save" onclick="savePlayer()">บันทึก</button></div>
 </dialog>
 <script>
 const API = '/api/gas';
@@ -112,6 +129,8 @@ const byDate = (a,b) => (b.info.date||'').localeCompare(a.info.date||'') || (+b.
 const asmOf = pid => S.asms.filter(a=>a.playerId===pid).sort(byDate);
 const stats = p => `อายุ ${p.age||'-'} ปี · ${p.height||'-'} ซม. · ${p.weight||'-'} กก.`;
 
+const avatar = p => `<div class="av">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : esc(String(p.name||'?').trim().charAt(0))}</div>`;
+
 // ---------- เข้าสู่ระบบ ----------
 function login() {
   $('out').hidden = true;
@@ -147,29 +166,47 @@ function cards() {
   $('list').innerHTML = ps.length ? ps.map(p=>{
     const as = asmOf(p.id), l = as[0], t = l ? tAvg(l) : null;
     return `<article class="card" onclick="openPlayer('${p.id}')">
-      <div class="hd"><div class="av">${esc(String(p.name||'?').trim().charAt(0))}</div>
-        <div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div>
+      <div class="ch">${avatar(p)}<div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div>
         <div class="score"><strong>${f1(t)}</strong><small>${l?lvl(t):'ยังไม่ประเมิน'}</small></div></div>
-      ${l ? bars(l) : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
+      <div class="cb">${l ? bars(l) : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
       <div class="foot"><small class="mut">${l?`ล่าสุด ${esc(l.info.date)} · ${as.length} ครั้ง`:'—'}</small>
-        <span><button class="s" onclick="event.stopPropagation();openDlg('${p.id}')">แก้ไข</button><button class="s x" onclick="event.stopPropagation();delPlayer('${p.id}')">ลบ</button></span></div>
+        <span><button class="s" onclick="event.stopPropagation();openDlg('${p.id}')">แก้ไข</button><button class="s x" onclick="event.stopPropagation();delPlayer('${p.id}')">ลบ</button></span></div></div>
     </article>`; }).join('') : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีนักกีฬา กด “เพิ่มนักกีฬา” เพื่อเริ่มต้น'}</div>`;
 }
 
 // ---------- เพิ่ม/แก้ไข/ลบ นักกีฬา ----------
-let editId = null;
+let editId = null, photoData;
+function showPrev(d) { $('f_prev').innerHTML = d ? `<img src="${esc(d)}" alt="">` : esc((($('f_name').value||'?').trim().charAt(0))||'?'); }
 function openDlg(id) {
-  editId = id || null; const p = id ? S.players.find(x=>x.id===id) : {};
+  editId = id || null; const p = id ? S.players.find(x=>x.id===id) : {}; photoData = undefined;
   $('dt').textContent = id ? 'แก้ไขข้อมูลนักกีฬา' : 'เพิ่มนักกีฬา';
   $('f_name').value = p.name||''; $('f_age').value = p.age||''; $('f_h').value = p.height||''; $('f_w').value = p.weight||'';
-  dlg.showModal(); $('f_name').focus();
+  showPrev(p.photo||''); dlg.showModal(); $('f_name').focus();
 }
+function pickPhoto(inp) {
+  const f = inp.files[0]; if (!f) return;
+  const img = new Image(), u = URL.createObjectURL(f);
+  img.onload = () => {
+    const c = document.createElement('canvas'), n = 256; c.width = c.height = n;
+    const s = Math.min(img.width, img.height);
+    c.getContext('2d').drawImage(img, (img.width-s)/2, (img.height-s)/2, s, s, 0, 0, n, n);
+    let q = .8, d = c.toDataURL('image/jpeg', q);
+    while (d.length > 30000 && q > .35) { q -= .1; d = c.toDataURL('image/jpeg', q); }
+    photoData = d; showPrev(d); URL.revokeObjectURL(u);
+  };
+  img.onerror = () => alert('เปิดไฟล์รูปนี้ไม่ได้ ลองรูปอื่น (JPG/PNG)');
+  img.src = u; inp.value = '';
+}
+function clearPhoto() { photoData = ''; showPrev(''); }
 async function savePlayer() {
   const name = $('f_name').value.trim(); if (!name) return alert('กรุณากรอกชื่อ');
-  const data = {name, age:+$('f_age').value||'', height:+$('f_h').value||'', weight:+$('f_w').value||''};
+  const old = editId ? S.players.find(x=>x.id===editId) : {};
+  const data = {name, age:+$('f_age').value||'', height:+$('f_h').value||'', weight:+$('f_w').value||'', photo: photoData===undefined ? (old.photo||'') : photoData};
   if (editId) data.id = editId;
+  $('f_save').disabled = true;
   try { await call('save',{sheet:'Players', data}); dlg.close(); S.view==='player' ? openPlayer(editId) : home(); }
   catch(e) { alert('บันทึกไม่สำเร็จ: '+e.message); }
+  $('f_save').disabled = false;
 }
 async function delPlayer(id) {
   const p = S.players.find(x=>x.id===id), n = asmOf(id).length;
@@ -184,8 +221,8 @@ async function openPlayer(id) {
   const p = S.p = S.players.find(x=>x.id===id); if (!p) return home();
   const as = asmOf(id);
   $('app').innerHTML = `<p><button onclick="S.view='';home()">← นักกีฬาทั้งหมด</button></p>
-  <section><div class="hd"><div class="av">${esc(String(p.name||'?').trim().charAt(0))}</div><div class="who"><h2>${esc(p.name)}</h2><small class="mut">${stats(p)}</small></div>
-    <span style="display:flex;gap:6px"><button class="s" onclick="openDlg('${id}')">แก้ไข</button><button class="s x" onclick="delPlayer('${id}')">ลบ</button></span></div></section>
+  <div class="card" style="cursor:default;margin:14px 0"><div class="ch">${avatar(p)}<div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div>
+    <span style="display:flex;gap:6px"><button class="s" onclick="openDlg('${id}')">แก้ไข</button><button class="s x" onclick="delPlayer('${id}')">ลบ</button></span></div></div>
   <div class="bar1"><h3>ประวัติการประเมิน</h3><button class="p" style="margin-left:auto" onclick="newAsm()">+ ประเมินครั้งใหม่</button></div>
   <section>${as.length ? as.map(a=>`<div class="lst"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
     <div class="mid" onclick="openAsm('${a.id}')"><b>ครั้งที่ ${esc(a.info.no)}</b><div class="mut">${esc(a.info.date)} · ${lvl(tAvg(a))}${a.info.coach?' · โค้ช '+esc(a.info.coach):''}</div></div>
