@@ -103,6 +103,23 @@ select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);bo
 .t-elite{--c1:#0a1747;--c2:#3a5ce0;--bd1:#f7e9ad;--bd2:#b8913a;--fg:#f6e9b4}
 .t-none{--c1:#2b3446;--c2:#5b667c;--bd1:#9aa5ba;--bd2:#4a5468;--fg:#e8ecf5}
 .phd{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:14px 0}.phd .fut{width:230px;margin:0}.pin{flex:1;min-width:200px}.pin .acts2{display:flex;gap:6px;margin-top:10px}
+
+.fi::before{content:'';position:absolute;inset:0;background:var(--pat,none);background-size:var(--pz,auto);pointer-events:none}
+.fut .sp{position:absolute;left:0;right:0;top:6.6cqw;text-align:center;font-size:4.4cqw;font-weight:700;letter-spacing:.4cqw;text-transform:uppercase}
+.t-rare{--c1:#a9680f;--c2:#ffd75e;--bd1:#fff0a8;--bd2:#8f5a0a;--fg:#2e1d03;--pat:repeating-linear-gradient(120deg,transparent 0 9px,rgba(255,255,255,.14) 9px 10px)}
+.t-elite{--pat:radial-gradient(circle,rgba(255,255,255,.35) 0 1px,transparent 1.6px);--pz:20px 20px}
+.t-potw{--c1:#04111d;--c2:#0fb0d4;--bd1:#9af0ff;--bd2:#0b6f8c;--fg:#e4fbff;--pat:repeating-linear-gradient(115deg,transparent 0 13px,rgba(255,255,255,.08) 13px 15px)}
+.t-potm{--c1:#1c0734;--c2:#9333ea;--bd1:#f0c4ff;--bd2:#6d28d9;--fg:#fbe9ff;--pat:radial-gradient(circle,rgba(255,255,255,.28) 0 1.6px,transparent 2.2px);--pz:16px 16px}
+.t-poty{--c1:#050a26;--c2:#1f3f9a;--bd1:#ffe9a0;--bd2:#b18a2e;--fg:#ffe08a;--pat:radial-gradient(circle,rgba(255,255,255,.7) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(255,224,138,.5) 0 1px,transparent 1.6px);--pz:23px 23px,37px 37px}
+.t-tots{--c1:#032419;--c2:#12a56a;--bd1:#ffeaa0;--bd2:#b18a2e;--fg:#fff1b8;--pat:repeating-linear-gradient(45deg,transparent 0 10px,rgba(255,255,255,.09) 10px 11px),repeating-linear-gradient(-45deg,transparent 0 10px,rgba(255,255,255,.09) 10px 11px)}
+.t-legend{--c1:#cdbd93;--c2:#fffaf0;--bd1:#fff4c4;--bd2:#b98f1c;--fg:#3a2c0a;--pat:radial-gradient(circle at 28% 18%,rgba(255,255,255,.85),transparent 42%),radial-gradient(circle at 82% 72%,rgba(212,175,55,.3),transparent 46%)}
+.t-captain{--c1:#2e060b;--c2:#e0222f;--bd1:#ffd0d4;--bd2:#8f1019;--fg:#fff;--pat:linear-gradient(120deg,transparent 42%,rgba(0,0,0,.2) 42% 58%,transparent 58%)}
+.t-rising{--c1:#6d1a52;--c2:#ff8a3d;--bd1:#ffd9a6;--bd2:#c2410c;--fg:#fff4df;--pat:repeating-conic-gradient(from 0deg at 78% 18%,rgba(255,255,255,.13) 0 6deg,transparent 6deg 12deg)}
+.t-mvp{--c1:#080808;--c2:#3a3a3a;--bd1:#f6dc8c;--bd2:#8a6a1a;--fg:#f3d27a;--pat:repeating-linear-gradient(0deg,transparent 0 6px,rgba(243,210,122,.09) 6px 7px)}
+.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:260% 100%;animation:shn 4.5s linear infinite}
+@keyframes shn{0%{background-position:150% 0}100%{background-position:-60% 0}}
+@media (prefers-reduced-motion:reduce){.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}}
+dialog{max-height:92vh;overflow:auto}
 </style>
 </head>
 <body>
@@ -114,11 +131,14 @@ select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);bo
     <button class="s" type="button" onclick="$('f_file').click()">เลือกรูป</button>
     <input id="f_file" type="file" accept="image/*" hidden onchange="pickPhoto(this)">
     <button class="s x" type="button" onclick="clearPhoto()">ลบรูป</button></div></div>
-  <label>ชื่อ</label><input id="f_name" autocomplete="off">
-  <label>ตำแหน่ง</label><select id="f_pos"><option value="">— ไม่ระบุ —</option><option>ST</option><option>CF</option><option>LW</option><option>RW</option><option>CAM</option><option>CM</option><option>CDM</option><option>LB</option><option>RB</option><option>CB</option><option>GK</option></select>
-  <div class="g2"><div><label>อายุ (ปี)</label><input id="f_age" type="number" min="3" max="30" inputmode="numeric"></div>
+  <label>ชื่อ</label><input id="f_name" autocomplete="off" oninput="refreshPrev()">
+  <label>ตำแหน่ง</label><select id="f_pos" onchange="refreshPrev()"><option value="">— ไม่ระบุ —</option><option>ST</option><option>CF</option><option>LW</option><option>RW</option><option>CAM</option><option>CM</option><option>CDM</option><option>LB</option><option>RB</option><option>CB</option><option>GK</option></select>
+  <div class="g2"><div><label>อายุ (ปี)</label><input id="f_age" type="number" oninput="refreshPrev()" min="3" max="30" inputmode="numeric"></div>
   <div><label>ส่วนสูง (ซม.)</label><input id="f_h" type="number" min="50" max="230" inputmode="decimal"></div>
   <div><label>น้ำหนัก (กก.)</label><input id="f_w" type="number" min="10" max="200" inputmode="decimal"></div></div>
+  <label>ประเภทการ์ด</label><select id="f_sp" onchange="refreshPrev()"></select>
+  <label>ข้อความบนการ์ด (ไม่บังคับ)</label><input id="f_spn" maxlength="24" placeholder="เช่น สัปดาห์ที่ 44 / ตุลาคม 2026" oninput="refreshPrev()">
+  <div id="f_card" style="margin:16px auto 0;max-width:210px"></div>
   <div class="acts"><button onclick="dlg.close()">ยกเลิก</button><button class="p" id="f_save" onclick="savePlayer()">บันทึก</button></div>
 </dialog>
 <script>
@@ -168,17 +188,23 @@ const futStats = a => {
   return {PAC:sc(g(2,0,[0,1,2])), SHO:sc(g(0,4)), PAS:sc(g(0,1)), DRI:sc([...g(0,0),...g(0,2)]), DEF:sc([...g(0,3),...g(1,0,[7])]), PHY:sc(g(2,0,[4,5,6,7]))};
 };
 const POS = ['ST','CF','LW','RW','CAM','CM','CDM','LB','RB','CB','GK'];
+const SPECIALS = {
+  potw:['POTW','Player of the Week','ผู้เล่นยอดเยี่ยมประจำสัปดาห์'], potm:['POTM','Player of the Month','ผู้เล่นยอดเยี่ยมประจำเดือน'],
+  poty:['POTY','Player of the Year','ผู้เล่นยอดเยี่ยมประจำปี'], tots:['TOTS','Team of the Season','ทีมยอดเยี่ยมประจำฤดูกาล'],
+  legend:['LEGEND','Legend','ตำนานของอะคาเดมี'], captain:['CAPTAIN','Captain','กัปตันทีม'],
+  rising:['RISING STAR','Rising Star','ดาวรุ่งพุ่งแรง'], mvp:['MVP','Most Valuable Player','ผู้เล่นทรงคุณค่า']};
 function futCard(p) {
   const l = asmOf(p.id)[0], t = l ? tAvg(l) : null, s = l ? futStats(l) : {};
-  const tier = t==null ? 'none' : t>=4.5 ? 'elite' : t>=3.5 ? 'gold' : t>=2.5 ? 'silver' : 'bronze';
+  const sp = SPECIALS[p.special] ? p.special : '';
+  const tier = sp || (t==null ? 'none' : t>=4.5 ? 'elite' : t>=4 ? 'rare' : t>=3.5 ? 'gold' : t>=2.5 ? 'silver' : 'bronze');
   const v = k => s[k]==null ? '--' : s[k];
   const row = k => `<p><b>${v(k)}</b><span>${k}</span></p>`;
-  return `<div class="fut t-${tier}"><div class="fo"></div><div class="fi">
+  return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fi">${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
     <div class="ov"><b>${t==null?'--':Math.round(t*19.8)}</b><span>${esc(p.pos||'—')}</span><i>NK</i></div>
     <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : `<em>${esc(String(p.name||'?').trim().charAt(0))}</em>`}</div>
     <div class="nm">${esc(p.name)}</div><div class="ln"></div>
     <div class="st"><div>${row('PAC')}${row('SHO')}${row('PAS')}</div><div>${row('DRI')}${row('DEF')}${row('PHY')}</div></div>
-    <div class="ft">${p.age ? 'อายุ '+esc(p.age)+' ปี' : ''}</div></div></div>`;
+    <div class="ft">${esc(p.spNote || (p.age ? 'อายุ '+p.age+' ปี' : ''))}</div></div></div>`;
 }
 
 // ---------- เข้าสู่ระบบ ----------
@@ -223,11 +249,21 @@ function cards() {
 
 // ---------- เพิ่ม/แก้ไข/ลบ นักกีฬา ----------
 let editId = null, photoData;
-function showPrev(d) { $('f_prev').innerHTML = d ? `<img src="${esc(d)}" alt="">` : esc((($('f_name').value||'?').trim().charAt(0))||'?'); }
+function showPrev(d) { $('f_prev').innerHTML = d ? `<img src="${esc(d)}" alt="">` : esc((($('f_name').value||'?').trim().charAt(0))||'?'); refreshPrev(); }
+function fillSp() {
+  if ($('f_sp').options.length) return;
+  $('f_sp').innerHTML = '<option value="">อัตโนมัติ (ตามคะแนนประเมิน)</option>' + Object.entries(SPECIALS).map(([k,v])=>`<option value="${k}">${v[0]} · ${v[2]}</option>`).join('');
+}
+function curP() {
+  const old = editId ? (S.players.find(x=>x.id===editId)||{}) : {};
+  return {...old, name:$('f_name').value.trim()||'ชื่อนักกีฬา', age:+$('f_age').value||'', pos:$('f_pos').value, special:$('f_sp').value, spNote:$('f_spn').value.trim(),
+    photo: photoData===undefined ? (old.photo||'') : photoData};
+}
+function refreshPrev() { $('f_card').innerHTML = futCard(curP()); }
 function openDlg(id) {
   editId = id || null; const p = id ? S.players.find(x=>x.id===id) : {}; photoData = undefined;
   $('dt').textContent = id ? 'แก้ไขข้อมูลนักกีฬา' : 'เพิ่มนักกีฬา';
-  $('f_name').value = p.name||''; $('f_age').value = p.age||''; $('f_h').value = p.height||''; $('f_w').value = p.weight||''; $('f_pos').value = p.pos||'';
+  $('f_name').value = p.name||''; $('f_age').value = p.age||''; $('f_h').value = p.height||''; $('f_w').value = p.weight||''; $('f_pos').value = p.pos||''; fillSp(); $('f_sp').value = p.special||''; $('f_spn').value = p.spNote||'';
   showPrev(p.photo||''); dlg.showModal(); $('f_name').focus();
 }
 function pickPhoto(inp) {
@@ -248,7 +284,7 @@ function clearPhoto() { photoData = ''; showPrev(''); }
 async function savePlayer() {
   const name = $('f_name').value.trim(); if (!name) return alert('กรุณากรอกชื่อ');
   const old = editId ? S.players.find(x=>x.id===editId) : {};
-  const data = {name, age:+$('f_age').value||'', height:+$('f_h').value||'', weight:+$('f_w').value||'', pos:$('f_pos').value, photo: photoData===undefined ? (old.photo||'') : photoData};
+  const data = {name, age:+$('f_age').value||'', height:+$('f_h').value||'', weight:+$('f_w').value||'', pos:$('f_pos').value, special:$('f_sp').value, spNote:$('f_spn').value.trim(), photo: photoData===undefined ? (old.photo||'') : photoData};
   if (editId) data.id = editId;
   $('f_save').disabled = true;
   try { await call('save',{sheet:'Players', data}); dlg.close(); S.view==='player' ? openPlayer(editId) : home(); }
