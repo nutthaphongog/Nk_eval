@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NK ELITE ACADEMY - ประเมินนักกีฬา</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e1424;--navy:#121a33;--red:#d3202f;--line:#d9dce5;--bg:#f5f6f9;--card:#fff;--mut:#5d6479}
+*{box-sizing:border-box}
+body{margin:0;font-family:Prompt,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px;border-bottom:4px solid var(--red)}
+header b{font-size:18px;font-weight:600}header span{color:#aab1c8;font-size:13px}
+header button{margin-left:auto}
+main{max-width:860px;margin:0 auto;padding:20px 16px 80px}
+h2{font-size:20px;margin:24px 0 8px}h3{font-size:16px;margin:18px 0 6px}
+section{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;margin:14px 0}
+input,textarea,select{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:#fff}
+textarea{min-height:64px;resize:vertical}
+label{font-size:13px;color:var(--mut);display:block;margin-top:8px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px 14px}
+button.p{background:var(--red);border-color:var(--red);color:#fff}
+button.d{background:var(--navy);border-color:var(--navy);color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #6b8cff;outline-offset:1px}
+button:disabled{opacity:.5;cursor:wait}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 12px}
+.row{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid #eef0f4}
+.row .n{flex:1;font-size:14px}
+.sc{display:flex;gap:4px}
+.sc button{width:36px;height:36px;padding:0}
+.sc button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.avg{float:right;font-size:14px;color:var(--mut)}.avg b{color:var(--red);font-size:18px}
+.item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #eef0f4;cursor:pointer}
+.item:hover{background:#fafbfd}
+.bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.msg{color:var(--mut);font-size:13px}
+.legend{font-size:13px;color:var(--mut)}
+@media(max-width:560px){.row{flex-wrap:wrap}.row .n{flex-basis:100%}.sc{width:100%}.sc button{flex:1}}
+@media print{header button,.bar,.noprint{display:none}body{background:#fff}section{break-inside:avoid;border:0;padding:6px 0}}
+</style>
+</head>
+<body>
+<header><b>NK ELITE ACADEMY</b><span>Player Development &amp; Assessment</span><button id="out" class="noprint" onclick="logout()" hidden>ออกจากระบบ</button></header>
+<main id="app"></main>
+<script>
+// ====== ตั้งค่า: ใส่ URL ของ Google Apps Script Web App ======
+const API = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+const D = [
+ {n:'Domain 1: ด้านเทคนิค (Technical Skills)', g:[
+  {t:'Ball Mastery', i:['Ball Control','First Touch','Dribbling','Change of Direction / Feinting (เปลี่ยนทิศทาง/หลอกคู่ต่อสู้)','Change of Speed (เปลี่ยนความเร็ว)']},
+  {t:'Passing', i:['Passing Accuracy','Passing Weight/Pace','Passing Timing','Short Passing','Long Passing','Receiving']},
+  {t:'1v1 Attacking', i:['Ability to Beat Opponent','Change of Pace','Change of Direction','Feinting','Ball Protection']},
+  {t:'1v1 Defending', i:['Defensive Stance','Speed of Approach','Angle of Approach','Timing','Tackling','Interception']},
+  {t:'Finishing', i:['Shooting Accuracy','Finishing Technique','Shot Selection','First-Time Finishing','Creating Shooting Opportunities']}]},
+ {n:'Domain 2: ความเข้าใจเกม (Tactical Understanding)', g:[{i:['Scanning','Awareness','Decision Making','Positioning','Support','Movement Off the Ball','Creating Space','Defensive Positioning','Transition: Attack → Defense','Transition: Defense → Attack']}]},
+ {n:'Domain 3: สมรรถภาพทางกาย (Physical Development)', g:[{i:['Speed','Acceleration','Agility','Coordination','Balance','Strength','Power','Endurance','Repeated Sprint Ability','Mobility']}]},
+ {n:'Domain 4: ด้านจิตใจ (Psychological)', g:[{i:['Self-Confidence','Concentration','Motivation','Resilience','Willingness to Learn','Response to Mistakes','Response to Pressure','Courage to Make Decisions','Competitive Attitude']}]},
+ {n:'Domain 5: พฤติกรรมและการอยู่ร่วมกับทีม (Social & Behavior)', g:[{i:['Discipline','Respect','Teamwork','Communication','Coach-ability (เปิดรับคำแนะนำจากโค้ช)','Responsibility','Sportsmanship','Attitude Toward Teammates','Attitude Toward Coaches','Punctuality','Effort']}]},
+ {n:'Domain 6: ความฉลาดในการเล่นฟุตบอล (Football Intelligence)', g:[{i:['อ่านสถานการณ์','คาดการณ์เหตุการณ์ล่วงหน้า','สแกนพื้นที่','รู้ว่าควรเล่นเมื่อไหร่','รู้ว่าควรเล่นอะไร','รู้ว่าควรเล่นไปพื้นที่ไหน','เข้าใจ Space','เข้าใจ Time','เข้าใจ Risk vs Reward','ปรับการเล่นตามสถานการณ์']}]}
+];
+const LEVEL = {5:'Excellent',4:'Good',3:'Developing',2:'Needs Improvement',1:'Needs Significant Development'};
+
+let PW = sessionStorage.getItem('pw') || '';
+let S = {view:'home', players:[], asms:[], p:null, a:null, busy:false, msg:''};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+async function call(action, extra) {
+  const r = await fetch(API, {method:'POST', body: JSON.stringify({pw:PW, action, ...extra})}); // text/plain: ไม่ติด CORS preflight
+  const j = await r.json();
+  if (j.error) throw new Error(j.error);
+  return j;
+}
+const age = dob => { if(!dob) return ''; const d=new Date(dob), n=new Date(); let a=n.getFullYear()-d.getFullYear(); if(n<new Date(n.getFullYear(),d.getMonth(),d.getDate())) a--; return a; };
+const setp = (path, v) => { const k=path.split('.'); let o=S.a; k.slice(0,-1).forEach(x=>o=o[x]); o[k.at(-1)]=v; };
+const avg = (di) => { const v=[]; D[di].g.forEach((g,gi)=>g.i.forEach((_,ii)=>{const s=S.a.scores[`${di}-${gi}-${ii}`]; if(s) v.push(s);})); return v.length ? (v.reduce((a,b)=>a+b,0)/v.length).toFixed(1) : '-'; };
+const total = () => { const v=Object.values(S.a.scores); return v.length ? (v.reduce((a,b)=>a+b,0)/v.length).toFixed(1) : '-'; };
+
+function login() {
+  $('app').innerHTML = `<section style="max-width:360px;margin:60px auto"><h2 style="margin-top:0">เข้าสู่ระบบโค้ช</h2>
+  <label>รหัสผ่าน</label><input id="pw" type="password" autofocus onkeydown="if(event.key==='Enter')doLogin()">
+  <p class="msg" id="lm">${esc(S.msg)}</p><button class="p" onclick="doLogin()">เข้าสู่ระบบ</button></section>`;
+}
+async function doLogin() {
+  PW = $('pw').value;
+  try { S.players = (await call('list',{sheet:'Players'})).rows; sessionStorage.setItem('pw',PW); S.msg=''; home(); }
+  catch(e) { S.msg = e.message; login(); }
+}
+function logout() { sessionStorage.removeItem('pw'); PW=''; $('out').hidden=true; login(); }
+
+async function home() {
+  $('out').hidden = false; S.view='home';
+  S.players = (await call('list',{sheet:'Players'})).rows;
+  S.players.sort((a,b)=>a.name.localeCompare(b.name,'th'));
+  $('app').innerHTML = `<h2>นักกีฬา</h2>
+  <section><div class="grid"><div><label>ชื่อนักกีฬา</label><input id="pn"></div><div><label>วันเกิด</label><input id="pd" type="date"></div></div>
+  <p><button class="p" onclick="addPlayer()">เพิ่มนักกีฬา</button></p></section>
+  <section>${S.players.length ? S.players.map(p=>`<div class="item" onclick="openPlayer('${p.id}')"><span>${esc(p.name)}</span><span class="msg">อายุ ${age(p.dob)} ปี</span></div>`).join('') : '<p class="msg">ยังไม่มีนักกีฬา เพิ่มคนแรกได้จากแบบฟอร์มด้านบน</p>'}</section>`;
+}
+async function addPlayer() {
+  const name=$('pn').value.trim(); if(!name) return alert('กรุณากรอกชื่อนักกีฬา');
+  await call('save',{sheet:'Players', data:{name, dob:$('pd').value}}); home();
+}
+async function openPlayer(id) {
+  S.p = S.players.find(p=>p.id===id); S.view='player';
+  S.asms = (await call('list',{sheet:'Assessments'})).rows.filter(a=>a.playerId===id).sort((a,b)=>(b.info.date||'').localeCompare(a.info.date||''));
+  $('app').innerHTML = `<p><button onclick="home()">← นักกีฬาทั้งหมด</button></p><h2>${esc(S.p.name)}</h2>
+  <p class="msg">วันเกิด ${esc(S.p.dob||'-')} · อายุ ${age(S.p.dob)} ปี</p>
+  <p><button class="p" onclick="newAsm()">ประเมินครั้งใหม่</button></p>
+  <section>${S.asms.length ? S.asms.map(a=>{const sv=Object.values(a.scores);const m=sv.length?(sv.reduce((x,y)=>x+y,0)/sv.length).toFixed(1):'-';return `<div class="item" onclick="openAsm('${a.id}')"><span>ครั้งที่ ${esc(a.info.no)} · ${esc(a.info.date)}</span><span class="msg">เฉลี่ย ${m} / 5</span></div>`}).join('') : '<p class="msg">ยังไม่เคยประเมิน</p>'}</section>`;
+}
+function newAsm() {
+  S.a = {playerId:S.p.id, info:{name:S.p.name, dob:S.p.dob, date:new Date().toISOString().slice(0,10), coach:'', no:String(S.asms.length+1)}, scores:{}, note:'',
+    text:{obs:{strength:'',need:'',advice:'',next:''}, strengths:['','',''], improve:['','',''], goals:['','',''], actions:['','','']}};
+  form();
+}
+function openAsm(id) { S.a = JSON.parse(JSON.stringify(S.asms.find(a=>a.id===id))); form(); }
+function rate(k,v) { S.a.scores[k] = S.a.scores[k]===v ? undefined : v; if(S.a.scores[k]===undefined) delete S.a.scores[k]; const y=scrollY; form(); scrollTo(0,y); }
+
+function ta(path,label,val,rows) { return `<label>${label}</label><textarea oninput="setp('${path}',this.value)" ${rows?`style="min-height:${rows}px"`:''}>${esc(val)}</textarea>`; }
+function form() {
+  S.view='form'; const a=S.a, t=a.text;
+  let h = `<p class="noprint"><button onclick="openPlayer('${a.playerId}')">← กลับ</button></p><h2>แบบประเมินพัฒนาการนักกีฬา</h2>
+  <section><div class="grid">
+   <div><label>ชื่อนักกีฬา</label><input value="${esc(a.info.name)}" oninput="setp('info.name',this.value)"></div>
+   <div><label>วันที่ประเมิน</label><input type="date" value="${esc(a.info.date)}" oninput="setp('info.date',this.value)"></div>
+   <div><label>โค้ช</label><input value="${esc(a.info.coach)}" oninput="setp('info.coach',this.value)"></div>
+   <div><label>ครั้งที่</label><input value="${esc(a.info.no)}" oninput="setp('info.no',this.value)"></div></div>
+   <p class="msg">อายุ ${age(a.info.dob)} ปี · NK ELITE ACADEMY</p>
+   <p class="legend">5 Excellent · 4 Good · 3 Developing · 2 Needs Improvement · 1 Needs Significant Development</p></section>`;
+  D.forEach((d,di)=>{
+    h += `<section><h3 style="margin-top:0">${d.n}<span class="avg">เฉลี่ย <b>${avg(di)}</b></span></h3>`;
+    d.g.forEach((g,gi)=>{
+      if(g.t) h += `<h3>${g.t}</h3>`;
+      g.i.forEach((it,ii)=>{ const k=`${di}-${gi}-${ii}`;
+        h += `<div class="row"><span class="n">${esc(it)}</span><div class="sc">${[1,2,3,4,5].map(v=>`<button class="${a.scores[k]===v?'on':''}" aria-pressed="${a.scores[k]===v}" onclick="rate('${k}',${v})">${v}</button>`).join('')}</div></div>`; });
+    });
+    h += `</section>`;
+  });
+  h += `<section class="noprint"><h3 style="margin-top:0">ให้ AI ช่วยร่างข้อความ</h3>
+   <p class="msg">AI จะใช้คะแนนที่ให้ไว้ข้างบน เพิ่มข้อสังเกตของโค้ชด้านล่างเพื่อให้ผลแม่นขึ้น (เช่น พฤติกรรมในเกม ข้อจำกัด อาการบาดเจ็บ) แล้วแก้ไขผลได้ก่อนบันทึก</p>
+   <textarea oninput="S.a.note=this.value" placeholder="ข้อสังเกตเพิ่มเติมของโค้ช">${esc(a.note)}</textarea>
+   <p><button class="d" id="aib" onclick="runAI()">ร่างข้อความด้วย AI</button> <span class="msg" id="aim"></span></p></section>
+  <section><h3 style="margin-top:0">Coach’s Observation</h3>
+   ${ta('text.obs.strength','จุดเด่น',t.obs.strength)}${ta('text.obs.need','สิ่งที่ต้องพัฒนา',t.obs.need)}${ta('text.obs.advice','คำแนะนำสำหรับการฝึก',t.obs.advice)}${ta('text.obs.next','เป้าหมายรอบถัดไป',t.obs.next)}</section>
+  <section><h3 style="margin-top:0">Individual Development Plan</h3>
+   ${[0,1,2].map(i=>ta(`text.strengths.${i}`,`Top Strength ${i+1}`,t.strengths[i],40)).join('')}
+   ${[0,1,2].map(i=>ta(`text.improve.${i}`,`Area to Improve ${i+1}`,t.improve[i],40)).join('')}</section>
+  <section><h3 style="margin-top:0">Next 4–8 Week Goals</h3>${[0,1,2].map(i=>ta(`text.goals.${i}`,`Goal ${i+1}`,t.goals[i],40)).join('')}
+   <h3>Coach’s Action Plan</h3>${[0,1,2].map(i=>ta(`text.actions.${i}`,`Action ${i+1}`,t.actions[i],40)).join('')}
+   <p class="msg">โค้ช: ${esc(a.info.coach)} · คะแนนเฉลี่ยรวม ${total()} / 5</p></section>
+  <div class="bar"><span class="msg" id="sm" style="align-self:center"></span><button onclick="print()">พิมพ์ / บันทึก PDF</button><button class="p" onclick="saveAsm()">บันทึก</button></div>`;
+  $('app').innerHTML = h;
+}
+async function saveAsm() {
+  $('sm').textContent='กำลังบันทึก...';
+  try { S.a.id = (await call('save',{sheet:'Assessments', data:S.a})).id; $('sm').textContent='บันทึกแล้ว'; }
+  catch(e) { $('sm').textContent='บันทึกไม่สำเร็จ: '+e.message; }
+}
+async function runAI() {
+  const sc={}; D.forEach((d,di)=>d.g.forEach((g,gi)=>g.i.forEach((it,ii)=>{const v=S.a.scores[`${di}-${gi}-${ii}`]; if(v) (sc[d.n]=sc[d.n]||[]).push(`${g.t?g.t+': ':''}${it} = ${v}`);})));
+  if(!Object.keys(sc).length) return alert('กรุณาให้คะแนนอย่างน้อยบางหัวข้อก่อน');
+  $('aib').disabled=true; $('aim').textContent='AI กำลังวิเคราะห์...';
+  try {
+    const r = (await call('ai',{payload:{info:{...S.a.info, age:age(S.a.info.dob)}, scores:sc, note:S.a.note}})).result;
+    const f = (arr,n)=>Array.from({length:n},(_,i)=>(arr&&arr[i])||'');
+    S.a.text = {obs:{strength:'',need:'',advice:'',next:'',...r.observation}, strengths:f(r.strengths,3), improve:f(r.improve,3), goals:f(r.goals,3), actions:f(r.actions,3)};
+    form(); alert('AI ร่างข้อความให้แล้ว กรุณาตรวจและแก้ไขก่อนบันทึก');
+  } catch(e) { $('aib').disabled=false; $('aim').textContent='ผิดพลาด: '+e.message; }
+}
+
+if (PW) { doLogin2(); } else login();
+async function doLogin2(){ try{ await home(); }catch(e){ logout(); } }
+</script>
+</body>
+</html>
