@@ -138,10 +138,76 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
 .sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:260% 100%;animation:shn 4.5s linear infinite}
 @keyframes shn{0%{background-position:150% 0}100%{background-position:-60% 0}}
 @media (prefers-reduced-motion:reduce){.fi::after,.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}.fut{transition:none}}
+
+/* ================= VAULT (คลังนักกีฬา) – พื้นหลังแบบ FIFA ================= */
+body.vlt{color:#e8ecf5;background:
+  radial-gradient(55% 45% at 12% -5%,rgba(46,128,255,.42),transparent 62%),
+  radial-gradient(45% 40% at 92% 4%,rgba(224,34,47,.26),transparent 64%),
+  radial-gradient(70% 50% at 50% 112%,rgba(0,205,175,.22),transparent 62%),
+  repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 28px),
+  linear-gradient(180deg,#07102a,#0a1838 55%,#060d22);
+  background-attachment:fixed}
+body.vlt::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:var(--hexsvg);background-size:64px auto;opacity:.07;
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent 85%);mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent 85%)}
+body.vlt::after{content:'';position:fixed;left:-10%;right:-10%;bottom:-30vh;height:60vh;pointer-events:none;z-index:0;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(120,200,255,.16),transparent 70%)}
+body.vlt main{position:relative;z-index:1}
+body.vlt .mut{color:#9aa6c8}
+body.vlt .empty{background:rgba(255,255,255,.06);color:#b9c3e3}
+
+
+/* ================= HEADER: tabs + tools ================= */
+[hidden]{display:none!important}
+.top div{flex-wrap:wrap}
+.top nav{display:flex;gap:4px;margin-left:10px}
+.top nav button{margin-left:0;background:transparent;border:0;border-bottom:3px solid transparent;border-radius:8px 8px 0 0;color:#9aa6c8;padding:6px 14px;font-weight:500}
+.top nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+.top nav button.on{color:#fff;border-bottom-color:var(--red);background:rgba(255,255,255,.08)}
+#tb{padding-top:0!important;gap:10px}
+#tb input,#tb select{width:auto;padding:8px 12px;background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.2)}
+#tb input{flex:1;min-width:150px}
+#tb input::placeholder{color:#8f9bbd}
+#tb select option{color:#0d1322;background:#fff}
+#tb .cnt{color:#b9c3e3;font-size:13px;white-space:nowrap}#tb .cnt b{color:#fff;font-size:17px}
+#tb button{margin-left:0}
+body.wd .top div{max-width:1280px}
+
+/* ================= LINE UP ================= */
+.lu-page{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
+.lu-page.ed{grid-template-columns:minmax(0,1fr) 330px}
+.lu-main{width:100%;max-width:720px;margin:0 auto}
+.lu-tb{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;font-size:13px}
+.lu-tb .sp1{flex:1}
+.stage{border-radius:20px;padding:10px;background:linear-gradient(160deg,#16213f,#0a1128);box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.12)}
+.pitch{position:relative;aspect-ratio:5/6;border-radius:12px;overflow:hidden;
+  background:radial-gradient(90% 60% at 50% 38%,rgba(255,255,255,.14),transparent 72%),repeating-linear-gradient(180deg,#1d7a38 0 8.333%,#25903f 8.333% 16.666%);
+  box-shadow:inset 0 0 90px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,255,255,.18)}
+.pitch::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.28),transparent 22%,transparent 78%,rgba(0,0,0,.34))}
+.pl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hint0{position:absolute;left:10%;right:10%;top:50%;transform:translateY(-50%);text-align:center;color:rgba(255,255,255,.6);font-size:15px;pointer-events:none;z-index:1;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.lu{cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.lu-page.ed .lu{cursor:grab}
+.lu img{pointer-events:none;-webkit-user-drag:none}
+.pitch .lu.on{position:absolute;transform:translate(-50%,-50%);width:clamp(56px,13%,96px);z-index:2}
+.lu.drag{opacity:.3}
+.lu.ghost{position:fixed;z-index:80;pointer-events:none;transform:translate(-50%,-50%) scale(1.08);filter:drop-shadow(0 18px 24px rgba(0,0,0,.55))}
+body.dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
+.over{outline:3px dashed rgba(255,255,255,.8);outline-offset:-6px}
+.bench{margin-top:12px;border-radius:16px;padding:10px 12px 12px;color:#e8ecf5;background:linear-gradient(180deg,rgba(18,30,66,.8),rgba(8,14,36,.86));border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.bench .bt2,.tray .th{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#fff;letter-spacing:.3px}
+.bench .bt2::before{content:'';width:4px;height:16px;background:var(--red);border-radius:2px}
+.bench .bl{display:flex;gap:10px;overflow-x:auto;padding:8px 2px 8px;min-height:120px;align-items:flex-start}
+.bench .lu{width:84px;flex:none}
+.tray{position:sticky;top:132px;border-radius:16px;padding:12px;color:#e8ecf5;background:linear-gradient(180deg,rgba(18,30,66,.78),rgba(8,14,36,.84));border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 22px 50px rgba(0,0,0,.5);max-height:calc(100vh - 150px);overflow-y:auto}
+.tray .th span{margin-left:auto;background:rgba(255,255,255,.12);border-radius:10px;padding:0 9px;font-size:12px}
+.tray .tl{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:12px 10px;margin-top:12px}
+.tray .lu{width:100%;max-width:104px;margin:0 auto}
+@media(max-width:900px){.lu-page.ed{grid-template-columns:minmax(0,1fr)}.tray{position:static;max-height:none}}
 </style>
 </head>
 <body>
-<div class="top"><div><b>NK ELITE ACADEMY</b><small>ดูข้อมูลนักกีฬา</small><a class="lk noprint" href="/">เข้าสู่ระบบโค้ช →</a></div></div>
+<div class="top"><div><b>NK ELITE ACADEMY</b><small>ดูข้อมูลนักกีฬา</small><nav id="tabs"><button data-t="players" onclick="goTab('players')">นักกีฬา</button><button data-t="lineup" onclick="goTab('lineup')">Line Up</button></nav><a class="lk noprint" href="/">เข้าสู่ระบบโค้ช →</a></div></div>
 <main id="app"></main>
 <script>
 const D = [
@@ -219,9 +285,50 @@ function futCard(p) {
   });
 })();
 
+// ---------- Line Up (ใช้ร่วมกันทั้งหน้าโค้ชและหน้าดูข้อมูล) ----------
+let LU = {id:'', pitch:[], bench:[]};
+const nameSort = (a,b) => String(a.name||'').localeCompare(String(b.name||''),'th');
+const pById = id => S.players.find(x=>x.id===id);
+const jarr = v => Array.isArray(v) ? v : (typeof v==='string' && v ? (()=>{ try { const a = JSON.parse(v); return Array.isArray(a) ? a : []; } catch(e) { return []; } })() : []);
+function luFrom(rows) {
+  const r = (rows||[]).find(x => x && x.id);
+  return r ? {id:r.id, pitch:jarr(r.pitch), bench:jarr(r.bench)} : null;
+}
+function luClean() {
+  const ok = new Set(S.players.map(p=>p.id)), seen = new Set();
+  LU.pitch = (LU.pitch||[]).map(i=>({p:i&&i.p, x:+(i&&i.x), y:+(i&&i.y)}))
+    .filter(i => ok.has(i.p) && isFinite(i.x) && isFinite(i.y) && !seen.has(i.p) && seen.add(i.p));
+  LU.bench = (LU.bench||[]).filter(id => ok.has(id) && !seen.has(id) && seen.add(id));
+}
+function tabs() { document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === S.tab)); }
+function goTab(t) { S.tab = t; home(true); }
+
+const PITCH_SVG = `<svg class="pl" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.78)" stroke-width=".42">
+<rect x="4" y="4" width="92" height="112"/><line x1="4" y1="60" x2="96" y2="60"/><circle cx="50" cy="60" r="9.5"/>
+<rect x="24" y="4" width="52" height="19"/><rect x="36" y="4" width="28" height="7"/><path d="M43.58 23A9.5 9.5 0 0 0 56.42 23"/>
+<rect x="24" y="97" width="52" height="19"/><rect x="36" y="109" width="28" height="7"/><path d="M43.58 97A9.5 9.5 0 0 1 56.42 97"/>
+<rect x="44" y="1.5" width="12" height="2.5"/><rect x="44" y="116" width="12" height="2.5"/>
+<path d="M4 6A2 2 0 0 0 6 4"/><path d="M94 4A2 2 0 0 0 96 6"/><path d="M6 116A2 2 0 0 0 4 114"/><path d="M96 114A2 2 0 0 0 94 116"/></g>
+<g fill="rgba(255,255,255,.85)"><circle cx="50" cy="60" r=".7"/><circle cx="50" cy="16" r=".6"/><circle cx="50" cy="104" r=".6"/></g></svg>`;
+
+function luHTML(edit) {
+  luClean();
+  const oc = id => edit ? '' : ` onclick="openPlayer('${id}')"`;
+  const on = LU.pitch.map(i => `<div class="lu on" data-id="${i.p}" data-z="pitch" style="left:${i.x}%;top:${i.y}%"${oc(i.p)}>${futCard(pById(i.p))}</div>`).join('');
+  const bn = LU.bench.map(id => `<div class="lu" data-id="${id}" data-z="bench"${oc(id)}>${futCard(pById(id))}</div>`).join('');
+  const free = edit ? S.players.filter(p => !LU.pitch.some(i=>i.p===p.id) && !LU.bench.includes(p.id)).sort(nameSort) : [];
+  return `<div class="lu-page${edit?' ed':''}"><div class="lu-main">
+    ${edit ? `<div class="lu-tb"><span class="mut">ลากการ์ดมาวางบนสนามหรือแถบตัวสำรองได้อิสระ · ลากกลับไปที่รายชื่อเพื่อนำออก · แตะการ์ดเพื่อเปิดประวัติ</span><span class="sp1"></span><span class="mut" id="lus">${esc(S.luMsg||'')}</span><button class="s x" onclick="luClear()">ล้างทั้งหมด</button></div>` : ''}
+    <div class="stage"><div class="pitch" id="pitch" data-zone="pitch">${PITCH_SVG}${on}${on ? '' : `<div class="hint0">${edit ? 'ลากการ์ดจากรายชื่อนักกีฬามาวางบนสนามได้เลย' : 'ยังไม่มีการจัดไลน์อัพ'}</div>`}</div></div>
+    <div class="bench" id="bench" data-zone="bench"><div class="bt2">ตัวสำรอง</div><div class="bl">${bn || `<span class="mut">${edit ? 'ลากการ์ดมาวางที่นี่' : 'ยังไม่มีตัวสำรอง'}</span>`}</div></div>
+  </div>
+  ${edit ? `<aside class="tray" id="tray" data-zone="tray"><div class="th">นักกีฬาที่ยังไม่ได้จัด <span>${free.length}</span></div>
+    <div class="tl">${free.map(p => `<div class="lu" data-id="${p.id}" data-z="tray">${futCard(p)}</div>`).join('') || '<span class="mut">จัดครบทุกคนแล้ว</span>'}</div></aside>` : ''}</div>`;
+}
+
 const API = '/api/gas';
 const PW = '';
-let S = {players:[], asms:[], q:'', msg:''};
+let S = {players:[], asms:[], q:'', msg:'', tab:'players', loaded:false};
 
 async function call(action, extra) {
   const r = await fetch(API, {method:'POST', body: JSON.stringify({pw:PW, action, ...extra})});
@@ -234,9 +341,16 @@ async function load() {
   const [p, a] = await Promise.all([call('public',{sheet:'Players'}), call('public',{sheet:'Assessments'})]);
   S.players = p.rows.filter(x=>x && x.id && typeof x.name==='string');
   S.asms = a.rows.filter(x=>x && x.id && x.info && x.scores);
+  S.loaded = true;
 }
-async function home() {
-  $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>'; await load();
+async function loadLu() {
+  try { LU = luFrom((await call('public',{sheet:'Lineup'})).rows) || {id:'',pitch:[],bench:[]}; }
+  catch(e) { LU = {id:'',pitch:[],bench:[]}; }
+}
+async function home(noload) {
+  document.body.classList.toggle('vlt', S.tab === 'lineup'); tabs();
+  if (!(noload && S.loaded)) { $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>'; await Promise.all([load(), loadLu()]); }
+  if (S.tab === 'lineup') { $('app').innerHTML = luHTML(false); scrollTo(0,0); return; }
   $('app').innerHTML = `<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน · การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
     <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"></div><div class="grid fg" id="list"></div>`;
   cards();
@@ -251,8 +365,9 @@ function cards() {
     : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีข้อมูลนักกีฬา'}</div>`;
 }
 function openPlayer(id) {
+  document.body.classList.remove('vlt');
   const p = S.players.find(x=>x.id===id); if (!p) return home(); const as = asmOf(id);
-  $('app').innerHTML = `<p><button onclick="home()">← นักกีฬาทั้งหมด</button></p>
+  $('app').innerHTML = `<p><button onclick="home()">← กลับ</button></p>
   <div class="phd">${futCard(p)}<div class="pin"><h2>${esc(p.name)}</h2><p class="mut" style="margin:2px 0">${stats(p)}${p.pos?' · '+esc(p.pos):''}</p></div></div>
   <h3 style="margin:18px 0 6px">ประวัติการประเมิน</h3>
   <section>${as.length ? as.map(a=>`<div class="lst" style="cursor:pointer" onclick="showAsm('${a.id}')"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
