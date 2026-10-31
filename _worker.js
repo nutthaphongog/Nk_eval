@@ -93,7 +93,7 @@ async function handleGasProxy(request, env, ctx) {
 
   const gasUrl = (env && env.GOOGLE_SCRIPT_URL) || GAS_API_URL;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 40000);
+  const timer = setTimeout(() => controller.abort(), 120000);
   let gasRes;
 
   try {
