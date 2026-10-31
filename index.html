@@ -80,8 +80,8 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
 .fc .acts2{display:flex;gap:6px;justify-content:center;margin-top:8px}
 .phd{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:14px 0}.phd .fut{width:230px;margin:0}.pin{flex:1;min-width:200px}.pin .acts2{display:flex;gap:6px;margin-top:10px}
 
-.fut{--hexsvg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E");
-  container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.72;margin:0 auto;
+:root{--hexsvg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E");}
+.fut{container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.72;margin:0 auto;
   transition:transform .18s ease-out,filter .2s;
   transform:perspective(650px) translateY(var(--ty,0)) scale(var(--sc,1)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
   filter:drop-shadow(0 10px 16px rgba(8,14,34,.38)) drop-shadow(0 0 1px rgba(0,0,0,.5))}
@@ -111,12 +111,12 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
 .fut .nm{position:absolute;left:7cqw;right:7cqw;top:71cqw;text-align:center;font-size:8.8cqw;font-weight:700;letter-spacing:.5cqw;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 .5cqw 1cqw rgba(0,0,0,.28)}
 .fut .ln{position:absolute;left:12cqw;right:12cqw;top:82.5cqw;height:.55cqw;opacity:.75;background:linear-gradient(90deg,transparent,var(--fg) 25%,var(--fg) 75%,transparent)}
 .fut .ln::after{content:'';position:absolute;left:50%;top:50%;width:2.6cqw;height:2.6cqw;background:var(--fg);transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 0 .7cqw rgba(0,0,0,.12)}
-.fut .st{position:absolute;left:12cqw;right:12cqw;top:86.5cqw;display:grid;grid-template-columns:1fr 1fr}
+.fut .st{position:absolute;left:12cqw;right:12cqw;top:85.5cqw;display:grid;grid-template-columns:1fr 1fr}
 .fut .st>div+div{border-left:.55cqw solid;border-image:linear-gradient(180deg,transparent,rgba(128,128,128,.55) 20%,rgba(128,128,128,.55) 80%,transparent) 1}
-.fut .st p{margin:0;display:flex;gap:2cqw;align-items:baseline;justify-content:center;font-size:6cqw;line-height:1.3;font-weight:600;letter-spacing:.3cqw;text-shadow:0 .3cqw .6cqw rgba(0,0,0,.18)}
+.fut .st p{margin:0;display:flex;gap:2cqw;align-items:baseline;justify-content:center;font-size:6cqw;line-height:1.1;font-weight:600;letter-spacing:.3cqw;text-shadow:0 .3cqw .6cqw rgba(0,0,0,.18)}
 .fut .st b{font-size:10.4cqw;font-weight:700;min-width:12cqw;text-align:right;text-shadow:0 .4cqw .8cqw rgba(0,0,0,.22)}
-.fut .ft{position:absolute;left:0;right:0;top:116.5cqw;text-align:center;font-size:4.6cqw;letter-spacing:.3cqw;opacity:.85;font-weight:500}
-.fut .ac{position:absolute;left:0;right:0;top:123.5cqw;text-align:center;font-size:3cqw;font-weight:600;letter-spacing:.9cqw;opacity:.5}
+.fut .ft{position:absolute;left:0;right:0;top:124cqw;text-align:center;font-size:4.4cqw;letter-spacing:.3cqw;opacity:.85;font-weight:500}
+.fut .ac{position:absolute;left:0;right:0;top:130cqw;text-align:center;font-size:2.8cqw;font-weight:600;letter-spacing:.9cqw;opacity:.5}
 .fut .gl{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:var(--go,0);transition:opacity .25s;background:radial-gradient(circle at var(--mx,30%) var(--my,10%),rgba(255,255,255,.5),transparent 48%);mix-blend-mode:soft-light}
 .sx .gl::after,.t-rare .gl::after,.t-elite .gl::after{content:'';position:absolute;inset:0;mix-blend-mode:color-dodge;opacity:.32;background:linear-gradient(115deg,rgba(255,0,140,0),rgba(0,230,255,.55),rgba(255,235,0,.45),rgba(160,60,255,.5),rgba(255,0,140,0));background-size:320% 100%;background-position:var(--mx,50%) 0}
 
@@ -139,45 +139,72 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
 @keyframes shn{0%{background-position:150% 0}100%{background-position:-60% 0}}
 @media (prefers-reduced-motion:reduce){.fi::after,.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}.fut{transition:none}}
 
-/* ================= VAULT (คลังนักกีฬา) ================= */
-main.wide{max-width:1280px}
-.club{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:20px;align-items:start}
-.vault{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(16,26,53,.05)}
-.cbar{background:linear-gradient(90deg,#0b1430,#1d2c5c);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--red)}
-.cbar h1{color:#fff;font-size:22px}.cbar span{color:#b9c3e3;font-size:13px}
-.cbar .cnt{color:#cdd5ee;font-size:14px}.cbar .cnt b{color:#fff;font-size:22px}
-.vf{display:flex;gap:10px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid var(--line);background:#f7f8fc}
-.vf input{flex:1;min-width:140px;width:auto}.vf select{width:auto}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:14px 8px;padding:18px;background:radial-gradient(120% 60% at 50% 0,#eef1f9,#fff)}
-.cc{text-align:center;padding:8px 4px 6px;border:2px solid transparent;border-radius:14px;cursor:pointer;transition:background .15s,border-color .15s}
-.cc:hover{background:rgba(16,26,53,.04)}
-.cc:focus-visible{outline:3px solid #7b97ff;outline-offset:1px}
-.cc.sel{border-color:var(--red);background:rgba(224,34,47,.07);box-shadow:0 0 0 3px rgba(224,34,47,.12)}
-.cc .fut{max-width:130px}
-.cc small{display:block;margin-top:6px;font-size:11.5px;color:var(--mut);line-height:1.3}.cc small b{color:var(--ink)}
+/* ================= VAULT (คลังนักกีฬา) – พื้นหลังแบบ FIFA ================= */
+body.vlt{color:#e8ecf5;background:
+  radial-gradient(55% 45% at 12% -5%,rgba(46,128,255,.42),transparent 62%),
+  radial-gradient(45% 40% at 92% 4%,rgba(224,34,47,.26),transparent 64%),
+  radial-gradient(70% 50% at 50% 112%,rgba(0,205,175,.22),transparent 62%),
+  repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 28px),
+  linear-gradient(180deg,#07102a,#0a1838 55%,#060d22);
+  background-attachment:fixed}
+body.vlt::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:var(--hexsvg);background-size:64px auto;opacity:.07;
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent 85%);mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent 85%)}
+body.vlt::after{content:'';position:fixed;left:-10%;right:-10%;bottom:-30vh;height:60vh;pointer-events:none;z-index:0;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(120,200,255,.16),transparent 70%)}
+body.vlt main{position:relative;z-index:1}
+body.vlt .mut{color:#9aa6c8}
+body.vlt .empty{background:rgba(255,255,255,.06);color:#b9c3e3}
 
-.pn{position:sticky;top:78px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(16,26,53,.12);max-height:calc(100vh - 96px);overflow-y:auto}
-.pn .ph1{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--red)}
-.pn .cl{display:none;background:transparent;color:#cdd5ee;border-color:#3a4772}
+main.wide{max-width:1280px}
+.club{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:22px;align-items:start}
+.club.nopn{grid-template-columns:minmax(0,1fr)}
+.club.nopn .pn{display:none}
+.vault{min-width:0}
+.vh{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 14px}
+.vh h1{color:#fff;font-size:26px;text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.vh h1::after{content:'';display:block;width:46px;height:3px;background:var(--red);margin-top:4px;border-radius:2px}
+.vh span{color:#9aa6c8;font-size:13px}
+.vh .cnt{color:#b9c3e3;font-size:14px}.vh .cnt b{color:#fff;font-size:22px}
+.vf{display:flex;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.vf input,.vf select{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.18)}
+.vf input::placeholder{color:#8f9bbd}
+.vf input{flex:1;min-width:140px;width:auto}.vf select{width:auto}
+.vf select option{color:#0d1322;background:#fff}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:18px 10px;padding:18px 2px 8px}
+.cc{text-align:center;padding:8px 4px 8px;border:2px solid transparent;border-radius:16px;cursor:pointer;transition:background .15s,border-color .15s,box-shadow .2s}
+.cc:hover{background:rgba(255,255,255,.06)}
+.cc:focus-visible{outline:3px solid #7b97ff;outline-offset:1px}
+.cc.sel{border-color:rgba(255,255,255,.85);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(120,200,255,.22),0 0 28px rgba(120,200,255,.35)}
+.cc .fut{max-width:150px}
+.cc small{display:block;margin-top:8px;font-size:11.5px;color:#9aa6c8;line-height:1.3}.cc small b{color:#fff}
+
+.pn{position:sticky;top:78px;color:#e8ecf5;background:linear-gradient(180deg,rgba(18,30,66,.78),rgba(8,14,36,.82));border:1px solid rgba(255,255,255,.16);border-radius:16px;overflow:hidden;
+  box-shadow:0 22px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.12);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);max-height:calc(100vh - 96px);overflow-y:auto}
+.pn .ph1{background:rgba(255,255,255,.06);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red)}
+.pn .cl{display:none;background:transparent;color:#cdd5ee;border-color:rgba(255,255,255,.25)}
 .pn .pb{padding:16px}
 .pn .pc{display:flex;justify-content:center;margin:2px 0 14px}.pn .pc .fut{width:190px}
-.pn h2{text-align:center;font-size:20px;margin:0}.pn .mut{text-align:center}
-.pn.empty{display:grid;place-items:center;min-height:300px;box-shadow:none;background:#f7f8fc;border-style:dashed}
-.pn .hint{color:var(--mut);text-align:center;padding:30px;font-size:14px}
+.pn h2{text-align:center;font-size:20px;margin:0;color:#fff}.pn .mut{text-align:center}
 .kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0;text-align:center}
-.kv>div{background:#f2f4f9;border-radius:10px;padding:8px 4px}.kv b{display:block;font-size:18px;line-height:1.2}.kv small{color:var(--mut);font-size:11px}
-.sm{border-top:1px solid #eef0f5;padding-top:12px}
-.sh{display:flex;gap:12px;align-items:center}.sh .pill{min-width:60px}
-.up{color:var(--ok);font-weight:600;font-size:13px}.dn{color:#b4232d;font-weight:600;font-size:13px}
-.sm ul{margin:0;padding-left:18px;font-size:13px}.sm li{margin:2px 0}.sm label{margin:10px 0 2px}
+.kv>div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 4px}.kv b{display:block;font-size:18px;line-height:1.2;color:#fff}.kv small{color:#9aa6c8;font-size:11px}
+.sm{border-top:1px solid rgba(255,255,255,.12);padding-top:12px}
+.sh{display:flex;gap:12px;align-items:center}.sh .pill{min-width:60px;background:linear-gradient(135deg,#e0222f,#a8121d)}
+.up{color:#4ade80;font-weight:600;font-size:13px}.dn{color:#ff8a93;font-weight:600;font-size:13px}
+.pn .b .t{background:rgba(255,255,255,.1)}.pn .b i{background:linear-gradient(180deg,#8fd8ff,#3a7bff)}.pn .b em{color:#9aa6c8}.pn .b span{color:#fff}
+.pn label{color:#9aa6c8}
+.sm ul{margin:0;padding-left:18px;font-size:13px;color:#dfe5f5}.sm li{margin:2px 0}.sm label{margin:10px 0 2px}
 .act{display:flex;flex-direction:column;gap:8px;margin-top:14px}
 .act button{width:100%}.act .two{display:flex;gap:8px}.act .two button{flex:1}
+.act button:not(.p){background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.22)}
+.act button:not(.p):hover{background:rgba(255,255,255,.16)}
+.act button.x{color:#ff8a93;border-color:rgba(255,120,130,.45)}
 
 @media(max-width:900px){
-  .club{grid-template-columns:1fr}
-  .pn{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:20;max-height:80vh;border-radius:18px 18px 0 0;transform:translateY(105%);transition:transform .25s;box-shadow:0 -10px 40px rgba(10,16,35,.35);visibility:hidden}
+  .club,.club.nopn{grid-template-columns:1fr}
+  .pn{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:20;max-height:80vh;border-radius:18px 18px 0 0;transform:translateY(105%);transition:transform .25s;visibility:hidden;background:linear-gradient(180deg,rgba(18,30,66,.96),rgba(8,14,36,.98))}
   .pn.open{transform:none;visibility:visible}
-  .pn.empty{display:none}
+  .club.nopn .pn{display:block}
   .pn .cl{display:inline-block}
   .pn .pc .fut{width:170px}
 }
@@ -257,7 +284,7 @@ function futCard(p) {
     <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : `<em>${esc(String(p.name||'?').trim().charAt(0))}</em>`}</div>
     <div class="nm">${esc(p.name)}</div><div class="ln"></div>
     <div class="st"><div>${row('PAC')}${row('SHO')}${row('PAS')}</div><div>${row('DRI')}${row('DEF')}${row('PHY')}</div></div>
-    <div class="ft">${esc(p.spNote || (p.age ? 'อายุ '+p.age+' ปี' : ''))}</div>
+    <div class="ft">${esc(p.spNote || '')}</div>
     <div class="ac">NK ELITE ACADEMY</div><div class="gl"></div></div></div>`;
 }
 
@@ -294,7 +321,7 @@ async function call(action, extra) {
 
 // ---------- เข้าสู่ระบบ ----------
 function login() {
-  $('out').hidden = true; $('app').classList.remove('wide');
+  $('out').hidden = true; $('app').classList.remove('wide'); document.body.classList.remove('vlt');
   $('app').innerHTML = `<div class="login"><h2>เข้าสู่ระบบโค้ช</h2><p class="mut" style="margin:0 0 6px">NK ELITE ACADEMY</p>
   <label>รหัสผ่าน</label><input id="pw" type="password" autofocus onkeydown="if(event.key==='Enter')doLogin()">
   <p class="mut" style="color:#b4232d;min-height:20px">${esc(S.msg)}</p><button class="p" style="width:100%" onclick="doLogin()">เข้าสู่ระบบ</button></div>`;
@@ -314,13 +341,13 @@ async function load() {
 // ---------- หน้าแรก: คลังนักกีฬา + แผงรายละเอียดด้านขวา ----------
 async function home() {
   $('out').hidden = false; S.p = null; S.a = null; S.view = '';
-  $('app').classList.add('wide');
+  $('app').classList.add('wide'); document.body.classList.add('vlt');
   $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>';
   await load();
   if (S.sel && !S.players.some(x=>x.id===S.sel)) S.sel = null;
   const done = S.players.filter(p=>asmOf(p.id).length).length;
-  $('app').innerHTML = `<div class="club"><div class="vault">
-    <div class="cbar"><div><h1>คลังนักกีฬา</h1><span>การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
+  $('app').innerHTML = `<div class="club${S.sel?'':' nopn'}"><div class="vault">
+    <div class="vh"><div><h1>คลังนักกีฬา</h1><span>การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
       <div class="cnt"><b>${S.players.length}</b> คน · ประเมินแล้ว ${done}</div></div>
     <div class="vf">
       <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()">
@@ -349,17 +376,19 @@ function cards() {
     : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบนักกีฬาที่ตรงกับตัวกรอง':'ยังไม่มีนักกีฬา กด “เพิ่มนักกีฬา” เพื่อเริ่มต้น'}</div>`;
 }
 function pick(id) {
-  S.sel = id;
-  document.querySelectorAll('.cc').forEach(e => e.classList.toggle('sel', e.dataset.id===id));
-  panel(true);
+  const same = S.sel === id;                 // กดการ์ดเดิมซ้ำ = ยกเลิกการเลือก แผงข้างหายไป
+  S.sel = same ? null : id;
+  document.querySelectorAll('.cc').forEach(e => e.classList.toggle('sel', !same && e.dataset.id === id));
+  const c = document.querySelector('.club'); if (c) c.classList.toggle('nopn', !S.sel);
+  panel(!same);
 }
-function closePn() { $('pn').classList.remove('open'); }
+function closePn() { if (S.sel) pick(S.sel); }
 function goNew(id) { S.p = S.players.find(x=>x.id===id); newAsm(); scrollTo(0,0); }
 function goLast(id) { S.p = S.players.find(x=>x.id===id); openAsm(asmOf(id)[0].id); }
 function panel(open) {
   const el = $('pn'); if (!el) return;
   const p = S.players.find(x=>x.id===S.sel);
-  if (!p) { el.className = 'pn empty'; el.innerHTML = '<div class="hint">เลือกการ์ดนักกีฬาจากคลัง<br>เพื่อดูข้อมูลคร่าว ๆ และเริ่มประเมิน</div>'; return; }
+  if (!p) { el.className = 'pn'; el.innerHTML = ''; return; }
   const as = asmOf(p.id), l = as[0], pr = as[1];
   const t = l ? tAvg(l) : null, dl = (l && pr) ? tAvg(l)-tAvg(pr) : null;
   const tops = l && l.text ? (l.text.strengths||[]).filter(Boolean).slice(0,2) : [];
@@ -442,7 +471,7 @@ async function delPlayer(id) {
 
 // ---------- หน้านักกีฬา: ประวัติการประเมิน ----------
 async function openPlayer(id) {
-  S.view = 'player'; await load(); $('app').classList.remove('wide');
+  S.view = 'player'; await load(); $('app').classList.remove('wide'); document.body.classList.remove('vlt');
   const p = S.p = S.players.find(x=>x.id===id); if (!p) return home();
   const as = asmOf(id);
   $('app').innerHTML = `<p><button onclick="S.view='';home()">← นักกีฬาทั้งหมด</button></p>
@@ -472,7 +501,7 @@ const ta = (path,label,val,h) => `<label>${label}</label><textarea oninput="setp
 const inp = (path,label,val,type) => `<div><label>${label}</label><input ${type?`type="${type}"`:''} value="${esc(val)}" oninput="setp('${path}',this.value)"></div>`;
 
 function form() {
-  S.view = 'form'; $('app').classList.remove('wide'); const a=S.a, t=a.text, i=a.info;
+  S.view = 'form'; $('app').classList.remove('wide'); document.body.classList.remove('vlt'); const a=S.a, t=a.text, i=a.info;
   let h = `<p class="noprint"><button onclick="openPlayer('${a.playerId}')">← กลับ</button></p>
   <section><div class="dh"><h2>แบบประเมินพัฒนาการนักกีฬา</h2><span class="mut">เฉลี่ยรวม <b style="color:var(--red);font-size:20px">${f1(tAvg(a))}</b> / 5</span></div>
    <div class="g2">${inp('info.name','ชื่อนักกีฬา',i.name)}${inp('info.age','อายุ (ปี)',i.age,'number')}${inp('info.height','ส่วนสูง (ซม.)',i.height,'number')}${inp('info.weight','น้ำหนัก (กก.)',i.weight,'number')}
