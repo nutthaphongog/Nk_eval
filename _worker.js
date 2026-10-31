@@ -70,7 +70,8 @@ async function handleAI(body, env) {
   try {
     const c = await callGas(env, { pw: body.pw, action: 'ping' }, 30000);
     const j = JSON.parse(c.text);
-    if (j.error) return json({ error: j.error });
+    // 'bad sheet' = Apps Script เวอร์ชันเก่ายังไม่รู้จัก ping แต่ผ่านการตรวจรหัสผ่านแล้ว
+    if (j.error && j.error !== 'bad sheet') return json({ error: j.error });
   } catch (e) { return json({ error: 'ตรวจรหัสผ่านไม่สำเร็จ ลองใหม่อีกครั้ง' }); }
 
   const key = env && env.GEMINI_API_KEY;
