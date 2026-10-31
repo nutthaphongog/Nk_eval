@@ -133,6 +133,7 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 .sd-sub{text-align:center;color:#a9b8e2;font-size:13px;margin:0 0 4px}
 .sd-score{display:flex;gap:12px;align-items:center;margin:16px 0 2px;padding:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px}
 .sd-sm{font-size:12.5px;color:#a9b8e2;line-height:1.5}
+.sd-list{margin-top:12px;display:grid;gap:6px}.sd-list div{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;background:rgba(255,255,255,.07);border-radius:10px;font-size:13px}.sd-list span{color:#a9b8e2}
 .sd-act{display:grid;gap:8px;margin-top:18px}
 .side button:not(.p){background:rgba(255,255,255,.08);color:#e7ecfb;border-color:rgba(255,255,255,.18)}
 .side button:not(.p):hover{background:rgba(255,255,255,.16)}
@@ -232,10 +233,14 @@ document.addEventListener('pointermove', e => {
 // ---------- แท็บข้าง ----------
 function sideHtml(p) {
   const as = asmOf(p.id), l = as[0], t = l ? tAvg(l) : null;
+  const dm = l ? D.map((d,i)=>({s:d.s,m:dAvg(l,i)})).filter(x=>x.m!=null) : [];
+  const best = dm.length ? dm.reduce((a,b)=>b.m>a.m?b:a) : null, low = dm.length>1 ? dm.reduce((a,b)=>b.m<a.m?b:a) : null;
+  const df = as[1] ? t - tAvg(as[1]) : null;
+  const rows = l ? `<div class="sd-list"><div><span>ด้านเด่นสุด</span><b>${best?best.s+' ('+f1(best.m)+')':'-'}</b></div><div><span>ด้านที่ควรพัฒนา</span><b>${low?low.s+' ('+f1(low.m)+')':'-'}</b></div><div><span>เทียบครั้งก่อน</span><b>${df==null?'ประเมินครั้งแรก':(df>0?'▲ +':df<0?'▼ ':'● ')+df.toFixed(1)}</b></div></div>` : '';
   return `<button class="s xc" onclick="closeSide()" aria-label="ปิด">✕</button>
   <div class="sd-card">${futCard(p)}</div>
   <h2>${esc(p.name)}</h2><p class="sd-sub">${p.pos?esc(p.pos)+' · ':''}${stats(p)}</p>
-  ${l ? `<div class="sd-score"><div class="pill"><b>${f1(t)}</b><small>/ 5</small></div><div><b>${lvl(t)}</b><div class="sd-sm">ประเมินล่าสุด ${esc(l.info.date)} · ครั้งที่ ${esc(l.info.no)}<br>ประเมินแล้ว ${as.length} ครั้ง</div></div></div>${bars(l)}` : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
+  ${l ? `<div class="sd-score"><div class="pill"><b>${f1(t)}</b><small>/ 5</small></div><div><b>${lvl(t)}</b><div class="sd-sm">ประเมินล่าสุด ${esc(l.info.date)} · ครั้งที่ ${esc(l.info.no)}<br>ประเมินแล้ว ${as.length} ครั้ง</div></div></div>${bars(l)}${rows}` : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
   <div class="sd-act"><button class="p" onclick="openPlayer('${p.id}')">ดูผลประเมิน →</button></div>`;
 }
 function closeSide() {
