@@ -33,8 +33,9 @@ export default {
     if (env && env.ASSETS) return env.ASSETS.fetch(request);
 
     let path = url.pathname;
-    if (path === '/' || path === '/index' || path === '/index.html') path = '/index.html';
-    else if (path === '/view' || path === '/view/') path = '/view.html';
+    // หน้าแรก (/) = หน้าดูข้อมูลสาธารณะ | /admin = หน้าโค้ช (ต้อง login)
+    if (path === '/' || path === '/view' || path === '/view/' || path === '/view.html') path = '/view.html';
+    else if (path === '/admin' || path === '/admin/' || path === '/coach' || path === '/index' || path === '/index.html') path = '/index.html';
     const res = await fetch(`${GITHUB_RAW_BASE}${path}`, { cf: { cacheTtl: 30, cacheEverything: true } });
     if (!res.ok) return new Response(`ไม่พบหน้านี้ (404): ${path}`, { status: 404, headers: { 'content-type': 'text/html;charset=UTF-8' } });
     return new Response(await res.text(), { headers: { 'content-type': 'text/html;charset=UTF-8', 'cache-control': 'public, max-age=10, s-maxage=30' } });
