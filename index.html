@@ -121,13 +121,14 @@ function login() {
 }
 async function doLogin() {
   PW = $('pw').value;
-  try { await load(); sessionStorage.setItem('pw',PW); S.msg=''; home(); }
+  try { await load(); sessionStorage.setItem('pw',PW); S.msg=''; await home(); }
   catch(e) { S.msg = e.message; login(); }
 }
 function logout() { sessionStorage.removeItem('pw'); PW=''; login(); }
 async function load() {
   const [p, a] = await Promise.all([call('list',{sheet:'Players'}), call('list',{sheet:'Assessments'})]);
-  S.players = p.rows; S.asms = a.rows;
+  S.players = p.rows.filter(x=>x && x.id && typeof x.name==='string');
+  S.asms = a.rows.filter(x=>x && x.id && x.info && x.scores);
 }
 
 // ---------- หน้าแรก: รายชื่อ + คะแนนล่าสุด ----------
@@ -142,11 +143,11 @@ async function home() {
 }
 function cards() {
   const q = S.q.trim().toLowerCase();
-  const ps = S.players.filter(p=>p.name.toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'th'));
+  const ps = S.players.filter(p=>String(p.name||'').toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
   $('list').innerHTML = ps.length ? ps.map(p=>{
     const as = asmOf(p.id), l = as[0], t = l ? tAvg(l) : null;
     return `<article class="card" onclick="openPlayer('${p.id}')">
-      <div class="hd"><div class="av">${esc(p.name.trim().charAt(0))}</div>
+      <div class="hd"><div class="av">${esc(String(p.name||'?').trim().charAt(0))}</div>
         <div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div>
         <div class="score"><strong>${f1(t)}</strong><small>${l?lvl(t):'ยังไม่ประเมิน'}</small></div></div>
       ${l ? bars(l) : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
@@ -183,7 +184,7 @@ async function openPlayer(id) {
   const p = S.p = S.players.find(x=>x.id===id); if (!p) return home();
   const as = asmOf(id);
   $('app').innerHTML = `<p><button onclick="S.view='';home()">← นักกีฬาทั้งหมด</button></p>
-  <section><div class="hd"><div class="av">${esc(p.name.trim().charAt(0))}</div><div class="who"><h2>${esc(p.name)}</h2><small class="mut">${stats(p)}</small></div>
+  <section><div class="hd"><div class="av">${esc(String(p.name||'?').trim().charAt(0))}</div><div class="who"><h2>${esc(p.name)}</h2><small class="mut">${stats(p)}</small></div>
     <span style="display:flex;gap:6px"><button class="s" onclick="openDlg('${id}')">แก้ไข</button><button class="s x" onclick="delPlayer('${id}')">ลบ</button></span></div></section>
   <div class="bar1"><h3>ประวัติการประเมิน</h3><button class="p" style="margin-left:auto" onclick="newAsm()">+ ประเมินครั้งใหม่</button></div>
   <section>${as.length ? as.map(a=>`<div class="lst"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
@@ -260,7 +261,15 @@ async function runAI() {
   } catch(e) { $('aib').disabled = false; $('aim').textContent = 'ผิดพลาด: '+e.message; }
 }
 
-(async()=>{ if (PW) { try { await home(); } catch(e) { logout(); } } else login(); })();
+(async()=>{
+  if (!PW) return login();
+  try { await home(); }
+  catch(e) {
+    if (/รหัสผ่าน/.test(e.message)) return logout();
+    $('app').innerHTML = `<section><h3>โหลดข้อมูลไม่สำเร็จ</h3><p class="mut">${esc(e.message)}</p><button class="p" onclick="location.reload()">ลองใหม่</button></section>`;
+    $('out').hidden = false;
+  }
+})();
 </script>
 </body>
 </html>
