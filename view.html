@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NK ELITE ACADEMY - ดูข้อมูลนักกีฬา</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d1322;--navy:#101a35;--navy2:#1b2850;--red:#e0222f;--line:#e3e6ee;--bg:#f2f4f9;--card:#fff;--mut:#667089;--ok:#16a34a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Prompt,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.top{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;border-bottom:3px solid var(--red)}
+.top div{max-width:1040px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:12px}
+.top b{font-size:17px;font-weight:700;letter-spacing:.2px}.top small{color:#9aa6c8}
+.top button{margin-left:auto;background:transparent;color:#cdd5ee;border-color:#3a4772}
+main{max-width:1040px;margin:0 auto;padding:22px 18px 100px}
+h1{font-size:26px;margin:0;font-weight:700}h2{font-size:20px;margin:0 0 4px}h3{font-size:16px;margin:0}
+button{font:inherit;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:8px 14px;transition:background .15s,border-color .15s}
+button:hover{background:#f6f7fb}
+button.p{background:var(--red);border-color:var(--red);color:#fff;font-weight:500}button.p:hover{background:#c91b27}
+button.d{background:var(--navy);border-color:var(--navy);color:#fff}button.d:hover{background:var(--navy2)}
+button.x{color:#b4232d;border-color:#f0c9cc}button.x:hover{background:#fdf1f2}
+button.s{padding:5px 11px;font-size:13px;border-radius:8px}
+button:disabled{opacity:.5;cursor:wait}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #7b97ff;outline-offset:1px}
+input,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+textarea{min-height:70px;resize:vertical}
+label{font-size:13px;color:var(--mut);display:block;margin:10px 0 4px}
+.bar1{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 18px}
+.bar1 input{max-width:300px;margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,26,53,.04),0 6px 18px rgba(16,26,53,.05);cursor:pointer}
+.card:hover{border-color:#c5cce0}
+.hd{display:flex;gap:12px;align-items:center}
+.av{width:46px;height:46px;border-radius:14px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:600;font-size:19px;flex:none}
+.who{flex:1;min-width:0}.who b{display:block;font-size:17px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who small,.mut{color:var(--mut);font-size:13px}
+.score{text-align:right}.score strong{font-size:30px;line-height:1;color:var(--red);font-weight:700}.score small{display:block;font-size:11px;color:var(--mut)}
+.bars{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 4px}
+.b{text-align:center;font-size:12px}.b .t{height:46px;background:#edf0f6;border-radius:6px;display:flex;align-items:flex-end;overflow:hidden}
+.b i{display:block;width:100%;background:var(--navy);border-radius:6px 6px 0 0}
+.b span{display:block;font-weight:600;margin-top:3px}.b em{font-style:normal;color:var(--mut);font-size:11px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid #eef0f5}
+.foot span{display:flex;gap:6px}
+.empty{background:#f7f8fc;border-radius:10px;padding:14px;text-align:center;color:var(--mut);font-size:13px;margin:14px 0 4px}
+section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 14px}
+.row{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #eef0f5}
+.row .n{flex:1;font-size:14px}
+.rt{display:flex;gap:5px}.rt button{width:38px;height:38px;padding:0;border-radius:10px}
+.rt button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.dh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.dh b{color:var(--red);font-size:20px}
+.lst{display:flex;gap:14px;align-items:center;padding:14px 0;border-top:1px solid #eef0f5}
+.lst:first-child{border-top:0}.lst .bars{flex:1;margin:0;max-width:340px}.lst .mid{flex:1;cursor:pointer}
+.pill{background:var(--navy);color:#fff;border-radius:12px;padding:6px 12px;text-align:center;min-width:64px}.pill b{font-size:20px;display:block;line-height:1.1}.pill small{font-size:10px;opacity:.7}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
+dialog{border:0;border-radius:18px;padding:22px;width:min(420px,92vw);box-shadow:0 20px 60px rgba(10,16,35,.35)}
+dialog::backdrop{background:rgba(10,16,35,.55)}
+.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.login{max-width:380px;margin:12vh auto;background:#fff;border-radius:18px;padding:26px;box-shadow:0 10px 40px rgba(16,26,53,.12)}
+@media(max-width:620px){.lst{flex-wrap:wrap}.lst .bars{max-width:none;flex-basis:100%}.row{flex-wrap:wrap}.row .n{flex-basis:100%}.rt{width:100%}.rt button{flex:1}.bar1 input{max-width:none;margin:0;flex-basis:100%}}
+@media print{.top,.bottom,.noprint{display:none!important}body{background:#fff}section{border:0;box-shadow:none;break-inside:avoid;padding:6px 0}}
+
+.card{padding:0;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(16,26,53,.14)}
+.ch{background:linear-gradient(135deg,#0b1430,#1d2c5c);color:#fff;padding:16px;display:flex;gap:14px;align-items:center;position:relative}
+.ch::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red)}
+.ch .who b{color:#fff;font-size:18px}.ch .who small{color:#b9c3e3;display:block}
+.ch .score strong{color:#fff;font-size:34px}.ch .score small{color:#b9c3e3;max-width:112px;margin-left:auto}
+.cb{padding:14px 16px 12px}
+.av{width:64px;height:64px;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.3);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:600;flex:none}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.av.big{width:92px;height:92px;font-size:34px;background:var(--navy);border-color:var(--line)}
+.ph{display:flex;gap:16px;align-items:center;margin:8px 0 4px}.phb{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.lk{margin-left:auto;color:#cdd5ee;font-size:13px;text-decoration:none}.top a+button{margin-left:0}
+
+.v{min-width:36px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:600;background:#edf0f6;color:#667089}
+.v5{background:#16a34a;color:#fff}.v4{background:#8bd3a0;color:#0d3b1c}.v3{background:#f5d76e;color:#4a3a00}.v2{background:#f4a95f;color:#4a2400}.v1{background:var(--red);color:#fff}
+.tx{margin:0;white-space:pre-wrap}ol{margin:4px 0 0;padding-left:20px}ol li{margin:2px 0}
+.top button{margin-left:auto}
+</style></head>
+<body>
+<div class="top"><div><b>NK ELITE ACADEMY</b><small>ดูข้อมูลนักกีฬา</small><a class="lk noprint" href="/">เข้าสู่ระบบโค้ช →</a></div></div>
+<main id="app"></main>
+<script>
+const API = '/api/gas';
+const PW = '';
+let S = {players:[], asms:[], q:'', msg:''};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function call(action, extra) {
+  const r = await fetch(API, {method:'POST', body: JSON.stringify({pw:PW, action, ...extra})});
+  const txt = await r.text(); let j;
+  try { j = JSON.parse(txt); } catch (e) { throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง (' + r.status + ')'); }
+  if (j.error) throw new Error(j.error);
+  return j;
+}
+const D = [
+ {n:'Domain 1: ด้านเทคนิค (Technical Skills)', s:'เทคนิค', g:[
+  {t:'Ball Mastery', i:['Ball Control','First Touch','Dribbling','Change of Direction / Feinting (เปลี่ยนทิศทาง/หลอกคู่ต่อสู้)','Change of Speed (เปลี่ยนความเร็ว)']},
+  {t:'Passing', i:['Passing Accuracy','Passing Weight/Pace','Passing Timing','Short Passing','Long Passing','Receiving']},
+  {t:'1v1 Attacking', i:['Ability to Beat Opponent','Change of Pace','Change of Direction','Feinting','Ball Protection']},
+  {t:'1v1 Defending', i:['Defensive Stance','Speed of Approach','Angle of Approach','Timing','Tackling','Interception']},
+  {t:'Finishing', i:['Shooting Accuracy','Finishing Technique','Shot Selection','First-Time Finishing','Creating Shooting Opportunities']}]},
+ {n:'Domain 2: ความเข้าใจเกม (Tactical Understanding)', s:'เข้าใจเกม', g:[{i:['Scanning','Awareness','Decision Making','Positioning','Support','Movement Off the Ball','Creating Space','Defensive Positioning','Transition: Attack → Defense','Transition: Defense → Attack']}]},
+ {n:'Domain 3: สมรรถภาพทางกาย (Physical Development)', s:'ร่างกาย', g:[{i:['Speed','Acceleration','Agility','Coordination','Balance','Strength','Power','Endurance','Repeated Sprint Ability','Mobility']}]},
+ {n:'Domain 4: ด้านจิตใจ (Psychological)', s:'จิตใจ', g:[{i:['Self-Confidence','Concentration','Motivation','Resilience','Willingness to Learn','Response to Mistakes','Response to Pressure','Courage to Make Decisions','Competitive Attitude']}]},
+ {n:'Domain 5: พฤติกรรมและการอยู่ร่วมกับทีม (Social & Behavior)', s:'พฤติกรรม', g:[{i:['Discipline','Respect','Teamwork','Communication','Coach-ability (เปิดรับคำแนะนำจากโค้ช)','Responsibility','Sportsmanship','Attitude Toward Teammates','Attitude Toward Coaches','Punctuality','Effort']}]},
+ {n:'Domain 6: ความฉลาดในการเล่นฟุตบอล (Football Intelligence)', s:'ไอคิวบอล', g:[{i:['อ่านสถานการณ์','คาดการณ์เหตุการณ์ล่วงหน้า','สแกนพื้นที่','รู้ว่าควรเล่นเมื่อไหร่','รู้ว่าควรเล่นอะไร','รู้ว่าควรเล่นไปพื้นที่ไหน','เข้าใจ Space','เข้าใจ Time','เข้าใจ Risk vs Reward','ปรับการเล่นตามสถานการณ์']}]}
+];
+// ---------- คะแนน ----------
+const mean = v => v.length ? v.reduce((x,y)=>x+y,0)/v.length : null;
+const dAvg = (a,di) => { const v=[]; D[di].g.forEach((g,gi)=>g.i.forEach((_,ii)=>{const s=a.scores[`${di}-${gi}-${ii}`]; if(s) v.push(s);})); return mean(v); };
+const tAvg = a => mean(Object.values(a.scores||{}));
+const f1 = n => n==null ? '-' : n.toFixed(1);
+const lvl = n => n==null ? 'ยังไม่ประเมิน' : n>=4.5?'Excellent':n>=3.5?'Good':n>=2.5?'Developing':n>=1.5?'Needs Improvement':'Needs Significant Development';
+const bars = a => `<div class="bars">${D.map((d,i)=>{const m=dAvg(a,i);return `<div class="b"><div class="t"><i style="height:${m?m/5*100:0}%"></i></div><span>${f1(m)}</span><em>${d.s}</em></div>`}).join('')}</div>`;
+const byDate = (a,b) => (b.info.date||'').localeCompare(a.info.date||'') || (+b.info.no||0)-(+a.info.no||0);
+const asmOf = pid => S.asms.filter(a=>a.playerId===pid).sort(byDate);
+const stats = p => `อายุ ${p.age||'-'} ปี · ${p.height||'-'} ซม. · ${p.weight||'-'} กก.`;
+
+const avatar = p => `<div class="av">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : esc(String(p.name||'?').trim().charAt(0))}</div>`;
+
+
+
+async function load() {
+  const [p, a] = await Promise.all([call('public',{sheet:'Players'}), call('public',{sheet:'Assessments'})]);
+  S.players = p.rows.filter(x=>x && x.id && typeof x.name==='string');
+  S.asms = a.rows.filter(x=>x && x.id && x.info && x.scores);
+}
+async function home() {
+  $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>'; await load();
+  $('app').innerHTML = `<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน</span></div>
+    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"></div><div class="grid" id="list"></div>`;
+  cards();
+}
+function cards() {
+  const q = S.q.trim().toLowerCase();
+  const ps = S.players.filter(p=>String(p.name||'').toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
+  $('list').innerHTML = ps.length ? ps.map(p=>{
+    const as = asmOf(p.id), l = as[0], t = l ? tAvg(l) : null;
+    return `<article class="card" onclick="openPlayer('${p.id}')"><div class="ch">${avatar(p)}<div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div>
+      <div class="score"><strong>${f1(t)}</strong><small>${l?lvl(t):'ยังไม่ประเมิน'}</small></div></div>
+      <div class="cb">${l ? bars(l) : '<div class="empty">ยังไม่มีผลประเมิน</div>'}<small class="mut">${l?`ล่าสุด ${esc(l.info.date)} · ${as.length} ครั้ง`:'—'}</small></div></article>`; }).join('')
+    : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีข้อมูลนักกีฬา'}</div>`;
+}
+function openPlayer(id) {
+  const p = S.players.find(x=>x.id===id); if (!p) return home(); const as = asmOf(id);
+  $('app').innerHTML = `<p><button onclick="home()">← นักกีฬาทั้งหมด</button></p>
+  <div class="card" style="cursor:default;margin:14px 0"><div class="ch">${avatar(p)}<div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div></div></div>
+  <h3 style="margin:18px 0 6px">ประวัติการประเมิน</h3>
+  <section>${as.length ? as.map(a=>`<div class="lst" style="cursor:pointer" onclick="showAsm('${a.id}')"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
+    <div class="mid"><b>ครั้งที่ ${esc(a.info.no)}</b><div class="mut">${esc(a.info.date)} · ${lvl(tAvg(a))}${a.info.coach?' · โค้ช '+esc(a.info.coach):''}</div></div>${bars(a)}</div>`).join('') : '<div class="empty">ยังไม่เคยประเมิน</div>'}</section>`;
+  scrollTo(0,0);
+}
+function showAsm(id) {
+  const a = S.asms.find(x=>x.id===id), p = S.players.find(x=>x.id===a.playerId) || {}, i = a.info, t = a.text || {}, o = t.obs || {};
+  let h = `<p class="noprint"><button onclick="openPlayer('${a.playerId}')">← กลับ</button> <button style="float:right" onclick="print()">พิมพ์ / PDF</button></p>
+  <div class="card" style="cursor:default;margin:14px 0"><div class="ch">${avatar(p)}<div class="who"><b>${esc(i.name||p.name)}</b>
+    <small>อายุ ${esc(i.age||'-')} ปี · ${esc(i.height||'-')} ซม. · ${esc(i.weight||'-')} กก.</small>
+    <small>ครั้งที่ ${esc(i.no)} · ${esc(i.date)}${i.coach?' · โค้ช '+esc(i.coach):''}</small></div>
+    <div class="score"><strong>${f1(tAvg(a))}</strong><small>${lvl(tAvg(a))}</small></div></div><div class="cb">${bars(a)}</div></div>`;
+  D.forEach((d,di)=>{
+    h += `<section><div class="dh"><h3>${d.n}</h3><span class="mut">เฉลี่ย <b>${f1(dAvg(a,di))}</b></span></div>`;
+    d.g.forEach((g,gi)=>{ if (g.t) h += `<h3 style="margin:14px 0 2px;color:var(--navy2)">${g.t}</h3>`;
+      g.i.forEach((it,ii)=>{ const v = a.scores[`${di}-${gi}-${ii}`]; h += `<div class="row"><span class="n">${esc(it)}</span><span class="v v${v||0}">${v||'-'}</span></div>`; }); });
+    h += '</section>';
+  });
+  const tx = (l,v) => v ? `<label>${l}</label><p class="tx">${esc(v)}</p>` : '';
+  const ol = (l,arr) => (arr||[]).some(Boolean) ? `<label>${l}</label><ol>${arr.filter(Boolean).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>` : '';
+  const obs = tx('จุดเด่น',o.strength)+tx('สิ่งที่ต้องพัฒนา',o.need)+tx('คำแนะนำสำหรับการฝึก',o.advice)+tx('เป้าหมายรอบถัดไป',o.next);
+  const plan = ol('Top Strengths',t.strengths)+ol('Areas to Improve',t.improve);
+  const goals = ol('Next 4–8 Week Goals',t.goals)+ol('Coach’s Action Plan',t.actions);
+  if (obs) h += `<section><h3>Coach’s Observation</h3>${obs}</section>`;
+  if (plan) h += `<section><h3>Individual Development Plan</h3>${plan}</section>`;
+  if (goals) h += `<section><h3>เป้าหมายและแผนการฝึก</h3>${goals}</section>`;
+  $('app').innerHTML = h; scrollTo(0,0);
+}
+(async()=>{
+  try { await home(); }
+  catch(e) { $('app').innerHTML = `<section><h3>โหลดข้อมูลไม่สำเร็จ</h3><p class="mut">${esc(e.message)}</p><button class="p" onclick="location.reload()">ลองใหม่</button></section>`; }
+})();
+</script></body></html>
