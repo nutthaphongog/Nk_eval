@@ -23,16 +23,15 @@ button.x{color:#b4232d;border-color:#f0c9cc}button.x:hover{background:#fdf1f2}
 button.s{padding:5px 11px;font-size:13px;border-radius:8px}
 button:disabled{opacity:.5;cursor:wait}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #7b97ff;outline-offset:1px}
-input,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+input,textarea,select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
 textarea{min-height:70px;resize:vertical}
 label{font-size:13px;color:var(--mut);display:block;margin:10px 0 4px}
 .bar1{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 18px}
 .bar1 input{max-width:300px;margin-left:auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.card{background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,26,53,.04),0 6px 18px rgba(16,26,53,.05);cursor:pointer}
-.card:hover{border-color:#c5cce0}
+.card{background:var(--card);border-radius:16px;padding:0;overflow:hidden;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,26,53,.04),0 6px 18px rgba(16,26,53,.05);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.card:hover{border-color:#c5cce0;transform:translateY(-2px);box-shadow:0 10px 28px rgba(16,26,53,.14)}
 .hd{display:flex;gap:12px;align-items:center}
-.av{width:46px;height:46px;border-radius:14px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:600;font-size:19px;flex:none}
 .who{flex:1;min-width:0}.who b{display:block;font-size:17px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .who small,.mut{color:var(--mut);font-size:13px}
 .score{text-align:right}.score strong{font-size:30px;line-height:1;color:var(--red);font-weight:700}.score small{display:block;font-size:11px;color:var(--mut)}
@@ -54,15 +53,13 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 .lst:first-child{border-top:0}.lst .bars{flex:1;margin:0;max-width:340px}.lst .mid{flex:1;cursor:pointer}
 .pill{background:var(--navy);color:#fff;border-radius:12px;padding:6px 12px;text-align:center;min-width:64px}.pill b{font-size:20px;display:block;line-height:1.1}.pill small{font-size:10px;opacity:.7}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
-dialog{border:0;border-radius:18px;padding:22px;width:min(420px,92vw);box-shadow:0 20px 60px rgba(10,16,35,.35)}
+dialog{border:0;border-radius:18px;padding:22px;width:min(420px,92vw);box-shadow:0 20px 60px rgba(10,16,35,.35);max-height:92vh;overflow:auto}
 dialog::backdrop{background:rgba(10,16,35,.55)}
 .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
 .login{max-width:380px;margin:12vh auto;background:#fff;border-radius:18px;padding:26px;box-shadow:0 10px 40px rgba(16,26,53,.12)}
 @media(max-width:620px){.lst{flex-wrap:wrap}.lst .bars{max-width:none;flex-basis:100%}.row{flex-wrap:wrap}.row .n{flex-basis:100%}.rt{width:100%}.rt button{flex:1}.bar1 input{max-width:none;margin:0;flex-basis:100%}}
 @media print{.top,.bottom,.noprint{display:none!important}body{background:#fff}section{border:0;box-shadow:none;break-inside:avoid;padding:6px 0}}
 
-.card{padding:0;overflow:hidden;transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(16,26,53,.14)}
 .ch{background:linear-gradient(135deg,#0b1430,#1d2c5c);color:#fff;padding:16px;display:flex;gap:14px;align-items:center;position:relative}
 .ch::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red)}
 .ch .who b{color:#fff;font-size:18px}.ch .who small{color:#b9c3e3;display:block}
@@ -73,41 +70,63 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
 .av.big{width:92px;height:92px;font-size:34px;background:var(--navy);border-color:var(--line)}
 .ph{display:flex;gap:16px;align-items:center;margin:8px 0 4px}.phb{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
 .lk{margin-left:auto;color:#cdd5ee;font-size:13px;text-decoration:none}.top a+button{margin-left:0}
+.v{min-width:36px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:600;background:#edf0f6;color:#667089}
+.v5{background:#16a34a;color:#fff}.v4{background:#8bd3a0;color:#0d3b1c}.v3{background:#f5d76e;color:#4a3a00}.v2{background:#f4a95f;color:#4a2400}.v1{background:var(--red);color:#fff}
+.tx{margin:0;white-space:pre-wrap}ol{margin:4px 0 0;padding-left:20px}ol li{margin:2px 0}
 
-select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+/* ================= FIFA CARD ================= */
 .grid.fg{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:26px 16px}
 .fc{cursor:pointer;text-align:center}.fc .mut{display:block;margin-top:10px}
 .fc .acts2{display:flex;gap:6px;justify-content:center;margin-top:8px}
-.fut{container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.72;margin:0 auto;filter:drop-shadow(0 8px 14px rgba(8,14,34,.3));transition:transform .2s}
-.fc:hover .fut{transform:translateY(-5px) scale(1.02)}
-.fo,.fi{position:absolute;clip-path:polygon(50% 0%,76% 3.5%,100% 6.5%,100% 88%,50% 100%,0% 88%,0% 6.5%,24% 3.5%)}
-.fo{inset:0;background:linear-gradient(160deg,var(--bd1),var(--bd2))}
-.fi{inset:1.8cqw;background:radial-gradient(120% 70% at 72% 14%,var(--c2),transparent 62%),linear-gradient(172deg,var(--c2),var(--c1));color:var(--fg)}
-.fi::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);pointer-events:none}
-.fut .ov{position:absolute;left:11cqw;top:15cqw;display:flex;flex-direction:column;align-items:center;gap:1.2cqw;line-height:1}
-.fut .ov b{font-size:19cqw;font-weight:700}.fut .ov span{font-size:7.6cqw;font-weight:600}
-.fut .ov i{width:9cqw;height:10.5cqw;margin-top:2cqw;background:var(--fg);color:var(--c1);font-style:normal;font-size:4cqw;font-weight:700;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%)}
-.fut .ph{position:absolute;right:6cqw;top:10cqw;width:58cqw;height:58cqw;display:grid;place-items:center}
-.fut .ph img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(#000 60%,transparent 100%);mask-image:linear-gradient(#000 60%,transparent 100%)}
-.fut .ph em{font-style:normal;font-size:32cqw;font-weight:700;opacity:.3}
-.fut .nm{position:absolute;left:7cqw;right:7cqw;top:70cqw;text-align:center;font-size:8.6cqw;font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fut .ln{position:absolute;left:15cqw;right:15cqw;top:81cqw;height:.5cqw;background:var(--fg);opacity:.35}
-.fut .st{position:absolute;left:13cqw;right:13cqw;top:84cqw;display:grid;grid-template-columns:1fr 1fr}
-.fut .st>div+div{border-left:.5cqw solid rgba(128,128,128,.35)}
-.fut .st p{margin:0;display:flex;gap:2cqw;align-items:baseline;justify-content:center;font-size:6.2cqw;line-height:1.3;font-weight:500}
-.fut .st b{font-size:9.4cqw;font-weight:700;min-width:12cqw;text-align:right}
-.fut .ft{position:absolute;left:0;right:0;top:121cqw;text-align:center;font-size:4.8cqw;opacity:.75;font-weight:500}
-.t-bronze{--c1:#7a4a25;--c2:#cf9560;--bd1:#f3c999;--bd2:#8a5a30;--fg:#2c1708}
-.t-silver{--c1:#97a1b0;--c2:#e6ebf2;--bd1:#fff;--bd2:#8b95a4;--fg:#1a2430}
-.t-gold{--c1:#c79a2e;--c2:#f8e48f;--bd1:#fff3b8;--bd2:#a67c1a;--fg:#3a2a05}
-.t-elite{--c1:#0a1747;--c2:#3a5ce0;--bd1:#f7e9ad;--bd2:#b8913a;--fg:#f6e9b4}
-.t-none{--c1:#2b3446;--c2:#5b667c;--bd1:#9aa5ba;--bd2:#4a5468;--fg:#e8ecf5}
 .phd{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:14px 0}.phd .fut{width:230px;margin:0}.pin{flex:1;min-width:200px}.pin .acts2{display:flex;gap:6px;margin-top:10px}
 
+.fut{--hexsvg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E");
+  container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.72;margin:0 auto;
+  transition:transform .18s ease-out,filter .2s;
+  transform:perspective(650px) translateY(var(--ty,0)) scale(var(--sc,1)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  filter:drop-shadow(0 10px 16px rgba(8,14,34,.38)) drop-shadow(0 0 1px rgba(0,0,0,.5))}
+.fc:hover .fut,.fut:hover{--ty:-6px;--sc:1.035;
+  transform:perspective(650px) translateY(var(--ty,0)) scale(var(--sc,1)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  filter:drop-shadow(0 18px 24px rgba(8,14,34,.45)) drop-shadow(0 0 1px rgba(0,0,0,.5))}
+.fo,.fi{position:absolute;clip-path:polygon(50% 0%,76% 3.5%,100% 6.5%,100% 88%,50% 100%,0% 88%,0% 6.5%,24% 3.5%)}
+.fo{inset:0;background:linear-gradient(135deg,rgba(255,255,255,.75) 0%,transparent 28%,transparent 62%,rgba(0,0,0,.35) 100%),linear-gradient(160deg,var(--bd1),var(--bd2) 55%,var(--bd1))}
+.fi{inset:1.8cqw;color:var(--fg);background:radial-gradient(60% 42% at 66% 30%,rgba(255,255,255,.55),transparent 70%),radial-gradient(130% 80% at 75% 8%,var(--c2),transparent 62%),linear-gradient(172deg,var(--c2),var(--c1) 80%)}
 .fi::before{content:'';position:absolute;inset:0;background:var(--pat,none);background-size:var(--pz,auto);pointer-events:none}
+.fi::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.2) 50%,transparent 58%);background-size:260% 100%;animation:shn 6s linear infinite}
+
+.fut .hx{position:absolute;inset:0;background:var(--hexsvg);background-size:9cqw auto;opacity:.1;pointer-events:none;-webkit-mask-image:linear-gradient(160deg,#000 5%,transparent 70%);mask-image:linear-gradient(160deg,#000 5%,transparent 70%)}
+.fut .rays{position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 8deg at 68% 30%,rgba(255,255,255,.14) 0 4deg,transparent 4deg 14deg);-webkit-mask-image:radial-gradient(circle at 68% 30%,#000,transparent 72%);mask-image:radial-gradient(circle at 68% 30%,#000,transparent 72%)}
+.fut .wm{position:absolute;left:0;right:0;top:20cqw;text-align:center;font-size:72cqw;font-weight:700;line-height:1;letter-spacing:-3cqw;color:var(--fg);opacity:.07;pointer-events:none;user-select:none}
+.fut .bt{position:absolute;left:0;right:0;top:64cqw;bottom:0;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(0,0,0,.1) 22%,rgba(0,0,0,.26))}
+
 .fut .sp{position:absolute;left:0;right:0;top:6.6cqw;text-align:center;font-size:4.4cqw;font-weight:700;letter-spacing:.4cqw;text-transform:uppercase}
+.fut .ov{position:absolute;left:10cqw;top:14cqw;display:flex;flex-direction:column;align-items:center;gap:1.2cqw;line-height:1}
+.fut .ov b{font-size:20cqw;font-weight:700;letter-spacing:-.8cqw;text-shadow:0 .5cqw 0 rgba(255,255,255,.28),0 1.2cqw 2.2cqw rgba(0,0,0,.28)}
+.fut .ov span{font-size:7.4cqw;font-weight:600;letter-spacing:.4cqw;padding:1.4cqw 0 1.8cqw;width:100%;text-align:center;margin-top:1cqw;border-top:.5cqw solid;border-bottom:.5cqw solid;border-image:linear-gradient(90deg,transparent,currentColor,transparent) 1;text-shadow:0 .3cqw .8cqw rgba(0,0,0,.2)}
+.fut .ov i{width:10cqw;height:11.5cqw;margin-top:2.4cqw;background:var(--fg);color:var(--c1);font-style:normal;font-size:4.2cqw;font-weight:700;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%)}
+.fut .ph{position:absolute;right:5cqw;top:9cqw;width:62cqw;height:62cqw;margin:0;gap:0;display:grid;place-items:center}
+.fut .ph::before{content:'';position:absolute;inset:-4%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.45),transparent 66%);z-index:-1}
+.fut .ph img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(#000 60%,transparent 100%);mask-image:linear-gradient(#000 60%,transparent 100%);filter:drop-shadow(0 1cqw 1.8cqw rgba(0,0,0,.5)) contrast(1.04) saturate(1.08)}
+.fut .ph em{font-style:normal;font-size:32cqw;font-weight:700;opacity:.3}
+.fut .nm{position:absolute;left:7cqw;right:7cqw;top:71cqw;text-align:center;font-size:8.8cqw;font-weight:700;letter-spacing:.5cqw;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 .5cqw 1cqw rgba(0,0,0,.28)}
+.fut .ln{position:absolute;left:12cqw;right:12cqw;top:82.5cqw;height:.55cqw;opacity:.75;background:linear-gradient(90deg,transparent,var(--fg) 25%,var(--fg) 75%,transparent)}
+.fut .ln::after{content:'';position:absolute;left:50%;top:50%;width:2.6cqw;height:2.6cqw;background:var(--fg);transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 0 .7cqw rgba(0,0,0,.12)}
+.fut .st{position:absolute;left:12cqw;right:12cqw;top:86.5cqw;display:grid;grid-template-columns:1fr 1fr}
+.fut .st>div+div{border-left:.55cqw solid;border-image:linear-gradient(180deg,transparent,rgba(128,128,128,.55) 20%,rgba(128,128,128,.55) 80%,transparent) 1}
+.fut .st p{margin:0;display:flex;gap:2cqw;align-items:baseline;justify-content:center;font-size:6cqw;line-height:1.3;font-weight:600;letter-spacing:.3cqw;text-shadow:0 .3cqw .6cqw rgba(0,0,0,.18)}
+.fut .st b{font-size:10.4cqw;font-weight:700;min-width:12cqw;text-align:right;text-shadow:0 .4cqw .8cqw rgba(0,0,0,.22)}
+.fut .ft{position:absolute;left:0;right:0;top:116.5cqw;text-align:center;font-size:4.6cqw;letter-spacing:.3cqw;opacity:.85;font-weight:500}
+.fut .ac{position:absolute;left:0;right:0;top:123.5cqw;text-align:center;font-size:3cqw;font-weight:600;letter-spacing:.9cqw;opacity:.5}
+.fut .gl{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:var(--go,0);transition:opacity .25s;background:radial-gradient(circle at var(--mx,30%) var(--my,10%),rgba(255,255,255,.5),transparent 48%);mix-blend-mode:soft-light}
+.sx .gl::after,.t-rare .gl::after,.t-elite .gl::after{content:'';position:absolute;inset:0;mix-blend-mode:color-dodge;opacity:.32;background:linear-gradient(115deg,rgba(255,0,140,0),rgba(0,230,255,.55),rgba(255,235,0,.45),rgba(160,60,255,.5),rgba(255,0,140,0));background-size:320% 100%;background-position:var(--mx,50%) 0}
+
+.t-bronze{--c1:#7a4a25;--c2:#cf9560;--bd1:#f3c999;--bd2:#8a5a30;--fg:#2c1708;--pat:repeating-linear-gradient(135deg,transparent 0 7px,rgba(255,255,255,.1) 7px 8px)}
+.t-silver{--c1:#97a1b0;--c2:#e6ebf2;--bd1:#fff;--bd2:#8b95a4;--fg:#1a2430;--pat:repeating-linear-gradient(60deg,transparent 0 8px,rgba(255,255,255,.35) 8px 9px)}
+.t-gold{--c1:#c79a2e;--c2:#f8e48f;--bd1:#fff3b8;--bd2:#a67c1a;--fg:#3a2a05;--pat:repeating-linear-gradient(120deg,transparent 0 8px,rgba(255,255,255,.22) 8px 9px)}
+.t-elite{--c1:#0a1747;--c2:#3a5ce0;--bd1:#f7e9ad;--bd2:#b8913a;--fg:#f6e9b4;--pat:radial-gradient(circle,rgba(255,255,255,.35) 0 1px,transparent 1.6px);--pz:20px 20px}
+.t-none{--c1:#2b3446;--c2:#5b667c;--bd1:#9aa5ba;--bd2:#4a5468;--fg:#e8ecf5}
+.t-none .hx,.t-none .rays{opacity:.05}
 .t-rare{--c1:#a9680f;--c2:#ffd75e;--bd1:#fff0a8;--bd2:#8f5a0a;--fg:#2e1d03;--pat:repeating-linear-gradient(120deg,transparent 0 9px,rgba(255,255,255,.14) 9px 10px)}
-.t-elite{--pat:radial-gradient(circle,rgba(255,255,255,.35) 0 1px,transparent 1.6px);--pz:20px 20px}
 .t-potw{--c1:#04111d;--c2:#0fb0d4;--bd1:#9af0ff;--bd2:#0b6f8c;--fg:#e4fbff;--pat:repeating-linear-gradient(115deg,transparent 0 13px,rgba(255,255,255,.08) 13px 15px)}
 .t-potm{--c1:#1c0734;--c2:#9333ea;--bd1:#f0c4ff;--bd2:#6d28d9;--fg:#fbe9ff;--pat:radial-gradient(circle,rgba(255,255,255,.28) 0 1.6px,transparent 2.2px);--pz:16px 16px}
 .t-poty{--c1:#050a26;--c2:#1f3f9a;--bd1:#ffe9a0;--bd2:#b18a2e;--fg:#ffe08a;--pat:radial-gradient(circle,rgba(255,255,255,.7) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(255,224,138,.5) 0 1px,transparent 1.6px);--pz:23px 23px,37px 37px}
@@ -118,12 +137,55 @@ select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);bo
 .t-mvp{--c1:#080808;--c2:#3a3a3a;--bd1:#f6dc8c;--bd2:#8a6a1a;--fg:#f3d27a;--pat:repeating-linear-gradient(0deg,transparent 0 6px,rgba(243,210,122,.09) 6px 7px)}
 .sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:260% 100%;animation:shn 4.5s linear infinite}
 @keyframes shn{0%{background-position:150% 0}100%{background-position:-60% 0}}
-@media (prefers-reduced-motion:reduce){.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}}
-dialog{max-height:92vh;overflow:auto}
+@media (prefers-reduced-motion:reduce){.fi::after,.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}.fut{transition:none}}
+
+/* ================= VAULT (คลังนักกีฬา) ================= */
+main.wide{max-width:1280px}
+.club{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:20px;align-items:start}
+.vault{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(16,26,53,.05)}
+.cbar{background:linear-gradient(90deg,#0b1430,#1d2c5c);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--red)}
+.cbar h1{color:#fff;font-size:22px}.cbar span{color:#b9c3e3;font-size:13px}
+.cbar .cnt{color:#cdd5ee;font-size:14px}.cbar .cnt b{color:#fff;font-size:22px}
+.vf{display:flex;gap:10px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid var(--line);background:#f7f8fc}
+.vf input{flex:1;min-width:140px;width:auto}.vf select{width:auto}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:14px 8px;padding:18px;background:radial-gradient(120% 60% at 50% 0,#eef1f9,#fff)}
+.cc{text-align:center;padding:8px 4px 6px;border:2px solid transparent;border-radius:14px;cursor:pointer;transition:background .15s,border-color .15s}
+.cc:hover{background:rgba(16,26,53,.04)}
+.cc:focus-visible{outline:3px solid #7b97ff;outline-offset:1px}
+.cc.sel{border-color:var(--red);background:rgba(224,34,47,.07);box-shadow:0 0 0 3px rgba(224,34,47,.12)}
+.cc .fut{max-width:130px}
+.cc small{display:block;margin-top:6px;font-size:11.5px;color:var(--mut);line-height:1.3}.cc small b{color:var(--ink)}
+
+.pn{position:sticky;top:78px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(16,26,53,.12);max-height:calc(100vh - 96px);overflow-y:auto}
+.pn .ph1{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--red)}
+.pn .cl{display:none;background:transparent;color:#cdd5ee;border-color:#3a4772}
+.pn .pb{padding:16px}
+.pn .pc{display:flex;justify-content:center;margin:2px 0 14px}.pn .pc .fut{width:190px}
+.pn h2{text-align:center;font-size:20px;margin:0}.pn .mut{text-align:center}
+.pn.empty{display:grid;place-items:center;min-height:300px;box-shadow:none;background:#f7f8fc;border-style:dashed}
+.pn .hint{color:var(--mut);text-align:center;padding:30px;font-size:14px}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0;text-align:center}
+.kv>div{background:#f2f4f9;border-radius:10px;padding:8px 4px}.kv b{display:block;font-size:18px;line-height:1.2}.kv small{color:var(--mut);font-size:11px}
+.sm{border-top:1px solid #eef0f5;padding-top:12px}
+.sh{display:flex;gap:12px;align-items:center}.sh .pill{min-width:60px}
+.up{color:var(--ok);font-weight:600;font-size:13px}.dn{color:#b4232d;font-weight:600;font-size:13px}
+.sm ul{margin:0;padding-left:18px;font-size:13px}.sm li{margin:2px 0}.sm label{margin:10px 0 2px}
+.act{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.act button{width:100%}.act .two{display:flex;gap:8px}.act .two button{flex:1}
+
+@media(max-width:900px){
+  .club{grid-template-columns:1fr}
+  .pn{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:20;max-height:80vh;border-radius:18px 18px 0 0;transform:translateY(105%);transition:transform .25s;box-shadow:0 -10px 40px rgba(10,16,35,.35);visibility:hidden}
+  .pn.open{transform:none;visibility:visible}
+  .pn.empty{display:none}
+  .pn .cl{display:inline-block}
+  .pn .pc .fut{width:170px}
+}
+@media(prefers-reduced-motion:reduce){.pn{transition:none}}
 </style>
 </head>
 <body>
-<div class="top"><div><b>NK ELITE ACADEMY</b><small>Player Assessment</small><a class="lk" href="/" target="_blank" rel="noopener">หน้าดูข้อมูล ↗</a><button id="out" class="noprint" onclick="logout()" hidden>ออกจากระบบ</button></div></div>
+<div class="top"><div><b>NK ELITE ACADEMY</b><small>Player Assessment</small><a class="lk" href="/view.html" target="_blank" rel="noopener">หน้าดูข้อมูล ↗</a><button id="out" class="noprint" onclick="logout()" hidden>ออกจากระบบ</button></div></div>
 <main id="app"></main>
 <dialog id="dlg">
   <h2 id="dt">เพิ่มนักกีฬา</h2>
@@ -142,7 +204,6 @@ dialog{max-height:92vh;overflow:auto}
   <div class="acts"><button onclick="dlg.close()">ยกเลิก</button><button class="p" id="f_save" onclick="savePlayer()">บันทึก</button></div>
 </dialog>
 <script>
-const API = '/api/gas';
 const D = [
  {n:'Domain 1: ด้านเทคนิค (Technical Skills)', s:'เทคนิค', g:[
   {t:'Ball Mastery', i:['Ball Control','First Touch','Dribbling','Change of Direction / Feinting (เปลี่ยนทิศทาง/หลอกคู่ต่อสู้)','Change of Speed (เปลี่ยนความเร็ว)']},
@@ -156,19 +217,9 @@ const D = [
  {n:'Domain 5: พฤติกรรมและการอยู่ร่วมกับทีม (Social & Behavior)', s:'พฤติกรรม', g:[{i:['Discipline','Respect','Teamwork','Communication','Coach-ability (เปิดรับคำแนะนำจากโค้ช)','Responsibility','Sportsmanship','Attitude Toward Teammates','Attitude Toward Coaches','Punctuality','Effort']}]},
  {n:'Domain 6: ความฉลาดในการเล่นฟุตบอล (Football Intelligence)', s:'ไอคิวบอล', g:[{i:['อ่านสถานการณ์','คาดการณ์เหตุการณ์ล่วงหน้า','สแกนพื้นที่','รู้ว่าควรเล่นเมื่อไหร่','รู้ว่าควรเล่นอะไร','รู้ว่าควรเล่นไปพื้นที่ไหน','เข้าใจ Space','เข้าใจ Time','เข้าใจ Risk vs Reward','ปรับการเล่นตามสถานการณ์']}]}
 ];
-
-let PW = sessionStorage.getItem('pw') || '';
-let S = {players:[], asms:[], p:null, a:null, q:'', msg:''};
-const $ = id => document.getElementById(id), dlg = $('dlg');
+const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-async function call(action, extra) {
-  const r = await fetch(API, {method:'POST', body: JSON.stringify({pw:PW, action, ...extra})});
-  const txt = await r.text();
-  let j; try { j = JSON.parse(txt); } catch (e) { throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง (' + r.status + ') ' + txt.slice(0,120)); }
-  if (j.error) throw new Error(j.error);
-  return j;
-}
 // ---------- คะแนน ----------
 const mean = v => v.length ? v.reduce((x,y)=>x+y,0)/v.length : null;
 const dAvg = (a,di) => { const v=[]; D[di].g.forEach((g,gi)=>g.i.forEach((_,ii)=>{const s=a.scores[`${di}-${gi}-${ii}`]; if(s) v.push(s);})); return mean(v); };
@@ -179,9 +230,9 @@ const bars = a => `<div class="bars">${D.map((d,i)=>{const m=dAvg(a,i);return `<
 const byDate = (a,b) => (b.info.date||'').localeCompare(a.info.date||'') || (+b.info.no||0)-(+a.info.no||0);
 const asmOf = pid => S.asms.filter(a=>a.playerId===pid).sort(byDate);
 const stats = p => `อายุ ${p.age||'-'} ปี · ${p.height||'-'} ซม. · ${p.weight||'-'} กก.`;
-
 const avatar = p => `<div class="av">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : esc(String(p.name||'?').trim().charAt(0))}</div>`;
 
+// ---------- การ์ด FIFA ----------
 const futStats = a => {
   const g = (di,gi,idx) => { const n = D[di].g[gi].i.length, v = []; (idx || [...Array(n).keys()]).forEach(ii => { const s = a.scores[`${di}-${gi}-${ii}`]; if (s) v.push(s); }); return v; };
   const sc = v => v.length ? Math.round(mean(v)*19.8) : null;   // คะแนน 1-5 -> 0-99
@@ -199,17 +250,51 @@ function futCard(p) {
   const tier = sp || (t==null ? 'none' : t>=4.5 ? 'elite' : t>=4 ? 'rare' : t>=3.5 ? 'gold' : t>=2.5 ? 'silver' : 'bronze');
   const v = k => s[k]==null ? '--' : s[k];
   const row = k => `<p><b>${v(k)}</b><span>${k}</span></p>`;
-  return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fi">${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
+  return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fi">
+    <div class="hx"></div><div class="rays"></div><div class="wm">NK</div><div class="bt"></div>
+    ${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
     <div class="ov"><b>${t==null?'--':Math.round(t*19.8)}</b><span>${esc(p.pos||'—')}</span><i>NK</i></div>
     <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : `<em>${esc(String(p.name||'?').trim().charAt(0))}</em>`}</div>
     <div class="nm">${esc(p.name)}</div><div class="ln"></div>
     <div class="st"><div>${row('PAC')}${row('SHO')}${row('PAS')}</div><div>${row('DRI')}${row('DEF')}${row('PHY')}</div></div>
-    <div class="ft">${esc(p.spNote || (p.age ? 'อายุ '+p.age+' ปี' : ''))}</div></div></div>`;
+    <div class="ft">${esc(p.spNote || (p.age ? 'อายุ '+p.age+' ปี' : ''))}</div>
+    <div class="ac">NK ELITE ACADEMY</div><div class="gl"></div></div></div>`;
+}
+
+// การ์ดเอียง 3D + แสงสะท้อนตามเมาส์
+(() => {
+  let cur = null;
+  const reset = el => ['--rx','--ry','--mx','--my','--go'].forEach(k => el.style.removeProperty(k));
+  document.addEventListener('pointermove', e => {
+    const f = e.target.closest ? e.target.closest('.fut') : null;
+    if (cur && cur !== f && cur.isConnected) reset(cur);
+    cur = f;
+    if (!f || e.pointerType === 'touch' || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const r = f.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    f.style.setProperty('--ry', ((x - .5) * 18) + 'deg');
+    f.style.setProperty('--rx', ((.5 - y) * 18) + 'deg');
+    f.style.setProperty('--mx', (x * 100) + '%');
+    f.style.setProperty('--my', (y * 100) + '%');
+    f.style.setProperty('--go', 1);
+  });
+})();
+
+const API = '/api/gas';
+let PW = sessionStorage.getItem('pw') || '';
+let S = {players:[], asms:[], p:null, a:null, q:'', msg:'', sel:null, sort:'name', fpos:''};
+const dlg = $('dlg');
+
+async function call(action, extra) {
+  const r = await fetch(API, {method:'POST', body: JSON.stringify({pw:PW, action, ...extra})});
+  const txt = await r.text();
+  let j; try { j = JSON.parse(txt); } catch (e) { throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง (' + r.status + ') ' + txt.slice(0,120)); }
+  if (j.error) throw new Error(j.error);
+  return j;
 }
 
 // ---------- เข้าสู่ระบบ ----------
 function login() {
-  $('out').hidden = true;
+  $('out').hidden = true; $('app').classList.remove('wide');
   $('app').innerHTML = `<div class="login"><h2>เข้าสู่ระบบโค้ช</h2><p class="mut" style="margin:0 0 6px">NK ELITE ACADEMY</p>
   <label>รหัสผ่าน</label><input id="pw" type="password" autofocus onkeydown="if(event.key==='Enter')doLogin()">
   <p class="mut" style="color:#b4232d;min-height:20px">${esc(S.msg)}</p><button class="p" style="width:100%" onclick="doLogin()">เข้าสู่ระบบ</button></div>`;
@@ -226,25 +311,82 @@ async function load() {
   S.asms = a.rows.filter(x=>x && x.id && x.info && x.scores);
 }
 
-// ---------- หน้าแรก: รายชื่อ + คะแนนล่าสุด ----------
+// ---------- หน้าแรก: คลังนักกีฬา + แผงรายละเอียดด้านขวา ----------
 async function home() {
   $('out').hidden = false; S.p = null; S.a = null; S.view = '';
+  $('app').classList.add('wide');
   $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>';
   await load();
-  $('app').innerHTML = `<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน · การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
-    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"><button class="p" onclick="openDlg()">+ เพิ่มนักกีฬา</button></div>
-    <div class="grid fg" id="list"></div>`;
-  cards();
+  if (S.sel && !S.players.some(x=>x.id===S.sel)) S.sel = null;
+  const done = S.players.filter(p=>asmOf(p.id).length).length;
+  $('app').innerHTML = `<div class="club"><div class="vault">
+    <div class="cbar"><div><h1>คลังนักกีฬา</h1><span>การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
+      <div class="cnt"><b>${S.players.length}</b> คน · ประเมินแล้ว ${done}</div></div>
+    <div class="vf">
+      <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()">
+      <select id="sort" onchange="S.sort=this.value;cards()">
+        <option value="name"${S.sort==='name'?' selected':''}>เรียง: ชื่อ ก-ฮ</option>
+        <option value="score"${S.sort==='score'?' selected':''}>เรียง: คะแนนสูง → ต่ำ</option>
+        <option value="recent"${S.sort==='recent'?' selected':''}>เรียง: ประเมินล่าสุด</option></select>
+      <select id="fpos" onchange="S.fpos=this.value;cards()"><option value="">ทุกตำแหน่ง</option>${POS.map(x=>`<option${S.fpos===x?' selected':''}>${x}</option>`).join('')}</select>
+      <button class="p" onclick="openDlg()">+ เพิ่มนักกีฬา</button></div>
+    <div class="cg" id="list"></div></div>
+    <aside class="pn" id="pn"></aside></div>`;
+  cards(); panel(false);
 }
 function cards() {
   const q = S.q.trim().toLowerCase();
-  const ps = S.players.filter(p=>String(p.name||'').toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
+  const ov = p => { const l = asmOf(p.id)[0]; return l ? tAvg(l) : null; };
+  const nm = (a,b) => String(a.name||'').localeCompare(String(b.name||''),'th');
+  const ps = S.players.filter(p => String(p.name||'').toLowerCase().includes(q) && (!S.fpos || p.pos===S.fpos));
+  if (S.sort==='score') ps.sort((a,b)=>(ov(b) ?? -1)-(ov(a) ?? -1) || nm(a,b));
+  else if (S.sort==='recent') ps.sort((a,b)=>((asmOf(b.id)[0]?.info.date)||'').localeCompare((asmOf(a.id)[0]?.info.date)||'') || nm(a,b));
+  else ps.sort(nm);
   $('list').innerHTML = ps.length ? ps.map(p=>{
     const as = asmOf(p.id), l = as[0];
-    return `<div class="fc" onclick="openPlayer('${p.id}')">${futCard(p)}
-      <small class="mut">${l?`${esc(p.height||'-')} ซม. · ${esc(p.weight||'-')} กก. · ประเมิน ${as.length} ครั้ง`:'ยังไม่มีผลประเมิน'}</small>
-      <div class="acts2"><button class="s" onclick="event.stopPropagation();openDlg('${p.id}')">แก้ไข</button><button class="s x" onclick="event.stopPropagation();delPlayer('${p.id}')">ลบ</button></div></div>`; }).join('')
-    : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีนักกีฬา กด “เพิ่มนักกีฬา” เพื่อเริ่มต้น'}</div>`;
+    return `<div class="cc${p.id===S.sel?' sel':''}" data-id="${p.id}" role="button" tabindex="0" onclick="pick('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();pick('${p.id}')}">${futCard(p)}
+      <small>${l?`<b>${f1(tAvg(l))}</b> · ประเมิน ${as.length} ครั้ง`:'ยังไม่ประเมิน'}</small></div>`; }).join('')
+    : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบนักกีฬาที่ตรงกับตัวกรอง':'ยังไม่มีนักกีฬา กด “เพิ่มนักกีฬา” เพื่อเริ่มต้น'}</div>`;
+}
+function pick(id) {
+  S.sel = id;
+  document.querySelectorAll('.cc').forEach(e => e.classList.toggle('sel', e.dataset.id===id));
+  panel(true);
+}
+function closePn() { $('pn').classList.remove('open'); }
+function goNew(id) { S.p = S.players.find(x=>x.id===id); newAsm(); scrollTo(0,0); }
+function goLast(id) { S.p = S.players.find(x=>x.id===id); openAsm(asmOf(id)[0].id); }
+function panel(open) {
+  const el = $('pn'); if (!el) return;
+  const p = S.players.find(x=>x.id===S.sel);
+  if (!p) { el.className = 'pn empty'; el.innerHTML = '<div class="hint">เลือกการ์ดนักกีฬาจากคลัง<br>เพื่อดูข้อมูลคร่าว ๆ และเริ่มประเมิน</div>'; return; }
+  const as = asmOf(p.id), l = as[0], pr = as[1];
+  const t = l ? tAvg(l) : null, dl = (l && pr) ? tAvg(l)-tAvg(pr) : null;
+  const tops = l && l.text ? (l.text.strengths||[]).filter(Boolean).slice(0,2) : [];
+  const imps = l && l.text ? (l.text.improve||[]).filter(Boolean).slice(0,2) : [];
+  const sp = SPECIALS[p.special] ? SPECIALS[p.special][1] : '';
+  el.className = 'pn' + (open ? ' open' : '');
+  el.innerHTML = `<div class="ph1"><b>รายละเอียดนักกีฬา</b><button class="s cl" onclick="closePn()">ปิด ✕</button></div>
+  <div class="pb">
+    <div class="pc">${futCard(p)}</div>
+    <h2>${esc(p.name)}</h2>
+    <p class="mut" style="margin:0">${p.pos?esc(p.pos):'ไม่ระบุตำแหน่ง'}${sp?' · '+esc(sp):''}</p>
+    <div class="kv"><div><b>${esc(p.age||'-')}</b><small>ปี</small></div><div><b>${esc(p.height||'-')}</b><small>ซม.</small></div><div><b>${esc(p.weight||'-')}</b><small>กก.</small></div></div>
+    ${l ? `<div class="sm">
+      <div class="sh"><div class="pill"><b>${f1(t)}</b><small>/ 5</small></div>
+        <div><b>${lvl(t)}</b>${dl==null?'':` <span class="${dl>=0?'up':'dn'}">${dl>=0?'▲':'▼'} ${Math.abs(dl).toFixed(1)}</span>`}
+        <div class="mut">ครั้งที่ ${esc(l.info.no)} · ${esc(l.info.date)}${l.info.coach?' · โค้ช '+esc(l.info.coach):''}</div></div></div>
+      ${bars(l)}
+      ${tops.length?`<label>จุดเด่น</label><ul>${tops.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+      ${imps.length?`<label>ควรพัฒนา</label><ul>${imps.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+    </div>` : '<div class="empty">ยังไม่เคยประเมิน</div>'}
+    <div class="act">
+      <button class="p" onclick="goNew('${p.id}')">+ ประเมินครั้งใหม่</button>
+      ${l?`<button onclick="goLast('${p.id}')">เปิดผลล่าสุด / แก้ไข</button>`:''}
+      <button onclick="openPlayer('${p.id}')">ประวัติการประเมิน (${as.length})</button>
+      <div class="two"><button class="s" onclick="openDlg('${p.id}')">แก้ไขข้อมูล</button><button class="s x" onclick="delPlayer('${p.id}')">ลบ</button></div>
+    </div>
+  </div>`;
 }
 
 // ---------- เพิ่ม/แก้ไข/ลบ นักกีฬา ----------
@@ -294,13 +436,13 @@ async function savePlayer() {
 async function delPlayer(id) {
   const p = S.players.find(x=>x.id===id), n = asmOf(id).length;
   if (!confirm(`ลบ “${p.name}” และผลประเมินทั้งหมด ${n} ครั้ง?\nการลบกู้คืนไม่ได้`)) return;
-  try { for (const a of asmOf(id)) await call('delete',{sheet:'Assessments', id:a.id}); await call('delete',{sheet:'Players', id}); home(); }
+  try { for (const a of asmOf(id)) await call('delete',{sheet:'Assessments', id:a.id}); await call('delete',{sheet:'Players', id}); if (S.sel===id) S.sel=null; home(); }
   catch(e) { alert('ลบไม่สำเร็จ: '+e.message); }
 }
 
 // ---------- หน้านักกีฬา: ประวัติการประเมิน ----------
 async function openPlayer(id) {
-  S.view = 'player'; await load();
+  S.view = 'player'; await load(); $('app').classList.remove('wide');
   const p = S.p = S.players.find(x=>x.id===id); if (!p) return home();
   const as = asmOf(id);
   $('app').innerHTML = `<p><button onclick="S.view='';home()">← นักกีฬาทั้งหมด</button></p>
@@ -330,7 +472,7 @@ const ta = (path,label,val,h) => `<label>${label}</label><textarea oninput="setp
 const inp = (path,label,val,type) => `<div><label>${label}</label><input ${type?`type="${type}"`:''} value="${esc(val)}" oninput="setp('${path}',this.value)"></div>`;
 
 function form() {
-  S.view = 'form'; const a=S.a, t=a.text, i=a.info;
+  S.view = 'form'; $('app').classList.remove('wide'); const a=S.a, t=a.text, i=a.info;
   let h = `<p class="noprint"><button onclick="openPlayer('${a.playerId}')">← กลับ</button></p>
   <section><div class="dh"><h2>แบบประเมินพัฒนาการนักกีฬา</h2><span class="mut">เฉลี่ยรวม <b style="color:var(--red);font-size:20px">${f1(tAvg(a))}</b> / 5</span></div>
    <div class="g2">${inp('info.name','ชื่อนักกีฬา',i.name)}${inp('info.age','อายุ (ปี)',i.age,'number')}${inp('info.height','ส่วนสูง (ซม.)',i.height,'number')}${inp('info.weight','น้ำหนัก (กก.)',i.weight,'number')}
@@ -377,7 +519,7 @@ async function runAI() {
     const r = (await call('ai',{payload:{info, scores:sc, note:S.a.note}})).result;
     const f = (arr,n) => Array.from({length:n},(_,i)=>(arr&&arr[i])||'');
     S.a.text = {obs:{strength:'',need:'',advice:'',next:'',...r.observation}, strengths:f(r.strengths,3), improve:f(r.improve,3), goals:f(r.goals,3), actions:f(r.actions,3)};
-    form(); scrollTo({top:document.body.scrollHeight*0.45}); 
+    form(); scrollTo({top:document.body.scrollHeight*0.45});
   } catch(e) { $('aib').disabled = false; $('aim').textContent = 'ผิดพลาด: '+e.message; }
 }
 
