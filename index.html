@@ -73,6 +73,36 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
 .av.big{width:92px;height:92px;font-size:34px;background:var(--navy);border-color:var(--line)}
 .ph{display:flex;gap:16px;align-items:center;margin:8px 0 4px}.phb{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
 .lk{margin-left:auto;color:#cdd5ee;font-size:13px;text-decoration:none}.top a+button{margin-left:0}
+
+select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.grid.fg{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:26px 16px}
+.fc{cursor:pointer;text-align:center}.fc .mut{display:block;margin-top:10px}
+.fc .acts2{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.fut{container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.72;margin:0 auto;filter:drop-shadow(0 8px 14px rgba(8,14,34,.3));transition:transform .2s}
+.fc:hover .fut{transform:translateY(-5px) scale(1.02)}
+.fo,.fi{position:absolute;clip-path:polygon(50% 0%,76% 3.5%,100% 6.5%,100% 88%,50% 100%,0% 88%,0% 6.5%,24% 3.5%)}
+.fo{inset:0;background:linear-gradient(160deg,var(--bd1),var(--bd2))}
+.fi{inset:1.8cqw;background:radial-gradient(120% 70% at 72% 14%,var(--c2),transparent 62%),linear-gradient(172deg,var(--c2),var(--c1));color:var(--fg)}
+.fi::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);pointer-events:none}
+.fut .ov{position:absolute;left:11cqw;top:15cqw;display:flex;flex-direction:column;align-items:center;gap:1.2cqw;line-height:1}
+.fut .ov b{font-size:19cqw;font-weight:700}.fut .ov span{font-size:7.6cqw;font-weight:600}
+.fut .ov i{width:9cqw;height:10.5cqw;margin-top:2cqw;background:var(--fg);color:var(--c1);font-style:normal;font-size:4cqw;font-weight:700;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%)}
+.fut .ph{position:absolute;right:6cqw;top:10cqw;width:58cqw;height:58cqw;display:grid;place-items:center}
+.fut .ph img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(#000 60%,transparent 100%);mask-image:linear-gradient(#000 60%,transparent 100%)}
+.fut .ph em{font-style:normal;font-size:32cqw;font-weight:700;opacity:.3}
+.fut .nm{position:absolute;left:7cqw;right:7cqw;top:70cqw;text-align:center;font-size:8.6cqw;font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fut .ln{position:absolute;left:15cqw;right:15cqw;top:81cqw;height:.5cqw;background:var(--fg);opacity:.35}
+.fut .st{position:absolute;left:13cqw;right:13cqw;top:84cqw;display:grid;grid-template-columns:1fr 1fr}
+.fut .st>div+div{border-left:.5cqw solid rgba(128,128,128,.35)}
+.fut .st p{margin:0;display:flex;gap:2cqw;align-items:baseline;justify-content:center;font-size:6.2cqw;line-height:1.3;font-weight:500}
+.fut .st b{font-size:9.4cqw;font-weight:700;min-width:12cqw;text-align:right}
+.fut .ft{position:absolute;left:0;right:0;top:121cqw;text-align:center;font-size:4.8cqw;opacity:.75;font-weight:500}
+.t-bronze{--c1:#7a4a25;--c2:#cf9560;--bd1:#f3c999;--bd2:#8a5a30;--fg:#2c1708}
+.t-silver{--c1:#97a1b0;--c2:#e6ebf2;--bd1:#fff;--bd2:#8b95a4;--fg:#1a2430}
+.t-gold{--c1:#c79a2e;--c2:#f8e48f;--bd1:#fff3b8;--bd2:#a67c1a;--fg:#3a2a05}
+.t-elite{--c1:#0a1747;--c2:#3a5ce0;--bd1:#f7e9ad;--bd2:#b8913a;--fg:#f6e9b4}
+.t-none{--c1:#2b3446;--c2:#5b667c;--bd1:#9aa5ba;--bd2:#4a5468;--fg:#e8ecf5}
+.phd{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:14px 0}.phd .fut{width:230px;margin:0}.pin{flex:1;min-width:200px}.pin .acts2{display:flex;gap:6px;margin-top:10px}
 </style>
 </head>
 <body>
@@ -85,6 +115,7 @@ dialog::backdrop{background:rgba(10,16,35,.55)}
     <input id="f_file" type="file" accept="image/*" hidden onchange="pickPhoto(this)">
     <button class="s x" type="button" onclick="clearPhoto()">ลบรูป</button></div></div>
   <label>ชื่อ</label><input id="f_name" autocomplete="off">
+  <label>ตำแหน่ง</label><select id="f_pos"><option value="">— ไม่ระบุ —</option><option>ST</option><option>CF</option><option>LW</option><option>RW</option><option>CAM</option><option>CM</option><option>CDM</option><option>LB</option><option>RB</option><option>CB</option><option>GK</option></select>
   <div class="g2"><div><label>อายุ (ปี)</label><input id="f_age" type="number" min="3" max="30" inputmode="numeric"></div>
   <div><label>ส่วนสูง (ซม.)</label><input id="f_h" type="number" min="50" max="230" inputmode="decimal"></div>
   <div><label>น้ำหนัก (กก.)</label><input id="f_w" type="number" min="10" max="200" inputmode="decimal"></div></div>
@@ -131,6 +162,25 @@ const stats = p => `อายุ ${p.age||'-'} ปี · ${p.height||'-'} ซม
 
 const avatar = p => `<div class="av">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : esc(String(p.name||'?').trim().charAt(0))}</div>`;
 
+const futStats = a => {
+  const g = (di,gi,idx) => { const n = D[di].g[gi].i.length, v = []; (idx || [...Array(n).keys()]).forEach(ii => { const s = a.scores[`${di}-${gi}-${ii}`]; if (s) v.push(s); }); return v; };
+  const sc = v => v.length ? Math.round(mean(v)*19.8) : null;   // คะแนน 1-5 -> 0-99
+  return {PAC:sc(g(2,0,[0,1,2])), SHO:sc(g(0,4)), PAS:sc(g(0,1)), DRI:sc([...g(0,0),...g(0,2)]), DEF:sc([...g(0,3),...g(1,0,[7])]), PHY:sc(g(2,0,[4,5,6,7]))};
+};
+const POS = ['ST','CF','LW','RW','CAM','CM','CDM','LB','RB','CB','GK'];
+function futCard(p) {
+  const l = asmOf(p.id)[0], t = l ? tAvg(l) : null, s = l ? futStats(l) : {};
+  const tier = t==null ? 'none' : t>=4.5 ? 'elite' : t>=3.5 ? 'gold' : t>=2.5 ? 'silver' : 'bronze';
+  const v = k => s[k]==null ? '--' : s[k];
+  const row = k => `<p><b>${v(k)}</b><span>${k}</span></p>`;
+  return `<div class="fut t-${tier}"><div class="fo"></div><div class="fi">
+    <div class="ov"><b>${t==null?'--':Math.round(t*19.8)}</b><span>${esc(p.pos||'—')}</span><i>NK</i></div>
+    <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : `<em>${esc(String(p.name||'?').trim().charAt(0))}</em>`}</div>
+    <div class="nm">${esc(p.name)}</div><div class="ln"></div>
+    <div class="st"><div>${row('PAC')}${row('SHO')}${row('PAS')}</div><div>${row('DRI')}${row('DEF')}${row('PHY')}</div></div>
+    <div class="ft">${p.age ? 'อายุ '+esc(p.age)+' ปี' : ''}</div></div></div>`;
+}
+
 // ---------- เข้าสู่ระบบ ----------
 function login() {
   $('out').hidden = true;
@@ -155,23 +205,20 @@ async function home() {
   $('out').hidden = false; S.p = null; S.a = null; S.view = '';
   $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>';
   await load();
-  $('app').innerHTML = `<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน</span></div>
+  $('app').innerHTML = `<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน · การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
     <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"><button class="p" onclick="openDlg()">+ เพิ่มนักกีฬา</button></div>
-    <div class="grid" id="list"></div>`;
+    <div class="grid fg" id="list"></div>`;
   cards();
 }
 function cards() {
   const q = S.q.trim().toLowerCase();
   const ps = S.players.filter(p=>String(p.name||'').toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
   $('list').innerHTML = ps.length ? ps.map(p=>{
-    const as = asmOf(p.id), l = as[0], t = l ? tAvg(l) : null;
-    return `<article class="card" onclick="openPlayer('${p.id}')">
-      <div class="ch">${avatar(p)}<div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div>
-        <div class="score"><strong>${f1(t)}</strong><small>${l?lvl(t):'ยังไม่ประเมิน'}</small></div></div>
-      <div class="cb">${l ? bars(l) : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
-      <div class="foot"><small class="mut">${l?`ล่าสุด ${esc(l.info.date)} · ${as.length} ครั้ง`:'—'}</small>
-        <span><button class="s" onclick="event.stopPropagation();openDlg('${p.id}')">แก้ไข</button><button class="s x" onclick="event.stopPropagation();delPlayer('${p.id}')">ลบ</button></span></div></div>
-    </article>`; }).join('') : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีนักกีฬา กด “เพิ่มนักกีฬา” เพื่อเริ่มต้น'}</div>`;
+    const as = asmOf(p.id), l = as[0];
+    return `<div class="fc" onclick="openPlayer('${p.id}')">${futCard(p)}
+      <small class="mut">${l?`${esc(p.height||'-')} ซม. · ${esc(p.weight||'-')} กก. · ประเมิน ${as.length} ครั้ง`:'ยังไม่มีผลประเมิน'}</small>
+      <div class="acts2"><button class="s" onclick="event.stopPropagation();openDlg('${p.id}')">แก้ไข</button><button class="s x" onclick="event.stopPropagation();delPlayer('${p.id}')">ลบ</button></div></div>`; }).join('')
+    : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีนักกีฬา กด “เพิ่มนักกีฬา” เพื่อเริ่มต้น'}</div>`;
 }
 
 // ---------- เพิ่ม/แก้ไข/ลบ นักกีฬา ----------
@@ -180,7 +227,7 @@ function showPrev(d) { $('f_prev').innerHTML = d ? `<img src="${esc(d)}" alt="">
 function openDlg(id) {
   editId = id || null; const p = id ? S.players.find(x=>x.id===id) : {}; photoData = undefined;
   $('dt').textContent = id ? 'แก้ไขข้อมูลนักกีฬา' : 'เพิ่มนักกีฬา';
-  $('f_name').value = p.name||''; $('f_age').value = p.age||''; $('f_h').value = p.height||''; $('f_w').value = p.weight||'';
+  $('f_name').value = p.name||''; $('f_age').value = p.age||''; $('f_h').value = p.height||''; $('f_w').value = p.weight||''; $('f_pos').value = p.pos||'';
   showPrev(p.photo||''); dlg.showModal(); $('f_name').focus();
 }
 function pickPhoto(inp) {
@@ -201,7 +248,7 @@ function clearPhoto() { photoData = ''; showPrev(''); }
 async function savePlayer() {
   const name = $('f_name').value.trim(); if (!name) return alert('กรุณากรอกชื่อ');
   const old = editId ? S.players.find(x=>x.id===editId) : {};
-  const data = {name, age:+$('f_age').value||'', height:+$('f_h').value||'', weight:+$('f_w').value||'', photo: photoData===undefined ? (old.photo||'') : photoData};
+  const data = {name, age:+$('f_age').value||'', height:+$('f_h').value||'', weight:+$('f_w').value||'', pos:$('f_pos').value, photo: photoData===undefined ? (old.photo||'') : photoData};
   if (editId) data.id = editId;
   $('f_save').disabled = true;
   try { await call('save',{sheet:'Players', data}); dlg.close(); S.view==='player' ? openPlayer(editId) : home(); }
@@ -221,8 +268,8 @@ async function openPlayer(id) {
   const p = S.p = S.players.find(x=>x.id===id); if (!p) return home();
   const as = asmOf(id);
   $('app').innerHTML = `<p><button onclick="S.view='';home()">← นักกีฬาทั้งหมด</button></p>
-  <div class="card" style="cursor:default;margin:14px 0"><div class="ch">${avatar(p)}<div class="who"><b>${esc(p.name)}</b><small>${stats(p)}</small></div>
-    <span style="display:flex;gap:6px"><button class="s" onclick="openDlg('${id}')">แก้ไข</button><button class="s x" onclick="delPlayer('${id}')">ลบ</button></span></div></div>
+  <div class="phd">${futCard(p)}<div class="pin"><h2>${esc(p.name)}</h2><p class="mut" style="margin:2px 0">${stats(p)}${p.pos?' · '+esc(p.pos):''}</p>
+    <div class="acts2"><button class="s" onclick="openDlg('${id}')">แก้ไข</button><button class="s x" onclick="delPlayer('${id}')">ลบ</button></div></div></div>
   <div class="bar1"><h3>ประวัติการประเมิน</h3><button class="p" style="margin-left:auto" onclick="newAsm()">+ ประเมินครั้งใหม่</button></div>
   <section>${as.length ? as.map(a=>`<div class="lst"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
     <div class="mid" onclick="openAsm('${a.id}')"><b>ครั้งที่ ${esc(a.info.no)}</b><div class="mut">${esc(a.info.date)} · ${lvl(tAvg(a))}${a.info.coach?' · โค้ช '+esc(a.info.coach):''}</div></div>
