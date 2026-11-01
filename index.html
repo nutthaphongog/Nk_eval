@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NK ELITE ACADEMY - ประเมินนักกีฬา</title>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NK ELITE ACADEMY - ดูข้อมูลนักกีฬา</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0d1322;--navy:#101a35;--navy2:#1b2850;--red:#e0222f;--line:#e3e6ee;--bg:#f2f4f9;--card:#fff;--mut:#667089;--ok:#16a34a}
@@ -29,61 +26,58 @@ body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .tab{display:flex;align-items:center;padding:0 16px;color:#9aa6c8;text-decoration:none;font-size:14px;font-weight:500;border-bottom:3px solid transparent;transition:color .15s,background .15s}
 .tab:hover{color:#fff}
 .tab.on{color:#fff;font-weight:600;border-bottom-color:#fff;background:linear-gradient(180deg,transparent,rgba(255,255,255,.12))}
-.top button{margin-left:auto;background:transparent;color:#cdd5ee;border-color:#3a4772}
 main{max-width:1040px;margin:0 auto;padding:22px 18px 100px;color:#fff}
 h1{font-size:26px;margin:0;font-weight:700}h2{font-size:20px;margin:0 0 4px}h3{font-size:16px;margin:0}
 button{font:inherit;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:8px 14px;transition:background .15s,border-color .15s}
 button:hover{background:#f6f7fb}
 button.p{background:var(--red);border-color:var(--red);color:#fff;font-weight:500}button.p:hover{background:#c91b27}
-button.d{background:var(--navy);border-color:var(--navy);color:#fff}button.d:hover{background:var(--navy2)}
-button.x{color:#b4232d;border-color:#f0c9cc}button.x:hover{background:#fdf1f2}
 button.s{padding:5px 11px;font-size:13px;border-radius:8px}
-button:disabled{opacity:.5;cursor:wait}
-button:focus-visible,input:focus-visible,textarea:focus-visible,.tab:focus-visible,.fc:focus-visible{outline:3px solid #7b97ff;outline-offset:1px}
-input,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
-textarea{min-height:70px;resize:vertical}
+button:focus-visible,input:focus-visible,.tab:focus-visible,.fc:focus-visible{outline:3px solid #7b97ff;outline-offset:1px}
+input{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
 label{font-size:13px;color:var(--mut);display:block;margin:10px 0 4px}
 .mut{color:var(--mut);font-size:13px}
 main .mut{color:#a9b8e2}
-main section .mut,main .login .mut,main .bottom .mut{color:var(--mut)}
+main section .mut{color:var(--mut)}
 .bar1{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 18px}
 .bar1 input{max-width:300px;margin-left:auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.empty{background:#f7f8fc;border-radius:10px;padding:14px;text-align:center;color:var(--mut);font-size:13px;margin:14px 0 4px}
+.card{background:var(--card);border-radius:16px;padding:0;overflow:hidden;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,26,53,.04),0 6px 18px rgba(16,26,53,.05);color:var(--ink)}
+.who{flex:1;min-width:0}.who b{display:block;font-size:17px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who small{color:var(--mut);font-size:13px}
+.score{text-align:right}.score strong{font-size:30px;line-height:1;color:var(--red);font-weight:700}.score small{display:block;font-size:11px;color:var(--mut)}
 .bars{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 4px}
 .b{text-align:center;font-size:12px}.b .t{height:46px;background:#edf0f6;border-radius:6px;display:flex;align-items:flex-end;overflow:hidden}
 .b i{display:block;width:100%;background:var(--navy);border-radius:6px 6px 0 0}
 .b span{display:block;font-weight:600;margin-top:3px}.b em{font-style:normal;color:var(--mut);font-size:11px}
+.empty{background:#f7f8fc;border-radius:10px;padding:14px;text-align:center;color:var(--mut);font-size:13px;margin:14px 0 4px}
 section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0;color:var(--ink)}
-.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 14px}
 .row{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #eef0f5}
 .row .n{flex:1;font-size:14px}
-.rt{display:flex;gap:5px}.rt button{width:38px;height:38px;padding:0;border-radius:10px}
-.rt button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
 .dh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.dh b{color:var(--red);font-size:20px}
 .lst{display:flex;gap:14px;align-items:center;padding:14px 0;border-top:1px solid #eef0f5}
 .lst:first-child{border-top:0}.lst .bars{flex:1;margin:0;max-width:340px}.lst .mid{flex:1;cursor:pointer}
 .pill{background:var(--navy);color:#fff;border-radius:12px;padding:6px 12px;text-align:center;min-width:64px}.pill b{font-size:20px;display:block;line-height:1.1}.pill small{font-size:10px;opacity:.7}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;color:var(--ink)}
-dialog{border:0;border-radius:18px;padding:22px;width:min(420px,92vw);box-shadow:0 20px 60px rgba(10,16,35,.35);max-height:92vh;overflow:auto}
-dialog::backdrop{background:rgba(10,16,35,.55)}
-.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
-.login{max-width:380px;margin:12vh auto;background:#fff;border-radius:18px;padding:26px;box-shadow:0 10px 40px rgba(16,26,53,.12);color:var(--ink)}
+.ch{background:linear-gradient(135deg,#0b1430,#1d2c5c);color:#fff;padding:16px;display:flex;gap:14px;align-items:center;position:relative}
+.ch::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red)}
+.ch .who b{color:#fff;font-size:18px}.ch .who small{color:#b9c3e3;display:block}
+.ch .score strong{color:#fff;font-size:34px}.ch .score small{color:#b9c3e3;max-width:112px;margin-left:auto}
+.cb{padding:14px 16px 12px}
 .av{width:64px;height:64px;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.3);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:600;flex:none}
 .av img{width:100%;height:100%;object-fit:cover;display:block}
-.av.big{width:92px;height:92px;font-size:34px;background:var(--navy);border-color:var(--line)}
-.ph{display:flex;gap:16px;align-items:center;margin:8px 0 4px}.phb{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
-select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.v{min-width:36px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:600;background:#edf0f6;color:#667089}
+.v5{background:#16a34a;color:#fff}.v4{background:#8bd3a0;color:#0d3b1c}.v3{background:#f5d76e;color:#4a3a00}.v2{background:#f4a95f;color:#4a2400}.v1{background:var(--red);color:#fff}
+.tx{margin:0;white-space:pre-wrap}ol{margin:4px 0 0;padding-left:20px}ol li{margin:2px 0}
 .grid.fg{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:30px 16px}
 .fc{cursor:pointer;text-align:center}
-.phd{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:14px 0}.phd .fut{width:230px;margin:0}.pin{flex:1;min-width:200px}.pin .acts2{display:flex;gap:6px;margin-top:10px}
+.phd{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:14px 0}.phd .fut{width:230px;margin:0}.pin{flex:1;min-width:200px}
 
 /* ===== การ์ด FIFA ===== */
 .fut{container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.7;margin:0 auto;
  filter:drop-shadow(0 10px 16px rgba(0,0,0,.5));
  transform:perspective(900px) translateY(var(--ty,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
  transition:transform .18s ease-out,filter .25s}
-.fc:hover .fut,.fc.sel .fut{--ty:-6px;--sc:1.03}
+.fc.sel .fut{--ty:-6px;--sc:1.03}
+@media(hover:hover){.fc:hover .fut{--ty:-6px;--sc:1.03}}
 .fc.sel .fut{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 16px rgba(110,190,255,.8)) drop-shadow(0 10px 16px rgba(0,0,0,.5))}
 .fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,72% 1.26%,92% 2.24%,100% 7.7%,100% 77%,86% 90.3%,50% 100%,14% 90.3%,0% 77%,0% 7.7%,8% 2.24%,28% 1.26%)}
 .fo{inset:0;background:linear-gradient(135deg,var(--bd1) 0,var(--bd2) 22%,var(--bd1) 45%,var(--bd2) 72%,var(--bd1) 100%)}
@@ -172,46 +166,67 @@ select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);bo
 .sd-score{display:flex;gap:12px;align-items:center;margin:16px 0 2px;padding:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px}
 .sd-sm{font-size:12.5px;color:#a9b8e2;line-height:1.5}
 .sd-list{margin-top:12px;display:grid;gap:6px}.sd-list div{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;background:rgba(255,255,255,.07);border-radius:10px;font-size:13px}.sd-list span{color:#a9b8e2}
-.sd-act{display:grid;gap:8px;margin-top:18px}.sd-act .r{display:flex;gap:8px}.sd-act .r button{flex:1}
+.sd-act{display:grid;gap:8px;margin-top:18px}
 .side button:not(.p){background:rgba(255,255,255,.08);color:#e7ecfb;border-color:rgba(255,255,255,.18)}
 .side button:not(.p):hover{background:rgba(255,255,255,.16)}
-.side button.x{color:#ff9aa2;border-color:rgba(255,120,130,.4)}
 .xc{position:absolute;top:10px;right:10px;width:32px;height:32px;padding:0;border-radius:50%;display:grid;place-items:center}
 .side .b em{color:#9fb0dc}.side .b .t{background:rgba(255,255,255,.1)}.side .b i{background:linear-gradient(180deg,#6aa6ff,#2f5be0)}
 .side .empty{background:rgba(255,255,255,.07);color:#a9b8e2}
 @media(min-width:900px){body.sp main{max-width:none;margin:0;padding-right:376px}}
+html{-webkit-text-size-adjust:100%}
+button,.tab,.fc{-webkit-tap-highlight-color:transparent}
+button{touch-action:manipulation}
 @media(max-width:899px){
- .side{top:auto;left:0;width:auto;max-height:70vh;border-left:0;border-top:1px solid rgba(255,255,255,.14);border-radius:20px 20px 0 0;transform:translateY(105%)}
- body.sp main{padding-bottom:70vh}}
-@media(max-width:620px){.top small{display:none}.lst{flex-wrap:wrap}.lst .bars{max-width:none;flex-basis:100%}.row{flex-wrap:wrap}.row .n{flex-basis:100%}.rt{width:100%}.rt button{flex:1}.bar1 input{max-width:none;margin:0;flex-basis:100%}}
-@media print{.top,.bottom,.noprint,.side{display:none!important}body::before,body::after{display:none}html,body{background:#fff}main{color:var(--ink)}section{border:0;box-shadow:none;break-inside:avoid;padding:6px 0}}
-</style>
-</head>
+ .side{top:auto;left:0;width:auto;max-height:72vh;max-height:72dvh;padding:10px 20px 0;border-left:0;border-top:1px solid rgba(255,255,255,.14);border-radius:20px 20px 0 0;transform:translateY(105%)}
+ .side::before{content:'';display:block;width:42px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);margin:0 auto 14px}
+ .sd-card{max-width:150px}
+ .xc{top:14px;right:14px;width:40px;height:40px;font-size:16px}
+ .sd-act{position:sticky;bottom:0;margin:14px -20px 0;padding:14px 20px max(16px,env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,12,30,0),rgba(7,12,30,.97) 28%)}
+ .sd-act button{min-height:44px}
+ body.sp main{padding-bottom:72vh}}
+@media(max-width:620px){
+ .top>div{padding:0 12px;min-height:52px;gap:6px}
+ .top small{display:none}.top b{font-size:15px}
+ .tabs{margin-left:0;overflow-x:auto}.tab{padding:0 11px;font-size:13px;white-space:nowrap}
+ .top button{padding:6px 10px;font-size:13px;min-height:36px}
+ main{padding:14px 12px 100px}
+ h1{font-size:22px}
+ button{min-height:40px}button.s{min-height:36px}
+ input,select,textarea{font-size:16px}
+ .bar1{gap:8px}.bar1 input{max-width:none;margin:0;flex-basis:100%;order:3}
+ .bar1>button.p{margin-left:auto}
+ .grid.fg{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 10px}
+ .hall{margin-bottom:28px}.hall-h h2{font-size:20px}
+ .hall-r{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 10px;gap:22px;padding:22px 10px 8px;margin:0 -12px;-webkit-overflow-scrolling:touch}
+ .hb{flex:none;width:min(60vw,220px);scroll-snap-align:start}
+ .phd{justify-content:center;text-align:center}.phd .fut{width:200px}.pin .acts2{justify-content:center}
+ .lst{flex-wrap:wrap}.lst .bars{max-width:none;flex-basis:100%;order:3}
+ .row{flex-wrap:wrap}.row .n{flex-basis:100%}.rt{width:100%}.rt button{flex:1;height:44px}
+ section{padding:14px}
+ .bottom{padding:10px 12px max(10px,env(safe-area-inset-bottom))}
+ .ch{flex-wrap:wrap}
+ dialog{padding:18px;max-height:92vh;max-height:92dvh}
+ .acts button{min-height:44px;flex:1}}
+@media print{.top,.noprint,.side{display:none!important}body::before,body::after{display:none}html,body{background:#fff}main{color:var(--ink)}section{border:0;box-shadow:none;break-inside:avoid;padding:6px 0}}
+</style></head>
 <body>
-<div class="top"><div><b>NK ELITE ACADEMY</b><small>Player Assessment</small>
-  <nav class="tabs noprint"><a class="tab on" href="#" onclick="return goHome()">นักกีฬา</a><a class="tab" href="/view.html" target="_blank" rel="noopener">หน้าดูข้อมูล ↗</a></nav>
-  <button id="out" class="noprint" onclick="logout()" hidden>ออกจากระบบ</button></div></div>
+<div class="top"><div><b>NK ELITE ACADEMY</b><small>ดูข้อมูลนักกีฬา</small>
+  <nav class="tabs noprint"><a class="tab on" href="#" onclick="home();return false">นักกีฬา</a><a class="tab" href="/index.html">เข้าสู่ระบบโค้ช →</a></nav></div></div>
 <main id="app"></main>
 <aside id="side" class="side" aria-label="ข้อมูลนักกีฬา"></aside>
-<dialog id="dlg">
-  <h2 id="dt">เพิ่มนักกีฬา</h2>
-  <div class="ph"><div id="f_prev" class="av big"></div><div class="phb">
-    <button class="s" type="button" onclick="$('f_file').click()">เลือกรูป</button>
-    <input id="f_file" type="file" accept="image/*" hidden onchange="pickPhoto(this)">
-    <button class="s x" type="button" onclick="clearPhoto()">ลบรูป</button></div></div>
-  <label>ชื่อ</label><input id="f_name" autocomplete="off" oninput="refreshPrev()">
-  <label>ชื่อเล่น (แสดงบนการ์ด)</label><input id="f_nick" autocomplete="off" maxlength="16" oninput="refreshPrev()">
-  <label>ตำแหน่ง</label><select id="f_pos" onchange="refreshPrev()"><option value="">— ไม่ระบุ —</option><option>ST</option><option>CF</option><option>LW</option><option>RW</option><option>CAM</option><option>CM</option><option>CDM</option><option>LB</option><option>RB</option><option>CB</option><option>GK</option></select>
-  <div class="g2"><div><label>อายุ (ปี)</label><input id="f_age" type="number" oninput="refreshPrev()" min="3" max="30" inputmode="numeric"></div>
-  <div><label>ส่วนสูง (ซม.)</label><input id="f_h" type="number" min="50" max="230" inputmode="decimal"></div>
-  <div><label>น้ำหนัก (กก.)</label><input id="f_w" type="number" min="10" max="200" inputmode="decimal"></div></div>
-  <label>ประเภทการ์ด</label><select id="f_sp" onchange="refreshPrev()"></select>
-  <label>ข้อความบนการ์ด (ไม่บังคับ)</label><input id="f_spn" maxlength="24" placeholder="เช่น สัปดาห์ที่ 44 / ตุลาคม 2026" oninput="refreshPrev()">
-  <div id="f_card" style="margin:16px auto 0;max-width:210px"></div>
-  <div class="acts"><button onclick="dlg.close()">ยกเลิก</button><button class="p" id="f_save" onclick="savePlayer()">บันทึก</button></div>
-</dialog>
 <script>
 const API = '/api/gas';
+const PW = '';
+let S = {players:[], asms:[], q:'', msg:'', sel:null};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function call(action, extra) {
+  const r = await fetch(API, {method:'POST', body: JSON.stringify({pw:PW, action, ...extra})});
+  const txt = await r.text(); let j;
+  try { j = JSON.parse(txt); } catch (e) { throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง (' + r.status + ')'); }
+  if (j.error) throw new Error(j.error);
+  return j;
+}
 const D = [
  {n:'Domain 1: ด้านเทคนิค (Technical Skills)', s:'เทคนิค', g:[
   {t:'Ball Mastery', i:['Ball Control','First Touch','Dribbling','Change of Direction / Feinting (เปลี่ยนทิศทาง/หลอกคู่ต่อสู้)','Change of Speed (เปลี่ยนความเร็ว)']},
@@ -225,19 +240,6 @@ const D = [
  {n:'Domain 5: พฤติกรรมและการอยู่ร่วมกับทีม (Social & Behavior)', s:'พฤติกรรม', g:[{i:['Discipline','Respect','Teamwork','Communication','Coach-ability (เปิดรับคำแนะนำจากโค้ช)','Responsibility','Sportsmanship','Attitude Toward Teammates','Attitude Toward Coaches','Punctuality','Effort']}]},
  {n:'Domain 6: ความฉลาดในการเล่นฟุตบอล (Football Intelligence)', s:'ไอคิวบอล', g:[{i:['อ่านสถานการณ์','คาดการณ์เหตุการณ์ล่วงหน้า','สแกนพื้นที่','รู้ว่าควรเล่นเมื่อไหร่','รู้ว่าควรเล่นอะไร','รู้ว่าควรเล่นไปพื้นที่ไหน','เข้าใจ Space','เข้าใจ Time','เข้าใจ Risk vs Reward','ปรับการเล่นตามสถานการณ์']}]}
 ];
-
-let PW = sessionStorage.getItem('pw') || '';
-let S = {players:[], asms:[], p:null, a:null, q:'', msg:'', sel:null};
-const $ = id => document.getElementById(id), dlg = $('dlg');
-const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-
-async function call(action, extra) {
-  const r = await fetch(API, {method:'POST', body: JSON.stringify({pw:PW, action, ...extra})});
-  const txt = await r.text();
-  let j; try { j = JSON.parse(txt); } catch (e) { throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง (' + r.status + ') ' + txt.slice(0,120)); }
-  if (j.error) throw new Error(j.error);
-  return j;
-}
 // ---------- คะแนน ----------
 const mean = v => v.length ? v.reduce((x,y)=>x+y,0)/v.length : null;
 const dAvg = (a,di) => { const v=[]; D[di].g.forEach((g,gi)=>g.i.forEach((_,ii)=>{const s=a.scores[`${di}-${gi}-${ii}`]; if(s) v.push(s);})); return mean(v); };
@@ -248,6 +250,8 @@ const bars = a => `<div class="bars">${D.map((d,i)=>{const m=dAvg(a,i);return `<
 const byDate = (a,b) => (b.info.date||'').localeCompare(a.info.date||'') || (+b.info.no||0)-(+a.info.no||0);
 const asmOf = pid => S.asms.filter(a=>a.playerId===pid).sort(byDate);
 const stats = p => `อายุ ${p.age||'-'} ปี · ${p.height||'-'} ซม. · ${p.weight||'-'} กก.`;
+
+const avatar = p => `<div class="av">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : esc(String(p.name||'?').trim().charAt(0))}</div>`;
 
 const futStats = a => {
   const g = (di,gi,idx) => { const n = D[di].g[gi].i.length, v = []; (idx || [...Array(n).keys()]).forEach(ii => { const s = a.scores[`${di}-${gi}-${ii}`]; if (s) v.push(s); }); return v; };
@@ -330,8 +334,7 @@ function sideHtml(p) {
   <div class="sd-card">${futCard(p)}</div>
   <h2>${esc(p.name)}</h2>${p.nick?`<p class="sd-sub">ชื่อเล่น “${esc(p.nick)}”</p>`:''}<p class="sd-sub">${p.pos?esc(p.pos)+' · ':''}${stats(p)}</p>
   ${l ? `<div class="sd-score"><div class="pill"><b>${f1(t)}</b><small>/ 5</small></div><div><b>${lvl(t)}</b><div class="sd-sm">ประเมินล่าสุด ${esc(l.info.date)} · ครั้งที่ ${esc(l.info.no)}<br>ประเมินแล้ว ${as.length} ครั้ง</div></div></div>${bars(l)}${rows}` : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
-  <div class="sd-act"><button class="p" onclick="openPlayer('${p.id}')">เข้าไปประเมิน →</button>
-  <div class="r"><button class="s" onclick="openDlg('${p.id}')">แก้ไข</button><button class="s x" onclick="delPlayer('${p.id}')">ลบ</button></div></div>`;
+  <div class="sd-act"><button class="p" onclick="openPlayer('${p.id}')">ดูผลประเมิน →</button></div>`;
 }
 function closeSide() {
   S.sel = null; $('side').classList.remove('open'); document.body.classList.remove('sp');
@@ -344,190 +347,59 @@ function pick(id) {
   $('side').classList.add('open'); document.body.classList.add('sp');
   document.querySelectorAll('.fc').forEach(e=>e.classList.toggle('sel', e.dataset.id===id));
 }
-function goHome() { if (PW) home(); return false; }
 
-// ---------- เข้าสู่ระบบ ----------
-function login() {
-  $('out').hidden = true;
-  $('app').innerHTML = `<div class="login"><h2>เข้าสู่ระบบโค้ช</h2><p class="mut" style="margin:0 0 6px">NK ELITE ACADEMY</p>
-  <label>รหัสผ่าน</label><input id="pw" type="password" autofocus onkeydown="if(event.key==='Enter')doLogin()">
-  <p class="mut" style="color:#b4232d;min-height:20px">${esc(S.msg)}</p><button class="p" style="width:100%" onclick="doLogin()">เข้าสู่ระบบ</button></div>`;
-}
-async function doLogin() {
-  PW = $('pw').value;
-  try { await load(); sessionStorage.setItem('pw',PW); S.msg=''; await home(); }
-  catch(e) { S.msg = e.message; login(); }
-}
-function logout() { sessionStorage.removeItem('pw'); PW=''; closeSide(); login(); }
 async function load() {
-  const [p, a] = await Promise.all([call('list',{sheet:'Players'}), call('list',{sheet:'Assessments'})]);
+  const [p, a] = await Promise.all([call('public',{sheet:'Players'}), call('public',{sheet:'Assessments'})]);
   S.players = p.rows.filter(x=>x && x.id && typeof x.name==='string');
   S.asms = a.rows.filter(x=>x && x.id && x.info && x.scores);
 }
-
-// ---------- หน้าแรก: คลังการ์ด ----------
 async function home() {
-  closeSide(); $('out').hidden = false; S.p = null; S.a = null; S.view = '';
-  $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>';
-  await load();
+  closeSide(); $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>'; await load();
   $('app').innerHTML = `${specials()}<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน · การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
-    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"><button class="p" onclick="openDlg()">+ เพิ่มนักกีฬา</button></div>
-    <div class="grid fg" id="list"></div>`;
+    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"></div><div class="grid fg" id="list"></div>`;
   cards(); startRot();
 }
 function cards() {
   const q = S.q.trim().toLowerCase();
   const ps = S.players.filter(p=>(String(p.name||'')+' '+String(p.nick||'')).toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
   $('list').innerHTML = ps.length ? ps.map(p=>`<div class="fc${S.sel===p.id?' sel':''}" data-id="${p.id}" onclick="pick('${p.id}')">${futCard(p)}</div>`).join('')
-    : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีนักกีฬา กด “เพิ่มนักกีฬา” เพื่อเริ่มต้น'}</div>`;
+    : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีข้อมูลนักกีฬา'}</div>`;
 }
-
-// ---------- เพิ่ม/แก้ไข/ลบ นักกีฬา ----------
-let editId = null, photoData;
-function showPrev(d) { $('f_prev').innerHTML = d ? `<img src="${esc(d)}" alt="">` : esc((($('f_name').value||'?').trim().charAt(0))||'?'); refreshPrev(); }
-function fillSp() {
-  if ($('f_sp').options.length) return;
-  $('f_sp').innerHTML = '<option value="">อัตโนมัติ (ตามคะแนนประเมิน)</option>' + Object.entries(SPECIALS).map(([k,v])=>`<option value="${k}">${v[0]} · ${v[2]}</option>`).join('');
+function openPlayer(id) {
+  closeSide();
+  const p = S.players.find(x=>x.id===id); if (!p) return home(); const as = asmOf(id);
+  $('app').innerHTML = `<p><button onclick="home()">← นักกีฬาทั้งหมด</button></p>
+  <div class="phd">${futCard(p)}<div class="pin"><h2>${esc(p.name)}${p.nick?' ('+esc(p.nick)+')':''}</h2><p class="mut" style="margin:2px 0">${stats(p)}${p.pos?' · '+esc(p.pos):''}</p></div></div>
+  <h3 style="margin:18px 0 6px">ประวัติการประเมิน</h3>
+  <section>${as.length ? as.map(a=>`<div class="lst" style="cursor:pointer" onclick="showAsm('${a.id}')"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
+    <div class="mid"><b>ครั้งที่ ${esc(a.info.no)}</b><div class="mut">${esc(a.info.date)} · ${lvl(tAvg(a))}${a.info.coach?' · โค้ช '+esc(a.info.coach):''}</div></div>${bars(a)}</div>`).join('') : '<div class="empty">ยังไม่เคยประเมิน</div>'}</section>`;
+  scrollTo(0,0);
 }
-function curP() {
-  const old = editId ? (S.players.find(x=>x.id===editId)||{}) : {};
-  return {...old, name:$('f_name').value.trim()||'ชื่อนักกีฬา', nick:$('f_nick').value.trim(), age:+$('f_age').value||'', pos:$('f_pos').value, special:$('f_sp').value, spNote:$('f_spn').value.trim(),
-    photo: photoData===undefined ? (old.photo||'') : photoData};
-}
-function refreshPrev() { $('f_card').innerHTML = futCard(curP()); }
-function openDlg(id) {
-  editId = id || null; const p = id ? S.players.find(x=>x.id===id) : {}; photoData = undefined;
-  $('dt').textContent = id ? 'แก้ไขข้อมูลนักกีฬา' : 'เพิ่มนักกีฬา';
-  $('f_name').value = p.name||''; $('f_nick').value = p.nick||''; $('f_age').value = p.age||''; $('f_h').value = p.height||''; $('f_w').value = p.weight||''; $('f_pos').value = p.pos||''; fillSp(); $('f_sp').value = p.special||''; $('f_spn').value = p.spNote||'';
-  showPrev(p.photo||''); dlg.showModal(); $('f_name').focus();
-}
-function pickPhoto(inp) {
-  const f = inp.files[0]; if (!f) return;
-  const img = new Image(), u = URL.createObjectURL(f);
-  img.onload = () => {
-    const c = document.createElement('canvas'), x = c.getContext('2d'), s = Math.min(img.width, img.height);
-    let n = 256, q = .85, d;
-    const draw = () => { c.width = c.height = n; x.clearRect(0,0,n,n); x.drawImage(img, (img.width-s)/2, (img.height-s)/2, s, s, 0, 0, n, n); d = c.toDataURL('image/webp', q); };
-    draw();
-    while (d.length > 30000 && n > 96) { if (q > .4 && d.startsWith('data:image/webp')) q -= .1; else n -= 32; draw(); }
-    photoData = d; showPrev(d); URL.revokeObjectURL(u);
-  };
-  img.onerror = () => alert('เปิดไฟล์รูปนี้ไม่ได้ ลองรูปอื่น (JPG/PNG)');
-  img.src = u; inp.value = '';
-}
-function clearPhoto() { photoData = ''; showPrev(''); }
-async function savePlayer() {
-  const name = $('f_name').value.trim(); if (!name) return alert('กรุณากรอกชื่อ');
-  const old = editId ? S.players.find(x=>x.id===editId) : {};
-  const data = {name, nick:$('f_nick').value.trim(), age:+$('f_age').value||'', height:+$('f_h').value||'', weight:+$('f_w').value||'', pos:$('f_pos').value, special:$('f_sp').value, spNote:$('f_spn').value.trim(), photo: photoData===undefined ? (old.photo||'') : photoData};
-  if (editId) data.id = editId;
-  $('f_save').disabled = true;
-  try {
-    await call('save',{sheet:'Players', data}); dlg.close();
-    if (S.view==='player') openPlayer(editId); else { await home(); if (editId) pick(editId); }
-  }
-  catch(e) { alert('บันทึกไม่สำเร็จ: '+e.message); }
-  $('f_save').disabled = false;
-}
-async function delPlayer(id) {
-  const p = S.players.find(x=>x.id===id), n = asmOf(id).length;
-  if (!confirm(`ลบ “${p.name}” และผลประเมินทั้งหมด ${n} ครั้ง?\nการลบกู้คืนไม่ได้`)) return;
-  try { for (const a of asmOf(id)) await call('delete',{sheet:'Assessments', id:a.id}); await call('delete',{sheet:'Players', id}); home(); }
-  catch(e) { alert('ลบไม่สำเร็จ: '+e.message); }
-}
-
-// ---------- หน้านักกีฬา: ประวัติการประเมิน ----------
-async function openPlayer(id) {
-  S.view = 'player'; closeSide(); await load();
-  const p = S.p = S.players.find(x=>x.id===id); if (!p) return home();
-  const as = asmOf(id);
-  $('app').innerHTML = `<p><button onclick="S.view='';home()">← นักกีฬาทั้งหมด</button></p>
-  <div class="phd">${futCard(p)}<div class="pin"><h2>${esc(p.name)}${p.nick?' ('+esc(p.nick)+')':''}</h2><p class="mut" style="margin:2px 0">${stats(p)}${p.pos?' · '+esc(p.pos):''}</p>
-    <div class="acts2"><button class="s" onclick="openDlg('${id}')">แก้ไข</button><button class="s x" onclick="delPlayer('${id}')">ลบ</button></div></div></div>
-  <div class="bar1"><h3>ประวัติการประเมิน</h3><button class="p" style="margin-left:auto" onclick="newAsm()">+ ประเมินครั้งใหม่</button></div>
-  <section>${as.length ? as.map(a=>`<div class="lst"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
-    <div class="mid" onclick="openAsm('${a.id}')"><b>ครั้งที่ ${esc(a.info.no)}</b><div class="mut">${esc(a.info.date)} · ${lvl(tAvg(a))}${a.info.coach?' · โค้ช '+esc(a.info.coach):''}</div></div>
-    ${bars(a)}<span style="display:flex;gap:6px"><button class="s" onclick="openAsm('${a.id}')">เปิด/แก้ไข</button><button class="s x" onclick="delAsm('${a.id}')">ลบ</button></span></div>`).join('') : '<div class="empty">ยังไม่เคยประเมิน</div>'}</section>`;
-}
-async function delAsm(id) {
-  if (!confirm('ลบผลประเมินครั้งนี้? การลบกู้คืนไม่ได้')) return;
-  try { await call('delete',{sheet:'Assessments', id}); openPlayer(S.p.id); } catch(e) { alert('ลบไม่สำเร็จ: '+e.message); }
-}
-
-// ---------- แบบประเมิน ----------
-const setp = (path, v) => { const k=path.split('.'); let o=S.a; k.slice(0,-1).forEach(x=>o=o[x]); o[k.at(-1)]=v; };
-function newAsm() {
-  const p = S.p, n = asmOf(p.id).length + 1;
-  S.a = {playerId:p.id, info:{name:p.name, age:p.age, height:p.height, weight:p.weight, date:new Date().toISOString().slice(0,10), coach:'', no:String(n)}, scores:{}, note:'',
-    text:{obs:{strength:'',need:'',advice:'',next:''}, strengths:['','',''], improve:['','',''], goals:['','',''], actions:['','','']}};
-  form();
-}
-function openAsm(id) { S.a = JSON.parse(JSON.stringify(S.asms.find(a=>a.id===id))); form(); scrollTo(0,0); }
-function rate(k,v) { if (S.a.scores[k]===v) delete S.a.scores[k]; else S.a.scores[k]=v; const y=scrollY; form(); scrollTo(0,y); }
-const ta = (path,label,val,h) => `<label>${label}</label><textarea oninput="setp('${path}',this.value)" ${h?`style="min-height:${h}px"`:''}>${esc(val)}</textarea>`;
-const inp = (path,label,val,type) => `<div><label>${label}</label><input ${type?`type="${type}"`:''} value="${esc(val)}" oninput="setp('${path}',this.value)"></div>`;
-
-function form() {
-  S.view = 'form'; const a=S.a, t=a.text, i=a.info;
-  let h = `<p class="noprint"><button onclick="openPlayer('${a.playerId}')">← กลับ</button></p>
-  <section><div class="dh"><h2>แบบประเมินพัฒนาการนักกีฬา</h2><span class="mut">เฉลี่ยรวม <b style="color:var(--red);font-size:20px">${f1(tAvg(a))}</b> / 5</span></div>
-   <div class="g2">${inp('info.name','ชื่อนักกีฬา',i.name)}${inp('info.age','อายุ (ปี)',i.age,'number')}${inp('info.height','ส่วนสูง (ซม.)',i.height,'number')}${inp('info.weight','น้ำหนัก (กก.)',i.weight,'number')}
-   ${inp('info.date','วันที่ประเมิน',i.date,'date')}${inp('info.coach','โค้ช',i.coach)}${inp('info.no','ครั้งที่',i.no)}</div>
-   <p class="mut" style="margin:12px 0 0;font-size:12px">5 Excellent · 4 Good · 3 Developing · 2 Needs Improvement · 1 Needs Significant Development</p></section>`;
+function showAsm(id) {
+  const a = S.asms.find(x=>x.id===id), p = S.players.find(x=>x.id===a.playerId) || {}, i = a.info, t = a.text || {}, o = t.obs || {};
+  let h = `<p class="noprint"><button onclick="openPlayer('${a.playerId}')">← กลับ</button> <button style="float:right" onclick="print()">พิมพ์ / PDF</button></p>
+  <div class="card" style="cursor:default;margin:14px 0"><div class="ch">${avatar(p)}<div class="who"><b>${esc(i.name||p.name)}</b>
+    <small>อายุ ${esc(i.age||'-')} ปี · ${esc(i.height||'-')} ซม. · ${esc(i.weight||'-')} กก.</small>
+    <small>ครั้งที่ ${esc(i.no)} · ${esc(i.date)}${i.coach?' · โค้ช '+esc(i.coach):''}</small></div>
+    <div class="score"><strong>${f1(tAvg(a))}</strong><small>${lvl(tAvg(a))}</small></div></div><div class="cb">${bars(a)}</div></div>`;
   D.forEach((d,di)=>{
     h += `<section><div class="dh"><h3>${d.n}</h3><span class="mut">เฉลี่ย <b>${f1(dAvg(a,di))}</b></span></div>`;
-    d.g.forEach((g,gi)=>{
-      if (g.t) h += `<h3 style="margin:16px 0 2px;color:var(--navy2)">${g.t}</h3>`;
-      g.i.forEach((it,ii)=>{ const k=`${di}-${gi}-${ii}`;
-        h += `<div class="row"><span class="n">${esc(it)}</span><div class="rt">${[1,2,3,4,5].map(v=>`<button class="${a.scores[k]===v?'on':''}" aria-pressed="${a.scores[k]===v}" onclick="rate('${k}',${v})">${v}</button>`).join('')}</div></div>`; });
-    });
+    d.g.forEach((g,gi)=>{ if (g.t) h += `<h3 style="margin:14px 0 2px;color:var(--navy2)">${g.t}</h3>`;
+      g.i.forEach((it,ii)=>{ const v = a.scores[`${di}-${gi}-${ii}`]; h += `<div class="row"><span class="n">${esc(it)}</span><span class="v v${v||0}">${v||'-'}</span></div>`; }); });
     h += '</section>';
   });
-  h += `<section class="noprint"><h3>ให้ AI ช่วยร่างข้อความ</h3>
-   <p class="mut" style="margin:4px 0">AI ใช้คะแนนด้านบนเป็นหลัก ใส่ข้อสังเกตเพิ่ม (เช่น พฤติกรรมในเกม อาการบาดเจ็บ) เพื่อให้ผลแม่นขึ้น แล้วแก้ไขผลได้ก่อนบันทึก</p>
-   <textarea oninput="S.a.note=this.value" placeholder="ข้อสังเกตเพิ่มเติมของโค้ช">${esc(a.note)}</textarea>
-   <p><button class="d" id="aib" onclick="runAI()">ร่างข้อความด้วย AI</button> <span class="mut" id="aim"></span></p></section>
-  <section><h3>Coach’s Observation</h3>${ta('text.obs.strength','จุดเด่น',t.obs.strength)}${ta('text.obs.need','สิ่งที่ต้องพัฒนา',t.obs.need)}${ta('text.obs.advice','คำแนะนำสำหรับการฝึก',t.obs.advice)}${ta('text.obs.next','เป้าหมายรอบถัดไป',t.obs.next)}</section>
-  <section><h3>Individual Development Plan</h3>
-   ${[0,1,2].map(n=>ta(`text.strengths.${n}`,`Top Strength ${n+1}`,t.strengths[n],44)).join('')}
-   ${[0,1,2].map(n=>ta(`text.improve.${n}`,`Area to Improve ${n+1}`,t.improve[n],44)).join('')}</section>
-  <section><h3>Next 4–8 Week Goals</h3>${[0,1,2].map(n=>ta(`text.goals.${n}`,`Goal ${n+1}`,t.goals[n],44)).join('')}
-   <h3 style="margin-top:20px">Coach’s Action Plan</h3>${[0,1,2].map(n=>ta(`text.actions.${n}`,`Action ${n+1}`,t.actions[n],44)).join('')}
-   <p class="mut">โค้ช: ${esc(i.coach)}</p></section>
-  <div class="bottom noprint"><span class="mut" id="sm"></span>${a.id?'<button class="x" onclick="delAsmForm()">ลบ</button>':''}<button onclick="print()">พิมพ์ / PDF</button><button class="p" onclick="saveAsm()">บันทึก</button></div>`;
-  $('app').innerHTML = h;
+  const tx = (l,v) => v ? `<label>${l}</label><p class="tx">${esc(v)}</p>` : '';
+  const ol = (l,arr) => (arr||[]).some(Boolean) ? `<label>${l}</label><ol>${arr.filter(Boolean).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>` : '';
+  const obs = tx('จุดเด่น',o.strength)+tx('สิ่งที่ต้องพัฒนา',o.need)+tx('คำแนะนำสำหรับการฝึก',o.advice)+tx('เป้าหมายรอบถัดไป',o.next);
+  const plan = ol('Top Strengths',t.strengths)+ol('Areas to Improve',t.improve);
+  const goals = ol('Next 4–8 Week Goals',t.goals)+ol('Coach’s Action Plan',t.actions);
+  if (obs) h += `<section><h3>Coach’s Observation</h3>${obs}</section>`;
+  if (plan) h += `<section><h3>Individual Development Plan</h3>${plan}</section>`;
+  if (goals) h += `<section><h3>เป้าหมายและแผนการฝึก</h3>${goals}</section>`;
+  $('app').innerHTML = h; scrollTo(0,0);
 }
-async function saveAsm() {
-  $('sm').textContent = 'กำลังบันทึก...';
-  try { S.a.id = (await call('save',{sheet:'Assessments', data:S.a})).id; $('sm').textContent = 'บันทึกแล้ว ✓'; }
-  catch(e) { $('sm').textContent = 'บันทึกไม่สำเร็จ: '+e.message; }
-}
-async function delAsmForm() {
-  if (!confirm('ลบผลประเมินครั้งนี้? การลบกู้คืนไม่ได้')) return;
-  try { await call('delete',{sheet:'Assessments', id:S.a.id}); openPlayer(S.a.playerId); } catch(e) { alert('ลบไม่สำเร็จ: '+e.message); }
-}
-async function runAI() {
-  const sc = {}; D.forEach((d,di)=>d.g.forEach((g,gi)=>g.i.forEach((it,ii)=>{const v=S.a.scores[`${di}-${gi}-${ii}`]; if(v) (sc[d.n]=sc[d.n]||[]).push(`${g.t?g.t+': ':''}${it} = ${v}`);})));
-  if (!Object.keys(sc).length) return alert('กรุณาให้คะแนนอย่างน้อยบางหัวข้อก่อน');
-  $('aib').disabled = true; $('aim').textContent = 'AI กำลังวิเคราะห์... (อาจใช้เวลา 10–30 วินาที)';
-  try {
-    const info = {age:S.a.info.age, height:S.a.info.height, weight:S.a.info.weight};
-    const r = (await call('ai',{payload:{info, scores:sc, note:S.a.note}})).result;
-    const f = (arr,n) => Array.from({length:n},(_,i)=>(arr&&arr[i])||'');
-    S.a.text = {obs:{strength:'',need:'',advice:'',next:'',...r.observation}, strengths:f(r.strengths,3), improve:f(r.improve,3), goals:f(r.goals,3), actions:f(r.actions,3)};
-    form(); scrollTo({top:document.body.scrollHeight*0.45}); 
-  } catch(e) { $('aib').disabled = false; $('aim').textContent = 'ผิดพลาด: '+e.message; }
-}
-
 (async()=>{
-  if (!PW) return login();
   try { await home(); }
-  catch(e) {
-    if (/รหัสผ่าน/.test(e.message)) return logout();
-    $('app').innerHTML = `<section><h3>โหลดข้อมูลไม่สำเร็จ</h3><p class="mut">${esc(e.message)}</p><button class="p" onclick="location.reload()">ลองใหม่</button></section>`;
-    $('out').hidden = false;
-  }
+  catch(e) { $('app').innerHTML = `<section><h3>โหลดข้อมูลไม่สำเร็จ</h3><p class="mut">${esc(e.message)}</p><button class="p" onclick="location.reload()">ลองใหม่</button></section>`; }
 })();
-</script>
-</body>
-</html>
+</script></body></html>
