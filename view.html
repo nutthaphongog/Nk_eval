@@ -72,41 +72,35 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 .phd{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:14px 0}.phd .fut{width:230px;margin:0}.pin{flex:1;min-width:200px}
 
 /* ===== การ์ด FIFA ===== */
-.fut{container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.72;margin:0 auto;
+.fut{container-type:inline-size;position:relative;width:100%;max-width:240px;aspect-ratio:.7;margin:0 auto;
  filter:drop-shadow(0 10px 16px rgba(0,0,0,.5));
  transform:perspective(900px) translateY(var(--ty,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
  transition:transform .18s ease-out,filter .25s}
 .fc:hover .fut,.fc.sel .fut{--ty:-6px;--sc:1.03}
 .fc.sel .fut{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 16px rgba(110,190,255,.8)) drop-shadow(0 10px 16px rgba(0,0,0,.5))}
-.fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,73% 2.4%,100% 5.4%,100% 85%,50% 100%,0% 85%,0% 5.4%,27% 2.4%)}
+.fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,62% 0.28%,74% 0.63%,86% 1.19%,92.12% 1.74%,96.5% 3.24%,99.12% 5.69%,100% 9.1%,100% 42%,100% 81.2%,97.5% 84.06%,92.67% 87.02%,85.5% 90.1%,76% 93.29%,64.17% 96.59%,50% 100%,35.83% 96.59%,24% 93.29%,14.5% 90.1%,7.33% 87.02%,2.5% 84.06%,0% 81.2%,0% 42%,0% 9.1%,0.88% 5.69%,3.5% 3.24%,7.88% 1.74%,14% 1.19%,26% 0.63%,38% 0.28%)}
 .fo{inset:0;background:linear-gradient(135deg,var(--bd1) 0,var(--bd2) 22%,var(--bd1) 45%,var(--bd2) 72%,var(--bd1) 100%)}
 .fm{inset:1.5cqw;background:var(--bd2);background:linear-gradient(200deg,var(--bd2),color-mix(in srgb,var(--bd2) 40%,#000))}
 .fi{inset:2.7cqw;background:linear-gradient(135deg,rgba(255,255,255,.32),transparent 26%,transparent 72%,rgba(0,0,0,.2)),radial-gradient(120% 70% at 72% 12%,var(--c2),transparent 62%),radial-gradient(90% 50% at 15% 100%,rgba(255,255,255,.18),transparent 70%),linear-gradient(172deg,var(--c2),var(--c1));color:var(--fg)}
 .fi::before{content:'';position:absolute;inset:0;background:var(--pat,none);background-size:var(--pz,auto);pointer-events:none}
 .fi::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);pointer-events:none}
-.fut .ry{position:absolute;inset:0;background:repeating-conic-gradient(from 190deg at 72% 26%,rgba(255,255,255,.13) 0 7deg,transparent 7deg 16deg);-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);mask-image:linear-gradient(180deg,#000,transparent 70%)}
-.fut .bw{position:absolute;left:0;right:0;top:30cqw;text-align:center;font-size:62cqw;font-weight:700;line-height:1;letter-spacing:-2cqw;opacity:.16;color:transparent;-webkit-text-stroke:.5cqw var(--fg)}
-.fut .sw{position:absolute;left:-12cqw;right:-12cqw;top:63cqw;bottom:-5cqw;border-radius:50% 50% 0 0/12cqw 12cqw 0 0;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.02));border-top:.5cqw solid rgba(255,255,255,.35)}
 .fut .gl{position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.34),transparent 48%);opacity:0;transition:opacity .2s;pointer-events:none}
 .fut:hover .gl{opacity:1}
-.fut .ov{position:absolute;left:10cqw;top:14cqw;display:flex;flex-direction:column;align-items:center;gap:1.4cqw;line-height:1}
+.fut .ov{position:absolute;left:6cqw;top:17cqw;display:flex;flex-direction:column;align-items:center;gap:1cqw;line-height:1}
 .fut .ov b{font-size:20cqw;font-weight:700;text-shadow:0 .8cqw 0 rgba(255,255,255,.22)}
-.fut .ov span{font-size:7.6cqw;font-weight:600;letter-spacing:.3cqw;min-width:11cqw;text-align:center;padding-bottom:1.6cqw;border-bottom:.45cqw solid var(--fg)}
-.fut .ov i{width:9cqw;height:10.5cqw;margin-top:1.4cqw;background:var(--fg);color:var(--c1);font-style:normal;font-size:4cqw;font-weight:700;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%)}
-.fut .ph{position:absolute;right:6cqw;top:9cqw;width:60cqw;height:60cqw;display:grid;place-items:center;margin:0}
+.fut .ov span{font-size:7.4cqw;font-weight:600;letter-spacing:.3cqw}
+.fut .ph{position:absolute;right:1cqw;top:17cqw;width:68cqw;height:68cqw;display:grid;place-items:center;margin:0}
 .fut .ph::before{content:'';position:absolute;inset:8% 4% 0;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.42),transparent 68%)}
 .fut .ph img,.fut .ph em{position:relative}
 .fut .ph img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(#000 60%,transparent 100%);mask-image:linear-gradient(#000 60%,transparent 100%)}
 .fut .ph em{font-style:normal;font-size:32cqw;font-weight:700;opacity:.3}
-.fut .np{position:absolute;left:5cqw;right:5cqw;top:69.5cqw;height:12cqw;clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent)}
-.fut .np::after{content:'';position:absolute;inset:.45cqw;clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%);background:rgba(0,0,0,.17)}
-.fut .nm{position:absolute;left:7cqw;right:7cqw;top:71cqw;text-align:center;font-size:8.6cqw;font-weight:700;text-transform:uppercase;letter-spacing:.3cqw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 .5cqw 1cqw rgba(0,0,0,.2)}
-.fut .ln{position:absolute;left:12cqw;right:12cqw;top:81.5cqw;height:.6cqw;background:linear-gradient(90deg,transparent,var(--fg),transparent);opacity:.6}
-.fut .st{position:absolute;left:13cqw;right:13cqw;top:84cqw;display:grid;grid-template-columns:1fr 1fr}
-.fut .st>div+div{border-left:.5cqw solid rgba(128,128,128,.35)}
-.fut .st p{margin:0;display:flex;gap:2cqw;align-items:baseline;justify-content:center;font-size:6.2cqw;line-height:1.3;font-weight:500}
-.fut .st b{font-size:9.4cqw;font-weight:700;min-width:12cqw;text-align:right}
-.fut .ft{position:absolute;left:0;right:0;top:121cqw;text-align:center;font-size:4.8cqw;opacity:.8;font-weight:500}
+.fut .nm{position:absolute;left:7cqw;right:7cqw;top:87cqw;text-align:center;font-size:9.5cqw;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fut .ln{position:absolute;left:12cqw;right:12cqw;top:116.5cqw;height:.6cqw;background:linear-gradient(90deg,transparent,var(--fg),transparent);opacity:.55}
+.fut .st{position:absolute;left:5cqw;right:5cqw;top:100.5cqw;display:grid;grid-template-columns:repeat(6,1fr)}
+.fut .st p{margin:0;display:flex;flex-direction:column;align-items:center;line-height:1.15}
+.fut .st span{font-size:5cqw;font-weight:600;opacity:.85}
+.fut .st b{font-size:9cqw;font-weight:700}
+.fut .ft{position:absolute;left:0;right:0;top:119.5cqw;text-align:center;font-size:4.6cqw;opacity:.8;font-weight:500}
 .fut .ft:empty{display:none}
 .fut .sp{position:absolute;left:0;right:0;top:6.6cqw;text-align:center;font-size:4.4cqw;font-weight:700;letter-spacing:.4cqw;text-transform:uppercase}
 .t-bronze{--c1:#7a4a25;--c2:#cf9560;--bd1:#f3c999;--bd2:#8a5a30;--fg:#2c1708;--pat:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 2px,transparent 2px 11px)}
@@ -128,8 +122,12 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 @media (prefers-reduced-motion:reduce){.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}.fut{transition:none}}
 
 .fut .fx{position:absolute;inset:0;background:linear-gradient(118deg,transparent 0 24%,rgba(255,255,255,.16) 24% 25%,rgba(255,255,255,.06) 25% 45%,transparent 45%),linear-gradient(62deg,transparent 0 60%,rgba(0,0,0,.08) 60% 78%,transparent 78%)}
-.fut .fr{position:absolute;inset:1.4cqw;clip-path:polygon(evenodd,50% 0%,73% 2.4%,100% 5.4%,100% 85%,50% 100%,0% 85%,0% 5.4%,27% 2.4%,50% 1.25%,72.19% 3.59%,98.25% 6.52%,98.25% 84.12%,50% 98.75%,1.75% 84.12%,1.75% 6.52%,27.8% 3.59%);background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.12) 38%,rgba(0,0,0,.3) 70%,rgba(255,255,255,.4))}
-.fut .bt{position:absolute;left:30cqw;right:30cqw;top:125cqw;height:10cqw;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.04))}
+.fut .rb{position:absolute;inset:0;clip-path:polygon(0 60%,78% 14%,82% 18%,0 66%);background:linear-gradient(90deg,rgba(255,255,255,.6),rgba(255,255,255,.15))}
+.fut .rb.r2{clip-path:polygon(0 68%,86% 20%,88% 23%,0 71%);background:rgba(0,0,0,.22)}
+.fut .rb.r3{clip-path:polygon(0 74%,100% 26%,100% 31%,0 82%);background:linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,.05))}
+.fut .dm{position:absolute;left:5.5cqw;top:70cqw;width:11cqw;height:11cqw;transform:rotate(45deg);border-radius:1.2cqw;background:var(--fg);box-shadow:0 0 0 .7cqw rgba(255,255,255,.3);display:grid;place-items:center}
+.fut .dm span{transform:rotate(-45deg);font-size:4.4cqw;font-weight:700;color:var(--c1)}
+.fut .fr{position:absolute;inset:1.4cqw;clip-path:polygon(evenodd,50% 0%,62% 0.28%,74% 0.63%,86% 1.19%,92.12% 1.74%,96.5% 3.24%,99.12% 5.69%,100% 9.1%,100% 42%,100% 81.2%,97.5% 84.06%,92.67% 87.02%,85.5% 90.1%,76% 93.29%,64.17% 96.59%,50% 100%,35.83% 96.59%,24% 93.29%,14.5% 90.1%,7.33% 87.02%,2.5% 84.06%,0% 81.2%,0% 42%,0% 9.1%,0.88% 5.69%,3.5% 3.24%,7.88% 1.74%,14% 1.19%,26% 0.63%,38% 0.28%,50% 1.25%,61.58% 1.52%,73.16% 1.86%,84.74% 2.41%,90.65% 2.94%,94.87% 4.41%,97.41% 6.8%,98.25% 10.12%,98.25% 42.2%,98.25% 80.42%,95.84% 83.2%,91.17% 86.1%,84.26% 89.1%,75.09% 92.21%,63.67% 95.42%,50% 98.75%,36.33% 95.42%,24.91% 92.21%,15.74% 89.1%,8.83% 86.1%,4.16% 83.2%,1.75% 80.42%,1.75% 42.2%,1.75% 10.12%,2.59% 6.8%,5.13% 4.41%,9.35% 2.94%,15.26% 2.41%,26.84% 1.86%,38.42% 1.52%);background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.12) 38%,rgba(0,0,0,.3) 70%,rgba(255,255,255,.4))}
 .fut .ov b,.fut .st b,.fut .nm{text-shadow:0 .45cqw 0 rgba(255,255,255,.4),0 -.25cqw 0 rgba(0,0,0,.22)}
 .fut .sk{position:absolute;right:9cqw;top:9cqw;width:7cqw;height:7cqw;background:#fff;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);filter:drop-shadow(0 0 1cqw #fff);animation:tw 3.2s ease-in-out infinite;pointer-events:none}
 .fut .sk.s2{right:auto;left:14cqw;top:58cqw;width:4.5cqw;height:4.5cqw;animation-delay:1.4s}
@@ -234,12 +232,12 @@ function futCard(p) {
   const sp = SPECIALS[p.special] ? p.special : '';
   const tier = sp || (t==null ? 'none' : t>=4.5 ? 'elite' : t>=4 ? 'rare' : t>=3.5 ? 'gold' : t>=2.5 ? 'silver' : 'bronze');
   const v = k => s[k]==null ? '--' : s[k];
-  const row = k => `<p><b>${v(k)}</b><span>${k}</span></p>`;
-  return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fm"></div><div class="fi"><div class="fx"></div><div class="ry"></div><div class="bw">NK</div><div class="sw"></div><div class="fr"></div><div class="bt"></div>${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
-    <div class="ov"><b>${t==null?'--':Math.round(t*19.8)}</b><span>${esc(p.pos||'—')}</span><i>NK</i></div>
+  const row = k => `<p><span>${k}</span><b>${v(k)}</b></p>`;
+  return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fm"></div><div class="fi"><div class="fx"></div><div class="rb"></div><div class="rb r2"></div><div class="rb r3"></div><div class="fr"></div>${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
+    <div class="ov"><b>${t==null?'--':Math.round(t*19.8)}</b><span>${esc(p.pos||'—')}</span></div><div class="dm"><span>NK</span></div>
     <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : `<em>${esc(String(p.name||'?').trim().charAt(0))}</em>`}</div>
-    <div class="sk"></div><div class="sk s2"></div><div class="np"></div><div class="nm">${esc(p.nick||p.name)}</div><div class="ln"></div>
-    <div class="st"><div>${row('PAC')}${row('SHO')}${row('PAS')}</div><div>${row('DRI')}${row('DEF')}${row('PHY')}</div></div>
+    <div class="sk"></div><div class="sk s2"></div><div class="nm">${esc(p.nick||p.name)}</div><div class="ln"></div>
+    <div class="st">${['PAC','SHO','PAS','DRI','DEF','PHY'].map(row).join('')}</div>
     <div class="ft">${esc(p.spNote||'')}</div><div class="gl"></div></div></div>`;
 }
 
@@ -261,7 +259,7 @@ document.addEventListener('pointermove', e => {
 function specials() {
   const g = {}; S.players.forEach(p => { if (SPECIALS[p.special]) (g[p.special] = g[p.special] || []).push(p); });
   const keys = Object.keys(SPECIALS).filter(k => g[k]); if (!keys.length) return '';
-  return `<div class="spot"><h3>ประกาศการ์ดพิเศษ</h3><div class="spl">${keys.map(k => {
+  return `<div class="spot"><h3>ห้องเกียรติยศ</h3><div class="spl">${keys.map(k => {
     const ps = [...g[k]].sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
     return `<div class="spb"><div class="spt"><b>${esc(SPECIALS[k][0])}</b><small>${esc(SPECIALS[k][2])}</small></div>
       <div class="sps">${ps.map((p,i)=>`<div class="spi${i?'':' on'}"><div class="fc${S.sel===p.id?' sel':''}" data-id="${p.id}" onclick="pick('${p.id}')">${futCard(p)}</div><div class="spn">${esc(p.nick||p.name)}</div></div>`).join('')}</div>
