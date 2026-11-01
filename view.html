@@ -127,6 +127,28 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 @keyframes shn{0%{background-position:150% 0}100%{background-position:-60% 0}}
 @media (prefers-reduced-motion:reduce){.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}.fut{transition:none}}
 
+.fut .fx{position:absolute;inset:0;background:linear-gradient(118deg,transparent 0 24%,rgba(255,255,255,.16) 24% 25%,rgba(255,255,255,.06) 25% 45%,transparent 45%),linear-gradient(62deg,transparent 0 60%,rgba(0,0,0,.08) 60% 78%,transparent 78%)}
+.fut .fr{position:absolute;inset:1.4cqw;clip-path:polygon(evenodd,50% 0%,63% 2.2%,80% 3.6%,100% 1%,96.5% 6.5%,100% 10.5%,100% 87%,50% 100%,0% 87%,0% 10.5%,3.5% 6.5%,0% 1%,20% 3.6%,37% 2.2%,50% 1.25%,62.55% 3.4%,78.95% 4.76%,98.25% 2.23%,94.87% 7.59%,98.25% 11.49%,98.25% 86.07%,50% 98.75%,1.75% 86.07%,1.75% 11.49%,5.13% 7.59%,1.75% 2.23%,21.05% 4.76%,37.45% 3.4%);background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.12) 38%,rgba(0,0,0,.3) 70%,rgba(255,255,255,.4))}
+.fut .bt{position:absolute;left:30cqw;right:30cqw;top:125cqw;height:10cqw;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.04))}
+.fut .ov b,.fut .st b,.fut .nm{text-shadow:0 .45cqw 0 rgba(255,255,255,.4),0 -.25cqw 0 rgba(0,0,0,.22)}
+.fut .sk{position:absolute;right:9cqw;top:9cqw;width:7cqw;height:7cqw;background:#fff;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);filter:drop-shadow(0 0 1cqw #fff);animation:tw 3.2s ease-in-out infinite;pointer-events:none}
+.fut .sk.s2{right:auto;left:14cqw;top:58cqw;width:4.5cqw;height:4.5cqw;animation-delay:1.4s}
+@keyframes tw{0%,100%{opacity:.95;transform:scale(1)}50%{opacity:.25;transform:scale(.6)}}
+@media (prefers-reduced-motion:reduce){.fut .sk{animation:none}.spi,.spi.on{transition:none}}
+/* ===== ประกาศการ์ดพิเศษ ===== */
+.spot{margin:4px 0 30px}.spot>h3{font-size:18px;margin:0 0 4px}
+.spl{display:flex;flex-wrap:wrap;gap:26px 30px;margin-top:14px}
+.spb{width:200px;text-align:center}
+.spt{margin-bottom:12px}
+.spt b{display:inline-block;font-size:15px;letter-spacing:.14em;padding:2px 14px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);border-top:1px solid rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.35)}
+.spt small{display:block;color:#a9b8e2;font-size:12px;margin-top:2px}
+.sps{display:grid}
+.spi{grid-area:1/1;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .9s,visibility 0s .9s}
+.spi.on{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .9s}
+.spn{margin-top:10px;font-weight:600;font-size:15px}
+.spd{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.spd i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .3s,width .3s}
+.spd i.on{background:#fff;width:18px;border-radius:4px}
 /* ===== แท็บข้าง ===== */
 .side{position:fixed;top:59px;right:0;bottom:0;width:340px;z-index:15;overflow-y:auto;padding:22px 20px 28px;color:#fff;background:linear-gradient(180deg,rgba(18,30,66,.78),rgba(7,12,30,.9));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-left:1px solid rgba(255,255,255,.14);box-shadow:-12px 0 40px rgba(0,0,0,.35);visibility:hidden;transform:translateX(105%);transition:transform .25s ease,visibility 0s .25s}
 .side.open{visibility:visible;transform:none;transition:transform .25s ease}
@@ -210,10 +232,10 @@ function futCard(p) {
   const tier = sp || (t==null ? 'none' : t>=4.5 ? 'elite' : t>=4 ? 'rare' : t>=3.5 ? 'gold' : t>=2.5 ? 'silver' : 'bronze');
   const v = k => s[k]==null ? '--' : s[k];
   const row = k => `<p><b>${v(k)}</b><span>${k}</span></p>`;
-  return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fm"></div><div class="fi"><div class="ry"></div><div class="bw">NK</div><div class="sw"></div>${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
+  return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fm"></div><div class="fi"><div class="fx"></div><div class="ry"></div><div class="bw">NK</div><div class="sw"></div><div class="fr"></div><div class="bt"></div>${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
     <div class="ov"><b>${t==null?'--':Math.round(t*19.8)}</b><span>${esc(p.pos||'—')}</span><i>NK</i></div>
     <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : `<em>${esc(String(p.name||'?').trim().charAt(0))}</em>`}</div>
-    <div class="np"></div><div class="nm">${esc(p.name)}</div><div class="ln"></div>
+    <div class="sk"></div><div class="sk s2"></div><div class="np"></div><div class="nm">${esc(p.nick||p.name)}</div><div class="ln"></div>
     <div class="st"><div>${row('PAC')}${row('SHO')}${row('PAS')}</div><div>${row('DRI')}${row('DEF')}${row('PHY')}</div></div>
     <div class="ft">${esc(p.spNote||'')}</div><div class="gl"></div></div></div>`;
 }
@@ -232,6 +254,27 @@ document.addEventListener('pointermove', e => {
   f.style.setProperty('--mx', (x*100).toFixed(0)+'%'); f.style.setProperty('--my', (y*100).toFixed(0)+'%');
 });
 
+// ---------- ประกาศการ์ดพิเศษ ----------
+function specials() {
+  const g = {}; S.players.forEach(p => { if (SPECIALS[p.special]) (g[p.special] = g[p.special] || []).push(p); });
+  const keys = Object.keys(SPECIALS).filter(k => g[k]); if (!keys.length) return '';
+  return `<div class="spot"><h3>ประกาศการ์ดพิเศษ</h3><div class="spl">${keys.map(k => {
+    const ps = [...g[k]].sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
+    return `<div class="spb"><div class="spt"><b>${esc(SPECIALS[k][0])}</b><small>${esc(SPECIALS[k][2])}</small></div>
+      <div class="sps">${ps.map((p,i)=>`<div class="spi${i?'':' on'}"><div class="fc${S.sel===p.id?' sel':''}" data-id="${p.id}" onclick="pick('${p.id}')">${futCard(p)}</div><div class="spn">${esc(p.nick||p.name)}</div></div>`).join('')}</div>
+      ${ps.length>1?`<div class="spd">${ps.map((_,i)=>`<i${i?'':' class="on"'}></i>`).join('')}</div>`:''}</div>`; }).join('')}</div></div>`;
+}
+let spT = null;
+function startRot() {
+  clearInterval(spT);
+  spT = setInterval(() => document.querySelectorAll('.spb').forEach(b => {
+    const it = [...b.querySelectorAll('.spi')]; if (it.length < 2 || b.matches(':hover')) return;
+    const i = it.findIndex(x=>x.classList.contains('on')), j = (i+1) % it.length;
+    it[i].classList.remove('on'); it[j].classList.add('on');
+    b.querySelectorAll('.spd i').forEach((d,k)=>d.classList.toggle('on', k===j));
+  }), 4000);
+}
+
 // ---------- แท็บข้าง ----------
 function sideHtml(p) {
   const as = asmOf(p.id), l = as[0], t = l ? tAvg(l) : null;
@@ -241,7 +284,7 @@ function sideHtml(p) {
   const rows = l ? `<div class="sd-list"><div><span>ด้านเด่นสุด</span><b>${best?best.s+' ('+f1(best.m)+')':'-'}</b></div><div><span>ด้านที่ควรพัฒนา</span><b>${low?low.s+' ('+f1(low.m)+')':'-'}</b></div><div><span>เทียบครั้งก่อน</span><b>${df==null?'ประเมินครั้งแรก':(df>0?'▲ +':df<0?'▼ ':'● ')+df.toFixed(1)}</b></div></div>` : '';
   return `<button class="s xc" onclick="closeSide()" aria-label="ปิด">✕</button>
   <div class="sd-card">${futCard(p)}</div>
-  <h2>${esc(p.name)}</h2><p class="sd-sub">${p.pos?esc(p.pos)+' · ':''}${stats(p)}</p>
+  <h2>${esc(p.name)}</h2>${p.nick?`<p class="sd-sub">ชื่อเล่น “${esc(p.nick)}”</p>`:''}<p class="sd-sub">${p.pos?esc(p.pos)+' · ':''}${stats(p)}</p>
   ${l ? `<div class="sd-score"><div class="pill"><b>${f1(t)}</b><small>/ 5</small></div><div><b>${lvl(t)}</b><div class="sd-sm">ประเมินล่าสุด ${esc(l.info.date)} · ครั้งที่ ${esc(l.info.no)}<br>ประเมินแล้ว ${as.length} ครั้ง</div></div></div>${bars(l)}${rows}` : '<div class="empty">ยังไม่มีผลประเมิน</div>'}
   <div class="sd-act"><button class="p" onclick="openPlayer('${p.id}')">ดูผลประเมิน →</button></div>`;
 }
@@ -265,12 +308,12 @@ async function load() {
 async function home() {
   closeSide(); $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>'; await load();
   $('app').innerHTML = `<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน · การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
-    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"></div><div class="grid fg" id="list"></div>`;
-  cards();
+    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"></div>${specials()}<div class="grid fg" id="list"></div>`;
+  cards(); startRot();
 }
 function cards() {
   const q = S.q.trim().toLowerCase();
-  const ps = S.players.filter(p=>String(p.name||'').toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
+  const ps = S.players.filter(p=>(String(p.name||'')+' '+String(p.nick||'')).toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
   $('list').innerHTML = ps.length ? ps.map(p=>`<div class="fc${S.sel===p.id?' sel':''}" data-id="${p.id}" onclick="pick('${p.id}')">${futCard(p)}</div>`).join('')
     : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีข้อมูลนักกีฬา'}</div>`;
 }
@@ -278,7 +321,7 @@ function openPlayer(id) {
   closeSide();
   const p = S.players.find(x=>x.id===id); if (!p) return home(); const as = asmOf(id);
   $('app').innerHTML = `<p><button onclick="home()">← นักกีฬาทั้งหมด</button></p>
-  <div class="phd">${futCard(p)}<div class="pin"><h2>${esc(p.name)}</h2><p class="mut" style="margin:2px 0">${stats(p)}${p.pos?' · '+esc(p.pos):''}</p></div></div>
+  <div class="phd">${futCard(p)}<div class="pin"><h2>${esc(p.name)}${p.nick?' ('+esc(p.nick)+')':''}</h2><p class="mut" style="margin:2px 0">${stats(p)}${p.pos?' · '+esc(p.pos):''}</p></div></div>
   <h3 style="margin:18px 0 6px">ประวัติการประเมิน</h3>
   <section>${as.length ? as.map(a=>`<div class="lst" style="cursor:pointer" onclick="showAsm('${a.id}')"><div class="pill"><b>${f1(tAvg(a))}</b><small>/ 5</small></div>
     <div class="mid"><b>ครั้งที่ ${esc(a.info.no)}</b><div class="mut">${esc(a.info.date)} · ${lvl(tAvg(a))}${a.info.coach?' · โค้ช '+esc(a.info.coach):''}</div></div>${bars(a)}</div>`).join('') : '<div class="empty">ยังไม่เคยประเมิน</div>'}</section>`;
