@@ -78,7 +78,7 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
  transition:transform .18s ease-out,filter .25s}
 .fc:hover .fut,.fc.sel .fut{--ty:-6px;--sc:1.03}
 .fc.sel .fut{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 16px rgba(110,190,255,.8)) drop-shadow(0 10px 16px rgba(0,0,0,.5))}
-.fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,63% 2.2%,80% 3.6%,100% 1%,96.5% 6.5%,100% 10.5%,100% 87%,50% 100%,0% 87%,0% 10.5%,3.5% 6.5%,0% 1%,20% 3.6%,37% 2.2%)}
+.fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,73% 2.4%,100% 5.4%,100% 85%,50% 100%,0% 85%,0% 5.4%,27% 2.4%)}
 .fo{inset:0;background:linear-gradient(135deg,var(--bd1) 0,var(--bd2) 22%,var(--bd1) 45%,var(--bd2) 72%,var(--bd1) 100%)}
 .fm{inset:1.5cqw;background:var(--bd2);background:linear-gradient(200deg,var(--bd2),color-mix(in srgb,var(--bd2) 40%,#000))}
 .fi{inset:2.7cqw;background:linear-gradient(135deg,rgba(255,255,255,.32),transparent 26%,transparent 72%,rgba(0,0,0,.2)),radial-gradient(120% 70% at 72% 12%,var(--c2),transparent 62%),radial-gradient(90% 50% at 15% 100%,rgba(255,255,255,.18),transparent 70%),linear-gradient(172deg,var(--c2),var(--c1));color:var(--fg)}
@@ -128,7 +128,7 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 @media (prefers-reduced-motion:reduce){.sx .fi::after,.t-rare .fi::after,.t-elite .fi::after{animation:none}.fut{transition:none}}
 
 .fut .fx{position:absolute;inset:0;background:linear-gradient(118deg,transparent 0 24%,rgba(255,255,255,.16) 24% 25%,rgba(255,255,255,.06) 25% 45%,transparent 45%),linear-gradient(62deg,transparent 0 60%,rgba(0,0,0,.08) 60% 78%,transparent 78%)}
-.fut .fr{position:absolute;inset:1.4cqw;clip-path:polygon(evenodd,50% 0%,63% 2.2%,80% 3.6%,100% 1%,96.5% 6.5%,100% 10.5%,100% 87%,50% 100%,0% 87%,0% 10.5%,3.5% 6.5%,0% 1%,20% 3.6%,37% 2.2%,50% 1.25%,62.55% 3.4%,78.95% 4.76%,98.25% 2.23%,94.87% 7.59%,98.25% 11.49%,98.25% 86.07%,50% 98.75%,1.75% 86.07%,1.75% 11.49%,5.13% 7.59%,1.75% 2.23%,21.05% 4.76%,37.45% 3.4%);background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.12) 38%,rgba(0,0,0,.3) 70%,rgba(255,255,255,.4))}
+.fut .fr{position:absolute;inset:1.4cqw;clip-path:polygon(evenodd,50% 0%,73% 2.4%,100% 5.4%,100% 85%,50% 100%,0% 85%,0% 5.4%,27% 2.4%,50% 1.25%,72.19% 3.59%,98.25% 6.52%,98.25% 84.12%,50% 98.75%,1.75% 84.12%,1.75% 6.52%,27.8% 3.59%);background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.12) 38%,rgba(0,0,0,.3) 70%,rgba(255,255,255,.4))}
 .fut .bt{position:absolute;left:30cqw;right:30cqw;top:125cqw;height:10cqw;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.04))}
 .fut .ov b,.fut .st b,.fut .nm{text-shadow:0 .45cqw 0 rgba(255,255,255,.4),0 -.25cqw 0 rgba(0,0,0,.22)}
 .fut .sk{position:absolute;right:9cqw;top:9cqw;width:7cqw;height:7cqw;background:#fff;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);filter:drop-shadow(0 0 1cqw #fff);animation:tw 3.2s ease-in-out infinite;pointer-events:none}
@@ -136,7 +136,10 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 @keyframes tw{0%,100%{opacity:.95;transform:scale(1)}50%{opacity:.25;transform:scale(.6)}}
 @media (prefers-reduced-motion:reduce){.fut .sk{animation:none}.spi,.spi.on{transition:none}}
 /* ===== ประกาศการ์ดพิเศษ ===== */
-.spot{margin:4px 0 30px}.spot>h3{font-size:18px;margin:0 0 4px}
+.spot{margin:4px 0 34px;padding:18px 20px 22px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.14);border-top:2px solid rgba(255,215,94,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.spot>h3{display:flex;align-items:center;gap:10px;font-size:17px;letter-spacing:.04em;margin:0}
+.spot>h3::before{content:'';width:10px;height:10px;background:#ffd75e;transform:rotate(45deg);box-shadow:0 0 10px rgba(255,215,94,.8)}
+.spot>h3::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,215,94,.6),transparent)}
 .spl{display:flex;flex-wrap:wrap;gap:26px 30px;margin-top:14px}
 .spb{width:200px;text-align:center}
 .spt{margin-bottom:12px}
@@ -307,15 +310,15 @@ async function load() {
 }
 async function home() {
   closeSide(); $('app').innerHTML = '<p class="mut">กำลังโหลด...</p>'; await load();
-  $('app').innerHTML = `<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน · การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
-    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"></div>${specials()}<div class="grid fg" id="list"></div>`;
+  $('app').innerHTML = `${specials()}<div class="bar1"><div><h1>นักกีฬา</h1><span class="mut">${S.players.length} คน · การ์ดคำนวณจากการประเมินล่าสุด (เต็ม 99)</span></div>
+    <input id="q" placeholder="ค้นหาชื่อ" value="${esc(S.q)}" oninput="S.q=this.value;cards()"></div><div class="grid fg" id="list"></div>`;
   cards(); startRot();
 }
 function cards() {
   const q = S.q.trim().toLowerCase();
-  const ps = S.players.filter(p=>(String(p.name||'')+' '+String(p.nick||'')).toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
+  const ps = S.players.filter(p=>!SPECIALS[p.special]&&(String(p.name||'')+' '+String(p.nick||'')).toLowerCase().includes(q)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'th'));
   $('list').innerHTML = ps.length ? ps.map(p=>`<div class="fc${S.sel===p.id?' sel':''}" data-id="${p.id}" onclick="pick('${p.id}')">${futCard(p)}</div>`).join('')
-    : `<div class="empty" style="grid-column:1/-1">${S.players.length?'ไม่พบชื่อที่ค้นหา':'ยังไม่มีข้อมูลนักกีฬา'}</div>`;
+    : `<div class="empty" style="grid-column:1/-1">${S.players.length?(q?'ไม่พบชื่อที่ค้นหา':'นักกีฬาทุกคนอยู่ในส่วนการ์ดพิเศษ'):'ยังไม่มีข้อมูลนักกีฬา'}</div>`;
 }
 function openPlayer(id) {
   closeSide();
