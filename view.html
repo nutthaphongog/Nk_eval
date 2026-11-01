@@ -76,7 +76,8 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
  filter:drop-shadow(0 10px 16px rgba(0,0,0,.5));
  transform:perspective(900px) translateY(var(--ty,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
  transition:transform .18s ease-out,filter .25s}
-.fc:hover .fut,.fc.sel .fut{--ty:-6px;--sc:1.03}
+.fc.sel .fut{--ty:-6px;--sc:1.03}
+@media(hover:hover){.fc:hover .fut{--ty:-6px;--sc:1.03}}
 .fc.sel .fut{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 16px rgba(110,190,255,.8)) drop-shadow(0 10px 16px rgba(0,0,0,.5))}
 .fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,72% 1.26%,92% 2.24%,100% 7.7%,100% 77%,86% 90.3%,50% 100%,14% 90.3%,0% 77%,0% 7.7%,8% 2.24%,28% 1.26%)}
 .fo{inset:0;background:linear-gradient(135deg,var(--bd1) 0,var(--bd2) 22%,var(--bd1) 45%,var(--bd2) 72%,var(--bd1) 100%)}
@@ -172,10 +173,40 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 .side .b em{color:#9fb0dc}.side .b .t{background:rgba(255,255,255,.1)}.side .b i{background:linear-gradient(180deg,#6aa6ff,#2f5be0)}
 .side .empty{background:rgba(255,255,255,.07);color:#a9b8e2}
 @media(min-width:900px){body.sp main{max-width:none;margin:0;padding-right:376px}}
+html{-webkit-text-size-adjust:100%}
+button,.tab,.fc{-webkit-tap-highlight-color:transparent}
+button{touch-action:manipulation}
 @media(max-width:899px){
- .side{top:auto;left:0;width:auto;max-height:70vh;border-left:0;border-top:1px solid rgba(255,255,255,.14);border-radius:20px 20px 0 0;transform:translateY(105%)}
- body.sp main{padding-bottom:70vh}}
-@media(max-width:620px){.top small{display:none}.lst{flex-wrap:wrap}.lst .bars{max-width:none;flex-basis:100%}.row{flex-wrap:wrap}.row .n{flex-basis:100%}.bar1 input{max-width:none;margin:0;flex-basis:100%}}
+ .side{top:auto;left:0;width:auto;max-height:72vh;max-height:72dvh;padding:10px 20px 0;border-left:0;border-top:1px solid rgba(255,255,255,.14);border-radius:20px 20px 0 0;transform:translateY(105%)}
+ .side::before{content:'';display:block;width:42px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);margin:0 auto 14px}
+ .sd-card{max-width:150px}
+ .xc{top:14px;right:14px;width:40px;height:40px;font-size:16px}
+ .sd-act{position:sticky;bottom:0;margin:14px -20px 0;padding:14px 20px max(16px,env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,12,30,0),rgba(7,12,30,.97) 28%)}
+ .sd-act button{min-height:44px}
+ body.sp main{padding-bottom:72vh}}
+@media(max-width:620px){
+ .top>div{padding:0 12px;min-height:52px;gap:6px}
+ .top small{display:none}.top b{font-size:15px}
+ .tabs{margin-left:0;overflow-x:auto}.tab{padding:0 11px;font-size:13px;white-space:nowrap}
+ .top button{padding:6px 10px;font-size:13px;min-height:36px}
+ main{padding:14px 12px 100px}
+ h1{font-size:22px}
+ button{min-height:40px}button.s{min-height:36px}
+ input,select,textarea{font-size:16px}
+ .bar1{gap:8px}.bar1 input{max-width:none;margin:0;flex-basis:100%;order:3}
+ .bar1>button.p{margin-left:auto}
+ .grid.fg{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 10px}
+ .hall{margin-bottom:28px}.hall-h h2{font-size:20px}
+ .hall-r{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 10px;gap:22px;padding:22px 10px 8px;margin:0 -12px;-webkit-overflow-scrolling:touch}
+ .hb{flex:none;width:min(60vw,220px);scroll-snap-align:start}
+ .phd{justify-content:center;text-align:center}.phd .fut{width:200px}.pin .acts2{justify-content:center}
+ .lst{flex-wrap:wrap}.lst .bars{max-width:none;flex-basis:100%;order:3}
+ .row{flex-wrap:wrap}.row .n{flex-basis:100%}.rt{width:100%}.rt button{flex:1;height:44px}
+ section{padding:14px}
+ .bottom{padding:10px 12px max(10px,env(safe-area-inset-bottom))}
+ .ch{flex-wrap:wrap}
+ dialog{padding:18px;max-height:92vh;max-height:92dvh}
+ .acts button{min-height:44px;flex:1}}
 @media print{.top,.noprint,.side{display:none!important}body::before,body::after{display:none}html,body{background:#fff}main{color:var(--ink)}section{border:0;box-shadow:none;break-inside:avoid;padding:6px 0}}
 </style></head>
 <body>
