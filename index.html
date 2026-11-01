@@ -85,14 +85,14 @@ select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);bo
  transition:transform .18s ease-out,filter .25s}
 .fc:hover .fut,.fc.sel .fut{--ty:-6px;--sc:1.03}
 .fc.sel .fut{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 16px rgba(110,190,255,.8)) drop-shadow(0 10px 16px rgba(0,0,0,.5))}
-.fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,76% 3.5%,100% 6.5%,100% 88%,50% 100%,0% 88%,0% 6.5%,24% 3.5%)}
-.fo{inset:0;background:linear-gradient(160deg,var(--bd1),var(--bd2) 55%,var(--bd1))}
-.fm{inset:1.6cqw;background:linear-gradient(200deg,var(--bd2),var(--bd1))}
-.fi{inset:2.6cqw;background:radial-gradient(120% 70% at 72% 12%,var(--c2),transparent 62%),radial-gradient(90% 50% at 15% 100%,rgba(255,255,255,.18),transparent 70%),linear-gradient(172deg,var(--c2),var(--c1));color:var(--fg)}
+.fo,.fm,.fi{position:absolute;clip-path:polygon(50% 0%,63% 2.2%,80% 3.6%,100% 1%,96.5% 6.5%,100% 10.5%,100% 87%,50% 100%,0% 87%,0% 10.5%,3.5% 6.5%,0% 1%,20% 3.6%,37% 2.2%)}
+.fo{inset:0;background:linear-gradient(135deg,var(--bd1) 0,var(--bd2) 22%,var(--bd1) 45%,var(--bd2) 72%,var(--bd1) 100%)}
+.fm{inset:1.5cqw;background:var(--bd2);background:linear-gradient(200deg,var(--bd2),color-mix(in srgb,var(--bd2) 40%,#000))}
+.fi{inset:2.7cqw;background:linear-gradient(135deg,rgba(255,255,255,.32),transparent 26%,transparent 72%,rgba(0,0,0,.2)),radial-gradient(120% 70% at 72% 12%,var(--c2),transparent 62%),radial-gradient(90% 50% at 15% 100%,rgba(255,255,255,.18),transparent 70%),linear-gradient(172deg,var(--c2),var(--c1));color:var(--fg)}
 .fi::before{content:'';position:absolute;inset:0;background:var(--pat,none);background-size:var(--pz,auto);pointer-events:none}
 .fi::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);pointer-events:none}
 .fut .ry{position:absolute;inset:0;background:repeating-conic-gradient(from 190deg at 72% 26%,rgba(255,255,255,.13) 0 7deg,transparent 7deg 16deg);-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);mask-image:linear-gradient(180deg,#000,transparent 70%)}
-.fut .bw{position:absolute;left:0;right:0;top:30cqw;text-align:center;font-size:62cqw;font-weight:700;line-height:1;letter-spacing:-2cqw;opacity:.07;color:var(--fg)}
+.fut .bw{position:absolute;left:0;right:0;top:30cqw;text-align:center;font-size:62cqw;font-weight:700;line-height:1;letter-spacing:-2cqw;opacity:.16;color:transparent;-webkit-text-stroke:.5cqw var(--fg)}
 .fut .sw{position:absolute;left:-12cqw;right:-12cqw;top:63cqw;bottom:-5cqw;border-radius:50% 50% 0 0/12cqw 12cqw 0 0;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.02));border-top:.5cqw solid rgba(255,255,255,.35)}
 .fut .gl{position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.34),transparent 48%);opacity:0;transition:opacity .2s;pointer-events:none}
 .fut:hover .gl{opacity:1}
@@ -105,6 +105,8 @@ select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);bo
 .fut .ph img,.fut .ph em{position:relative}
 .fut .ph img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(#000 60%,transparent 100%);mask-image:linear-gradient(#000 60%,transparent 100%)}
 .fut .ph em{font-style:normal;font-size:32cqw;font-weight:700;opacity:.3}
+.fut .np{position:absolute;left:5cqw;right:5cqw;top:69.5cqw;height:12cqw;clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent)}
+.fut .np::after{content:'';position:absolute;inset:.45cqw;clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%);background:rgba(0,0,0,.17)}
 .fut .nm{position:absolute;left:7cqw;right:7cqw;top:71cqw;text-align:center;font-size:8.6cqw;font-weight:700;text-transform:uppercase;letter-spacing:.3cqw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 .5cqw 1cqw rgba(0,0,0,.2)}
 .fut .ln{position:absolute;left:12cqw;right:12cqw;top:81.5cqw;height:.6cqw;background:linear-gradient(90deg,transparent,var(--fg),transparent);opacity:.6}
 .fut .st{position:absolute;left:13cqw;right:13cqw;top:84cqw;display:grid;grid-template-columns:1fr 1fr}
@@ -237,7 +239,7 @@ function futCard(p) {
   return `<div class="fut t-${tier}${sp?' sx':''}"><div class="fo"></div><div class="fm"></div><div class="fi"><div class="ry"></div><div class="bw">NK</div><div class="sw"></div>${sp ? `<div class="sp">${esc(SPECIALS[sp][0])}</div>` : ''}
     <div class="ov"><b>${t==null?'--':Math.round(t*19.8)}</b><span>${esc(p.pos||'—')}</span><i>NK</i></div>
     <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="">` : `<em>${esc(String(p.name||'?').trim().charAt(0))}</em>`}</div>
-    <div class="nm">${esc(p.name)}</div><div class="ln"></div>
+    <div class="np"></div><div class="nm">${esc(p.name)}</div><div class="ln"></div>
     <div class="st"><div>${row('PAC')}${row('SHO')}${row('PAS')}</div><div>${row('DRI')}${row('DEF')}${row('PHY')}</div></div>
     <div class="ft">${esc(p.spNote||'')}</div><div class="gl"></div></div></div>`;
 }
