@@ -38,7 +38,9 @@ export default {
     else if (path === '/admin' || path === '/admin/' || path === '/coach' || path === '/index' || path === '/index.html') path = '/index.html';
     const res = await fetch(`${GITHUB_RAW_BASE}${path}`, { cf: { cacheTtl: 30, cacheEverything: true } });
     if (!res.ok) return new Response(`ไม่พบหน้านี้ (404): ${path}`, { status: 404, headers: { 'content-type': 'text/html;charset=UTF-8' } });
-    return new Response(await res.text(), { headers: { 'content-type': 'text/html;charset=UTF-8', 'cache-control': 'public, max-age=10, s-maxage=30' } });
+    // [อัพเดท] ไฟล์ .js ต้องส่ง content-type เป็น javascript (นอกนั้นเหมือนเดิม)
+    const ct = path.endsWith('.js') ? 'application/javascript;charset=UTF-8' : 'text/html;charset=UTF-8';
+    return new Response(await res.text(), { headers: { 'content-type': ct, 'cache-control': 'public, max-age=10, s-maxage=30' } });
   }
 };
 
