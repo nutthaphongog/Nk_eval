@@ -211,7 +211,7 @@ button{touch-action:manipulation}
 </style></head>
 <body>
 <div class="top"><div><b>NK ELITE ACADEMY</b><small>ดูข้อมูลนักกีฬา</small>
-  <nav class="tabs noprint"><a class="tab on" href="#" onclick="home();return false">นักกีฬา</a><a class="tab" href="/index.html">เข้าสู่ระบบโค้ช →</a></nav></div></div>
+  <nav class="tabs noprint"><a class="tab on" data-t="players" href="#" onclick="home();return false">นักกีฬา</a><a class="tab" data-t="matches" href="#" onclick="return goMatches()">ตารางการแข่งขัน</a><a class="tab" href="/index.html">เข้าสู่ระบบโค้ช →</a></nav></div></div>
 <main id="app"></main>
 <aside id="side" class="side" aria-label="ข้อมูลนักกีฬา"></aside>
 <script>
@@ -402,4 +402,6 @@ function showAsm(id) {
   try { await home(); }
   catch(e) { $('app').innerHTML = `<section><h3>โหลดข้อมูลไม่สำเร็จ</h3><p class="mut">${esc(e.message)}</p><button class="p" onclick="location.reload()">ลองใหม่</button></section>`; }
 })();
-</script></body></html>
+</script>
+<script src="/nk-extra.js"></script>
+</body></html>
